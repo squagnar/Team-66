@@ -1,5 +1,5 @@
 Mary Jiang
 maryjiang@gatech.edu
 
-~~ヾ(´▽｀;)ゝ
+~~ヾ(´▽｀;)ゝ 
 https://www.youtube.com/watch?v=1FHGoAR5Q-c
