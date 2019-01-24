@@ -6,19 +6,32 @@
  * user guide available at https://docs.gradle.org/5.1.1/userguide/tutorial_java_projects.html
  */
 
-plugins {
-    // Apply the java plugin to add support for Java
-    id 'java'
+apply plugin: 'java'
+
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+version = '1.0'
+mainClassName='edu.gatech.oad.antlab.pkg1.AntLabMain'
+
+jar  {
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    manifest {
+        attributes  'Implementation-Title' : 'Gradle Quickstart' ,
+                'Implementation-Version' : version,
+                'Main-Class' : mainClassName
+    }
+
 }
 
 repositories {
-    // Use jcenter for resolving your dependencies.
-    // You can declare any Maven/Ivy/file repository here.
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
-    // This dependency is found on compile classpath of this component and consumers.
     compile files('lib/resources.jar')
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '3.6.7.Final'
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+
 }
 
