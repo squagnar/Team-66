@@ -15,16 +15,18 @@ public class Player {
     /**
      * Player's Skill Points
      *
-     * Should not exceed 16 points total
+     * Should not exceed MAX_SKILL_POINTS
      */
     private int pilot;
     private int fighter;
     private int trader;
     private int engineer;
 
+    /** Player's Maximum Number of Skill Points */
+    private static final int MAX_SKILL_POINTS = 16;
+
     /** Player's Spaceship */
     private Spaceship spaceship;
-
 
     /**
      * Creates a new player with given skill points
@@ -168,6 +170,10 @@ public class Player {
         this.engineer = engineer;
     }
 
+    public int getMaxSkillPoints() {
+        return MAX_SKILL_POINTS;
+    }
+
     /**
      * Gets Player's Spaceship
      *
@@ -187,11 +193,11 @@ public class Player {
     }
 
     /**
-     * Returns the total number of allocated skill points
+     * Returns the number of skill points remaining
      *
      * @return number of skill points
      */
-    public int getTotalAllocatedPoints() {
-        return pilot + fighter + trader + engineer;
+    public int getRemainingPoints() {
+        return MAX_SKILL_POINTS - (pilot + fighter + trader + engineer);
     }
 }
