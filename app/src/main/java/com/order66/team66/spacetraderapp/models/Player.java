@@ -1,5 +1,9 @@
 package com.order66.team66.spacetraderapp.models;
 
+/**
+ * Player class stores information about the player's name, credits,
+ * spaceship, and skill points.
+ */
 public class Player {
 
     /** Player's Name */
@@ -93,24 +97,6 @@ public class Player {
     }
 
     /**
-     * Increases Player's Credits
-     *
-     * @param credits credits to add
-     */
-    public void addCredits(int credits) {
-        this.credits += credits;
-    }
-
-    /**
-     * Decreases Player's Credits
-     *
-     * @param credits credits to remove
-     */
-    public void removeCredits(int credits) {
-        this.credits -= credits;
-    }
-
-    /**
      * Gets Player's Pilot Skill
      *
      * @return pilot skill
@@ -128,23 +114,6 @@ public class Player {
         this.pilot = pilot;
     }
 
-    /**
-     * Increases Player's Pilot Skill
-     *
-     * @param pilot pilot skill points to add
-     */
-    public void addPilot(int pilot) {
-        this.pilot += pilot;
-    }
-
-    /**
-     * Decreases Player's Pilot Skill
-     *
-     * @param pilot pilot skill points to remove
-     */
-    public void removePilot(int pilot) {
-        this.pilot -= pilot;
-    }
     /**
      * Gets Player's Fighter Skill
      *
@@ -215,5 +184,14 @@ public class Player {
      */
     public void setSpaceship(Spaceship spaceship) {
         this.spaceship = spaceship;
+    }
+
+    /**
+     * Returns the total number of allocated skill points
+     *
+     * @return number of skill points
+     */
+    public int getTotalAllocatedPoints() {
+        return pilot + fighter + trader + engineer;
     }
 }
