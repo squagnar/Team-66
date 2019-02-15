@@ -200,4 +200,16 @@ public class Player {
     public int getRemainingPoints() {
         return MAX_SKILL_POINTS - (pilot + fighter + trader + engineer);
     }
+
+    @Override
+    public String toString() {
+        String toRet = "Name: " + name + "\n" +
+                "Credits: " + credits + "\n" +
+                "Spaceship: " + spaceship.getName() + "\n" +
+                "Pilot Skill: " + pilot + "\n" +
+                "Fighter Skill: " + fighter + "\n" +
+                "Trader Skill: "+ trader + "\n" +
+                "Engineer Skill: " + engineer + "\n";
+        return toRet;
+    }
 }
