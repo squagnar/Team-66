@@ -7,5 +7,6 @@ public class Game {
 
     /** Game Difficulty */
     private Difficulty difficulty;
+    public Player player;
 }
 
