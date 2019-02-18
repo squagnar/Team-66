@@ -16,19 +16,119 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
+                android:background="#0033cc"
                 app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_configuration"/>
 
-    <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            app:srcCompat="@android:drawable/ic_dialog_email"/>
+    <?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+        <TextView
+                android:id="@+id/create_player"
+                android:text="Create your character"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="75dp"
+                android:layout_marginLeft="110dp"
+                android:textSize="19dp"
+                android:textStyle="bold"
+        />
+
+        <TextView
+                android:id="@+id/name_header"
+                android:text="Enter your name:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="140dp"
+                android:layout_marginLeft="30dp"
+                android:textSize="16dp"
+        />
+
+
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:id="@+id/player_name_input"
+                android:text="Name"
+                android:ems="10"
+                android:layout_marginTop="165dp"
+                android:layout_marginLeft="30dp"
+                android:textSize="16dp"
+        />
+
+        <TextView
+                android:id="@+id/difficulty_header"
+                android:text="Select difficulty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="260dp"
+                android:layout_marginLeft="30dp"
+                android:textSize="16dp"
+        />
+
+        <RadioGroup
+                android:id="@+id/difficulty_radio_group"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <RadioButton
+                    android:id="@+id/easy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="300dp"/>
+            <RadioButton
+                    android:id="@+id/regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginTop="300dp"/>
+            <RadioButton
+                    android:id="@+id/hard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginTop="300dp"/>
+        </RadioGroup>
+
+        <TextView
+                android:id="@+id/easy_button_header"
+                android:text="Easy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="330dp"
+                android:layout_marginLeft="50dp"
+                android:textSize="15sp"
+        />
+
+        <TextView
+                android:id="@+id/regular_button_header"
+                android:text="Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="330dp"
+                android:layout_marginLeft="173dp"
+                android:textSize="15sp"
+        />
+
+        <TextView
+                android:id="@+id/hard_button_header"
+                android:text="Hard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="330dp"
+                android:layout_marginLeft="314dp"
+                android:textSize="15sp"
+        />
+    </RelativeLayout>
+
 
 </android.support.design.widget.CoordinatorLayout>
