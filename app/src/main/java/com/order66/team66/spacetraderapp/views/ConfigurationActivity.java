@@ -2,14 +2,16 @@ package com.order66.team66.spacetraderapp.views;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import com.order66.team66.spacetraderapp.R;
 import com.order66.team66.spacetraderapp.models.Difficulty;
 import com.order66.team66.spacetraderapp.models.Player;
+import com.order66.team66.spacetraderapp.viewmodels.ConfigurationViewModel;
 
 public class ConfigurationActivity extends AppCompatActivity {
-    private ConfigurationActivity viewModel;
+    private ConfigurationViewModel viewModel;
 
     private Player player;
     private Difficulty difficulty;
@@ -144,12 +146,18 @@ public class ConfigurationActivity extends AppCompatActivity {
         int pointsTraderInt = Integer.parseInt(pointsTrader.getText().toString());
         int pointsEngineerInt = Integer.parseInt(pointsEngineer.getText().toString());
 
-        // set attributes ?
-        player.setName(nameField.getText().toString());
-        player.setPilot(pointsPilotInt);
-        player.setFighter(pointsFighterInt);
-        player.setTrader(pointsTraderInt);
-        player.setEngineer(pointsEngineerInt);
+        // set attributes
+//        player.setName(nameField.getText().toString());
+//        player.setPilot(pointsPilotInt);
+//        player.setFighter(pointsFighterInt);
+//        player.setTrader(pointsTraderInt);
+//        player.setEngineer(pointsEngineerInt);
+
         difficulty.setDifficulty((String) difficultySpinner.getSelectedItem());
+
+        viewModel.createPlayer(nameField.getText().toString(), pointsPilotInt,
+                pointsFighterInt, pointsTraderInt, pointsEngineerInt);
+
+        Log.d("New player added", "Player data: " + player);
     }
 }
