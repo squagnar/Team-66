@@ -33,4 +33,7 @@ public enum Difficulty {
         return difficulty;
     }
 
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
 }

@@ -11,6 +11,7 @@ public class ConfigurationViewModel extends ViewModel {
     private int pointsTrader;
     private int pointsPilot;
     private int pointsEngineer;
+    private String difficulty;
     /**
      * Passthrough method to allow a view to create a Player object
      *
@@ -43,5 +44,9 @@ public class ConfigurationViewModel extends ViewModel {
 
     public void setPointsEngineer(int points) {
         this.pointsEngineer = points;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
     }
 }

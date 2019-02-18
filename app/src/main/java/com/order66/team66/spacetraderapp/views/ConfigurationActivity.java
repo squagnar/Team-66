@@ -1,17 +1,12 @@
 package com.order66.team66.spacetraderapp.views;
 
-import android.arch.lifecycle.ViewModelProvider;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.*;
 import com.order66.team66.spacetraderapp.R;
 import com.order66.team66.spacetraderapp.models.Difficulty;
 import com.order66.team66.spacetraderapp.models.Player;
-import org.w3c.dom.Text;
 
 public class ConfigurationActivity extends AppCompatActivity {
     private ConfigurationActivity viewModel;
@@ -25,10 +20,7 @@ public class ConfigurationActivity extends AppCompatActivity {
     private TextView pointsTrader;
     private TextView pointsPilot;
     private TextView pointsEngineer;
-
-    private RadioGroup radioGroup;
-    private RadioButton radioButton;
-    private Button button;
+    private Spinner difficultySpinner;
 
     int pointValPilot = 0;
     int pointValFighter = 0;
@@ -48,8 +40,11 @@ public class ConfigurationActivity extends AppCompatActivity {
         pointsTrader = findViewById(R.id.trader_points);
         pointsEngineer = findViewById(R.id.engineer_points);
 
-        // addListenerOnButton();
-        // increase/decrease button
+        difficultySpinner = findViewById(R.id.difficulty_spinner);
+        ArrayAdapter<Difficulty> difficultyAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, Difficulty.values());
+        difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        difficultySpinner.setAdapter(difficultyAdapter);
 
         //viewModel.savePlayer();
     }
@@ -142,7 +137,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         pointDisplay.setText("" + value);
     }
 
-    private void savePlayer() {
+    public void onAddPressed() {
         // get int value
         int pointsPilotInt = Integer.parseInt(pointsPilot.getText().toString());
         int pointsFighterInt = Integer.parseInt(pointsFighter.getText().toString());
@@ -155,5 +150,6 @@ public class ConfigurationActivity extends AppCompatActivity {
         player.setFighter(pointsFighterInt);
         player.setTrader(pointsTraderInt);
         player.setEngineer(pointsEngineerInt);
+        difficulty.setDifficulty((String) difficultySpinner.getSelectedItem());
     }
 }
