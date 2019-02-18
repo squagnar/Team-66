@@ -39,12 +39,11 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:id="@+id/player_name_input"
-            android:text="Name"
             android:ems="10"
             android:layout_marginTop="123dp"
             android:layout_marginLeft="30dp"
             android:textSize="16sp"
-    />
+            android:hint="Name"/>
 
     <!-- Difficulty selector-->
     <TextView
