@@ -56,16 +56,18 @@ public class ConfigurationActivity extends AppCompatActivity {
         if (pointValPilot >= 0 && pointValPilot <= 16 && pointValTotal > 0 && pointValTotal <= 16) {
             pointValPilot++;
             pointValTotal--;
+            displayPilotPoints(pointValPilot);
+            displayPointsRemaining(pointValTotal);
         }
-        displayPilotPoints(pointValPilot);
     }
 
     public void decreasePointPilot(View view) {
         if (pointValPilot > 0 && pointValPilot <= 16 && pointValTotal >= 0 && pointValTotal < 16) {
             pointValPilot--;
             pointValTotal++;
+            displayPilotPoints(pointValPilot);
+            displayPointsRemaining(pointValTotal);
         }
-        displayPilotPoints(pointValPilot);
     }
 
     public void displayPilotPoints(int value) {
@@ -79,6 +81,7 @@ public class ConfigurationActivity extends AppCompatActivity {
             pointValFighter++;
             pointValTotal--;
             displayFighterPoints(pointValFighter);
+            displayPointsRemaining(pointValTotal);
         }
     }
 
@@ -87,6 +90,7 @@ public class ConfigurationActivity extends AppCompatActivity {
             pointValFighter--;
             pointValTotal++;
             displayFighterPoints(pointValFighter);
+            displayPointsRemaining(pointValTotal);
         }
     }
 
@@ -101,6 +105,7 @@ public class ConfigurationActivity extends AppCompatActivity {
             pointValTrader++;
             pointValTotal--;
             displayTraderPoints(pointValTrader);
+            displayPointsRemaining(pointValTotal);
         }
     }
 
@@ -109,6 +114,7 @@ public class ConfigurationActivity extends AppCompatActivity {
             pointValTrader--;
             pointValTotal++;
             displayTraderPoints(pointValTrader);
+            displayPointsRemaining(pointValTotal);
         }
     }
 
@@ -123,6 +129,7 @@ public class ConfigurationActivity extends AppCompatActivity {
             pointValEngineer++;
             pointValTotal--;
             displayEngineerPoints(pointValEngineer);
+            displayPointsRemaining(pointValTotal);
         }
     }
 
@@ -131,6 +138,7 @@ public class ConfigurationActivity extends AppCompatActivity {
             pointValEngineer--;
             pointValTotal++;
             displayEngineerPoints(pointValEngineer);
+            displayPointsRemaining(pointValTotal);
         }
     }
 
@@ -139,6 +147,10 @@ public class ConfigurationActivity extends AppCompatActivity {
         pointDisplay.setText("" + value);
     }
 
+    public void displayPointsRemaining(int value) {
+        TextView pointDisplay = (TextView) findViewById(R.id.points_remaining);
+        pointDisplay.setText("" + value);
+    }
     public void onAddPressed() {
         // get int value
         int pointsPilotInt = Integer.parseInt(pointsPilot.getText().toString());
