@@ -34,6 +34,7 @@ public class ConfigurationActivity extends AppCompatActivity {
     int pointValFighter = 0;
     int pointValTrader = 0;
     int pointValEngineer = 0;
+    int pointValTotal = 16;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,17 +51,23 @@ public class ConfigurationActivity extends AppCompatActivity {
         // addListenerOnButton();
         // increase/decrease button
 
-        viewModel.savePlayer();
+        //viewModel.savePlayer();
     }
 
     // pilot points
     public void increasePointPilot(View view) {
-        pointValPilot++;
+        if (pointValPilot >= 0 && pointValPilot <= 16 && pointValTotal > 0 && pointValTotal <= 16) {
+            pointValPilot++;
+            pointValTotal--;
+        }
         displayPilotPoints(pointValPilot);
     }
 
     public void decreasePointPilot(View view) {
-        pointValPilot--;
+        if (pointValPilot > 0 && pointValPilot <= 16 && pointValTotal >= 0 && pointValTotal < 16) {
+            pointValPilot--;
+            pointValTotal++;
+        }
         displayPilotPoints(pointValPilot);
     }
 
@@ -71,13 +78,19 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     // fighter points
     public void increasePointFighter(View view) {
-        pointValFighter++;
-        displayFighterPoints(pointValFighter);
+        if (pointValFighter >= 0 && pointValFighter <= 16 && pointValTotal > 0 && pointValTotal <= 16) {
+            pointValFighter++;
+            pointValTotal--;
+            displayFighterPoints(pointValFighter);
+        }
     }
 
     public void decreasePointFighter(View view) {
-        pointValFighter--;
-        displayFighterPoints(pointValFighter);
+        if (pointValFighter > 0 && pointValFighter <= 16 && pointValTotal >= 0 && pointValTotal < 16) {
+            pointValFighter--;
+            pointValTotal++;
+            displayFighterPoints(pointValFighter);
+        }
     }
 
     public void displayFighterPoints(int value) {
@@ -87,13 +100,19 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     // trader points
     public void increasePointTrader(View view) {
-        pointValTrader++;
-        displayTraderPoints(pointValTrader);
+        if (pointValTrader >= 0 && pointValTrader <= 16 && pointValTotal > 0 && pointValTotal <= 16) {
+            pointValTrader++;
+            pointValTotal--;
+            displayTraderPoints(pointValTrader);
+        }
     }
 
     public void decreasePointTrader(View view) {
-        pointValTrader--;
-        displayTraderPoints(pointValTrader);
+        if (pointValTrader > 0 && pointValTrader <= 16 && pointValTotal >= 0 && pointValTotal < 16) {
+            pointValTrader--;
+            pointValTotal++;
+            displayTraderPoints(pointValTrader);
+        }
     }
 
     public void displayTraderPoints(int value) {
@@ -103,13 +122,19 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     // engineer points
     public void increasePointEngineer(View view) {
-        pointValEngineer++;
-        displayEngineerPoints(pointValEngineer);
+        if (pointValEngineer >= 0 && pointValEngineer <= 16 && pointValTotal > 0 && pointValTotal <= 16) {
+            pointValEngineer++;
+            pointValTotal--;
+            displayEngineerPoints(pointValEngineer);
+        }
     }
 
     public void decreasePointEngineer(View view) {
-        pointValEngineer--;
-        displayEngineerPoints(pointValEngineer);
+        if (pointValEngineer > 0 && pointValEngineer <= 16 && pointValTotal >= 0 && pointValTotal < 16) {
+            pointValEngineer--;
+            pointValTotal++;
+            displayEngineerPoints(pointValEngineer);
+        }
     }
 
     public void displayEngineerPoints(int value) {
