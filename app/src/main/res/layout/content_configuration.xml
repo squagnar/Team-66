@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="110dp"
             android:textSize="19sp"
             android:textStyle="bold"
@@ -28,7 +28,7 @@
             android:text="Enter your name:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="80dp"
             android:layout_marginLeft="30dp"
             android:textSize="16sp"
     />
@@ -41,7 +41,7 @@
             android:id="@+id/player_name_input"
             android:text="Name"
             android:ems="10"
-            android:layout_marginTop="123dp"
+            android:layout_marginTop="103dp"
             android:layout_marginLeft="30dp"
             android:textSize="16sp"
     />
@@ -52,7 +52,7 @@
             android:text="Select difficulty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="190dp"
+            android:layout_marginTop="170dp"
             android:layout_marginLeft="30dp"
             android:textSize="16sp"
     />
@@ -63,7 +63,7 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="230dp">
+            android:layout_marginTop="210dp">
         <RadioButton
                 android:id="@+id/easy"
                 android:layout_width="wrap_content"
@@ -86,30 +86,27 @@
             android:text="Easy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="270dp"
+            android:layout_marginTop="250dp"
             android:layout_marginLeft="50dp"
-            android:textSize="15sp"
-    />
+            android:textSize="15sp"/>
 
     <TextView
             android:id="@+id/regular_button_header"
             android:text="Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="270dp"
+            android:layout_marginTop="250dp"
             android:layout_marginLeft="173dp"
-            android:textSize="15sp"
-    />
+            android:textSize="15sp"/>
 
     <TextView
             android:id="@+id/hard_button_header"
             android:text="Hard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="270dp"
+            android:layout_marginTop="250dp"
             android:layout_marginLeft="314dp"
-            android:textSize="15sp"
-    />
+            android:textSize="15sp"/>
 
     <!-- Point distributor for Fighter-->
     <TextView
@@ -118,19 +115,20 @@
             android:layout_height="wrap_content"
             android:text="Fighter"
             android:textSize="15sp"
-            android:layout_marginTop="330dp"
+            android:layout_marginTop="310dp"
             android:layout_marginLeft="70dp"/>
     <LinearLayout
             android:id="@+id/point_distributor_fighter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="355dp"
+            android:layout_marginTop="335dp"
             android:layout_marginLeft="30dp"
             android:orientation="horizontal">
         <Button
-                android:id="@+id/decrease_button"
+                android:id="@+id/decrease_button_fighter"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:onClick="decreasePointFighter"
                 android:text="-"/>
         <TextView
                 android:id="@+id/fighter_points"
@@ -142,9 +140,10 @@
                 android:textStyle="bold"
                 android:textSize="18sp"/>
         <Button
-                android:id="@+id/increase_button"
+                android:id="@+id/increase_button_fighter"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:onClick="increasePointFighter"
                 android:text="+"/>
     </LinearLayout>
 
@@ -154,19 +153,20 @@
             android:layout_height="wrap_content"
             android:text="Pilot"
             android:textSize="15sp"
-            android:layout_marginTop="415dp"
+            android:layout_marginTop="395dp"
             android:layout_marginLeft="74dp"/>
     <LinearLayout
             android:id="@+id/point_distributor_pilot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="435dp"
+            android:layout_marginTop="415dp"
             android:layout_marginLeft="30dp"
             android:orientation="horizontal">
         <Button
                 android:id="@+id/decrease_button_pilot"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:onClick="decreasePointPilot"
                 android:text="-"/>
         <TextView
                 android:id="@+id/pilot_points"
@@ -181,6 +181,7 @@
                 android:id="@+id/increase_button_pilot"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:onClick="increasePointPilot"
                 android:text="+"/>
     </LinearLayout>
 
@@ -190,19 +191,20 @@
             android:layout_height="wrap_content"
             android:text="Trader"
             android:textSize="15sp"
-            android:layout_marginTop="495dp"
+            android:layout_marginTop="475dp"
             android:layout_marginLeft="70dp"/>
     <LinearLayout
             android:id="@+id/point_distributor_trader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="520dp"
+            android:layout_marginTop="500dp"
             android:layout_marginLeft="30dp"
             android:orientation="horizontal">
         <Button
                 android:id="@+id/decrease_button_trader"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:onClick="decreasePointTrader"
                 android:text="-"/>
         <TextView
                 android:id="@+id/trader_points"
@@ -217,6 +219,7 @@
                 android:id="@+id/increase_button_trader"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:onClick="increasePointTrader"
                 android:text="+"/>
     </LinearLayout>
 
@@ -226,19 +229,20 @@
             android:layout_height="wrap_content"
             android:text="Engineer"
             android:textSize="15sp"
-            android:layout_marginTop="575dp"
+            android:layout_marginTop="555dp"
             android:layout_marginLeft="60dp"/>
     <LinearLayout
             android:id="@+id/point_distributor_engineer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="600dp"
+            android:layout_marginTop="580dp"
             android:layout_marginLeft="30dp"
             android:orientation="horizontal">
         <Button
                 android:id="@+id/decrease_button_engineer"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:onClick="decreasePointEngineer"
                 android:text="-"/>
         <TextView
                 android:id="@+id/engineer_points"
@@ -253,15 +257,17 @@
                 android:id="@+id/increase_button_engineer"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:onClick="increasePointEngineer"
                 android:text="+"/>
     </LinearLayout>
 
+    <!-- Remaining points-->
     <TextView
             android:id="@+id/points_remaining"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="16"
-            android:layout_marginTop="450dp"
+            android:layout_marginTop="430dp"
             android:layout_marginLeft="255dp"
             android:textSize="40sp"/>
     <TextView
@@ -269,8 +275,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Points remaining"
-            android:layout_marginTop="510dp"
+            android:layout_marginTop="490dp"
             android:layout_marginLeft="213dp"
-            android:textSize="17sp"
-    />
+            android:textSize="17sp"/>
 </RelativeLayout>
