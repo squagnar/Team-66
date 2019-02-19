@@ -39,12 +39,11 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:id="@+id/player_name_input"
-            android:text="Name"
             android:ems="10"
             android:layout_marginTop="123dp"
             android:layout_marginLeft="30dp"
             android:textSize="16sp"
-    />
+            android:hint="Name"/>
 
     <!-- Difficulty selector-->
     <TextView
@@ -118,6 +117,7 @@
             <!--android:layout_marginLeft="314dp"-->
             <!--android:textSize="15sp"/>-->
 
+    <!-- Spinner that displays all difficulty levels-->
     <Spinner
             android:id="@+id/difficulty_spinner"
             android:layout_width="180dp"

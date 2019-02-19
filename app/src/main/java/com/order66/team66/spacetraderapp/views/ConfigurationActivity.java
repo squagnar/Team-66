@@ -10,12 +10,20 @@ import com.order66.team66.spacetraderapp.models.Difficulty;
 import com.order66.team66.spacetraderapp.models.Player;
 import com.order66.team66.spacetraderapp.models.Skill;
 import com.order66.team66.spacetraderapp.viewmodels.ConfigurationViewModel;
-
 import java.util.ArrayList;
 
+/**
+ * Class for adding a new player
+ */
 public class ConfigurationActivity extends AppCompatActivity {
+    /**
+     * The view model
+     */
     private ConfigurationViewModel viewModel;
 
+    /**
+     * Data for player and difficulty being edited
+     */
     private Player player;
     private Difficulty difficulty;
 
