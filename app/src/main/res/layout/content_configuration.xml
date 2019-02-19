@@ -56,74 +56,13 @@
             android:textSize="16sp"
     />
 
-    <!--<RadioGroup-->
-            <!--android:id="@+id/difficulty_radio_group"-->
-            <!--android:gravity="center_horizontal"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginTop="210dp">-->
-        <!--<RadioButton-->
-                <!--android:id="@+id/beginner"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="50dp"/>-->
-        <!--<RadioButton-->
-                <!--android:id="@+id/easy"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="20dp"/>-->
-        <!--<RadioButton-->
-                <!--android:id="@+id/normal"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="20dp"/>-->
-        <!--<RadioButton-->
-                <!--android:id="@+id/hard"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="20dp"/>-->
-        <!--<RadioButton-->
-                <!--android:id="@+id/impossible"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="100dp"/>-->
-    <!--</RadioGroup>-->
-
-    <!--<TextView-->
-            <!--android:id="@+id/easy_button_header"-->
-            <!--android:text="Easy"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginTop="250dp"-->
-            <!--android:layout_marginLeft="50dp"-->
-            <!--android:textSize="15sp"/>-->
-
-    <!--<TextView-->
-            <!--android:id="@+id/regular_button_header"-->
-            <!--android:text="Regular"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginTop="250dp"-->
-            <!--android:layout_marginLeft="173dp"-->
-            <!--android:textSize="15sp"/>-->
-
-    <!--<TextView-->
-            <!--android:id="@+id/hard_button_header"-->
-            <!--android:text="Hard"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginTop="250dp"-->
-            <!--android:layout_marginLeft="314dp"-->
-            <!--android:textSize="15sp"/>-->
-
     <!-- Spinner that displays all difficulty levels-->
     <Spinner
             android:id="@+id/difficulty_spinner"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="230dp" />
+            android:layout_marginTop="210dp" />
 
 
     <!-- Point distributor for Fighter-->
@@ -133,13 +72,13 @@
             android:layout_height="wrap_content"
             android:text="Fighter"
             android:textSize="15sp"
-            android:layout_marginTop="290dp"
+            android:layout_marginTop="270dp"
             android:layout_marginLeft="70dp"/>
     <LinearLayout
             android:id="@+id/point_distributor_fighter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="315dp"
+            android:layout_marginTop="295dp"
             android:layout_marginLeft="30dp"
             android:orientation="horizontal">
         <Button
@@ -171,13 +110,13 @@
             android:layout_height="wrap_content"
             android:text="Pilot"
             android:textSize="15sp"
-            android:layout_marginTop="375dp"
+            android:layout_marginTop="355dp"
             android:layout_marginLeft="74dp"/>
     <LinearLayout
             android:id="@+id/point_distributor_pilot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="395dp"
+            android:layout_marginTop="375dp"
             android:layout_marginLeft="30dp"
             android:orientation="horizontal">
         <Button
@@ -209,13 +148,13 @@
             android:layout_height="wrap_content"
             android:text="Trader"
             android:textSize="15sp"
-            android:layout_marginTop="455dp"
+            android:layout_marginTop="435dp"
             android:layout_marginLeft="70dp"/>
     <LinearLayout
             android:id="@+id/point_distributor_trader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="480dp"
+            android:layout_marginTop="460dp"
             android:layout_marginLeft="30dp"
             android:orientation="horizontal">
         <Button
@@ -247,13 +186,13 @@
             android:layout_height="wrap_content"
             android:text="Engineer"
             android:textSize="15sp"
-            android:layout_marginTop="545dp"
+            android:layout_marginTop="525dp"
             android:layout_marginLeft="60dp"/>
     <LinearLayout
             android:id="@+id/point_distributor_engineer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="560dp"
+            android:layout_marginTop="540dp"
             android:layout_marginLeft="30dp"
             android:orientation="horizontal">
         <Button
@@ -285,7 +224,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="16"
-            android:layout_marginTop="410dp"
+            android:layout_marginTop="370dp"
             android:layout_marginLeft="255dp"
             android:textSize="40sp"/>
     <TextView
@@ -293,7 +232,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Points remaining"
-            android:layout_marginTop="470dp"
+            android:layout_marginTop="450dp"
             android:layout_marginLeft="213dp"
             android:textSize="17sp"/>
 
@@ -304,7 +243,8 @@
             android:id="@+id/create_button"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"
-            android:layout_marginStart="300dp" android:onClick="onAddPressed"/>
+            android:layout_marginBottom="30dp"
+            android:layout_marginStart="300dp"
+            android:onClick="onAddPressed"/>
             <!--android:onClick="onAddPressed"-->
 </RelativeLayout>
