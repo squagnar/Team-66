@@ -142,8 +142,11 @@ public class ConfigurationActivity extends AppCompatActivity {
     public void onAddPressed(View view) {
         //difficulty.setDifficulty((String) difficultySpinner.getSelectedItem());
 
-        viewModel.createPlayer(nameFieldText.getText().toString(), pilot, fighter, trader, engineer);
-
-        Log.d("New player added", "Player data: " + viewModel.getPlayer());
+        if (pointsUnspent > 0) {
+            Toast.makeText(this, "Please allocate all skill points!", Toast.LENGTH_LONG).show();
+        } else {
+            viewModel.createPlayer(nameFieldText.getText().toString(), pilot, fighter, trader, engineer);
+            Log.d("New player added", "Player data: " + viewModel.getPlayer());
+        }
     }
 }
