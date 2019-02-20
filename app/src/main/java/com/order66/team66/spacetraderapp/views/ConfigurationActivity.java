@@ -147,6 +147,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         } else {
             viewModel.createPlayer(nameFieldText.getText().toString(), pilot, fighter, trader, engineer);
             Log.d("New player added", "Player data: " + viewModel.getPlayer());
+            finish();
         }
     }
 }
