@@ -188,4 +188,21 @@ public class SolarSystem {
         return name;
     }
 
+    /**
+     * Displays Solar System
+     *
+     * @return solar system attributes
+     */
+    public String toString() {
+        String toRet =
+                "Name: " + name + "\n" +
+                "Coordinates: " + "(" + x + ", " + y + ")\n" +
+                "Tech Level: " + techLevel.getName() + "\n" +
+                "Resource: " + resource.getName() + "\n" +
+                "Planets: \n";
+        for (Planet p: planets) {
+            toRet += "\t" + p.getName() + "\n";
+        }
+        return toRet;
+    }
 }

@@ -17,7 +17,7 @@ public class Game {
     private Player player;
 
     /** Game Solar System */
-    private List<SolarSystem> solarSystems;
+    private static List<SolarSystem> solarSystems;
 
     /** Max X and Y Coordinates in Game */
     public static final int MAX_X_COORDINATES = 150;
@@ -25,7 +25,7 @@ public class Game {
 
 
 
-    public void makeSolarSystem() {
+    public static List<SolarSystem> createSolarSystem() {
         solarSystems = new ArrayList<>();
         List<String> planetNames = Arrays.asList(SolarSystem.planetNames);
         Collections.shuffle(planetNames);
@@ -42,8 +42,8 @@ public class Game {
                 int y = -1;
                 boolean found = false;
                 while (!found) {
-                    x = (int) (Math.random() * (coordinates.length + 1));
-                    y = (int) (Math.random() * (coordinates[0].length + 1));
+                    x = (int) (Math.random() * (coordinates.length));
+                    y = (int) (Math.random() * (coordinates[0].length));
                     if (coordinates[x][y] != -1) {
                         found = true;
                         coordinates[x][y] = -1;
@@ -61,6 +61,7 @@ public class Game {
             }
             planets--;
         }
+        return solarSystems;
     }
 }
 

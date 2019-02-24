@@ -146,7 +146,9 @@ public class ConfigurationActivity extends AppCompatActivity {
             Toast.makeText(this, "Please allocate all skill points!", Toast.LENGTH_LONG).show();
         } else {
             viewModel.createPlayer(nameFieldText.getText().toString(), pilot, fighter, trader, engineer);
-            Log.d("New player added", "Player data: " + viewModel.getPlayer());
+            Log.d("New player added", "Player data: \n" + viewModel.getPlayer());
+            viewModel.createSolarSystems();
+            Log.d("New solar systems added", "Solar System data: \n" + viewModel.getSolarSystems());
             finish();
         }
     }

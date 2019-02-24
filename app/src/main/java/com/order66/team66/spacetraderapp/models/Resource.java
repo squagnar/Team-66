@@ -1,5 +1,6 @@
 package com.order66.team66.spacetraderapp.models;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public enum Resource {
      * @return resource type
      */
     public static Resource getRandom() {
-        List<Resource> resources = Arrays.asList(Resource.values());
+        List<Resource> resources = new ArrayList<>(Arrays.asList(Resource.values()));
         resources.add(Resource.NOSPECIALRESOURCES);
         resources.add(Resource.NOSPECIALRESOURCES);
         return resources.get((int)(Math.random() * resources.size()));
