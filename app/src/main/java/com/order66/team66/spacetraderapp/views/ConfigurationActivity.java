@@ -1,5 +1,6 @@
 package com.order66.team66.spacetraderapp.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -35,6 +36,7 @@ public class ConfigurationActivity extends AppCompatActivity {
     private TextView pointsEngineerText;
     private TextView pointsUnspentText;
     private Spinner difficultySpinner;
+    private Button transitionButton;
 
     private ArrayList<TextView> skillDisplays;
 
@@ -65,6 +67,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         pointsEngineerText = findViewById(R.id.engineer_points);
         pointsUnspentText = findViewById(R.id.points_remaining);
         difficultySpinner = findViewById(R.id.difficulty_spinner);
+        transitionButton = findViewById(R.id.create_button);
 
         //Assign tags to skill display textViews
         pointsPilotText.setTag(pilot);
@@ -102,6 +105,13 @@ public class ConfigurationActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, Difficulty.values());
         difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficultySpinner.setAdapter(difficultyAdapter);
+
+        transitionButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(ConfigurationActivity.this, TransitionActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void levelUpSkill(View view) {
@@ -149,7 +159,6 @@ public class ConfigurationActivity extends AppCompatActivity {
             Log.d("New player added", "Player data: \n" + viewModel.getPlayer());
             viewModel.createSolarSystems();
             Log.d("New solar systems added", "Solar System data: \n" + viewModel.getSolarSystems());
-            finish();
         }
     }
 }
