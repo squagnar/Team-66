@@ -49,16 +49,15 @@ public class Game {
                         coordinates[x][y] = -1;
                     }
                 }
-                // Choose Tech Level
-                TechLevel techLevel = TechLevel.getRandom();
-                // Choose Resource
-                Resource resource = Resource.getRandom();
                 // Makes solar system
-                curr = new SolarSystem(name, x, y, techLevel, resource);
+                curr = new SolarSystem(name, x, y);
                 solarSystems.add(curr);
-            } else if (curr != null){
-                curr.addPlanet(new Planet(name, curr));
             }
+            // Choose Tech Level
+            TechLevel techLevel = TechLevel.getRandom();
+            // Choose Resource
+            Resource resource = Resource.getRandom();
+            curr.addPlanet(new Planet(name, techLevel, resource, curr));
             planets--;
         }
         return solarSystems;

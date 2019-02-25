@@ -14,11 +14,6 @@ public class SolarSystem {
     private int x;
     private int y;
 
-    /** Has one tech level */
-    private TechLevel techLevel;
-
-    /** Has one predominant resource */
-    private Resource resource;
 
     /** Planets in Solar System */
     private List<Planet> planets;
@@ -157,17 +152,12 @@ public class SolarSystem {
      * @param name solar system name
      * @param x x coord
      * @param y y coord
-     * @param techLevel technology level
-     * @param resource resource type
      */
-    public SolarSystem(String name, int x, int y, TechLevel techLevel, Resource resource) {
+    public SolarSystem(String name, int x, int y) {
         this.name = name;
         this.x = x;
         this.y = y;
-        this.techLevel = techLevel;
-        this.resource = resource;
         planets = new ArrayList<>();
-        planets.add(new Planet(name, this));
     }
 
     /**
@@ -195,13 +185,11 @@ public class SolarSystem {
      */
     public String toString() {
         String toRet =
-                "Name: " + name + "\n" +
+                "Solar System Name: " + name + "\n" +
                 "Coordinates: " + "(" + x + ", " + y + ")\n" +
-                "Tech Level: " + techLevel.getName() + "\n" +
-                "Resource: " + resource.getName() + "\n" +
                 "Planets: \n";
         for (Planet p: planets) {
-            toRet += "\t" + p.getName() + "\n";
+            toRet += p + "\n";
         }
         return toRet;
     }
