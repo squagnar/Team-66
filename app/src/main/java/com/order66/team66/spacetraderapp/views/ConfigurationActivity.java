@@ -105,13 +105,6 @@ public class ConfigurationActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, Difficulty.values());
         difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficultySpinner.setAdapter(difficultyAdapter);
-
-        transitionButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent intent = new Intent(ConfigurationActivity.this, TransitionActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     public void levelUpSkill(View view) {
@@ -158,7 +151,18 @@ public class ConfigurationActivity extends AppCompatActivity {
             viewModel.createPlayer(nameFieldText.getText().toString(), pilot, fighter, trader, engineer);
             Log.d("New player added", "Player data: \n" + viewModel.getPlayer());
             viewModel.createSolarSystems();
-            Log.d("New solar systems added", "Solar System data: \n" + viewModel.getSolarSystems());
+            largeLog("New solar systems added", "Solar System data: \n" + viewModel.getSolarSystems());
+            Intent intent = new Intent(ConfigurationActivity.this, TransitionActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    public static void largeLog(String tag, String content) {
+        if (content.length() > 4000) {
+            Log.d(tag, content.substring(0, 4000));
+            largeLog(tag, content.substring(4000));
+        } else {
+            Log.d(tag, content);
         }
     }
 }
