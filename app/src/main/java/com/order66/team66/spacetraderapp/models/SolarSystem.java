@@ -34,6 +34,7 @@ public class SolarSystem {
             "Aldea",
             "Andevian",
             "Antedi",
+            "Araragi",
             "Balosnee",
             "Baratas",
             "Brax",			// One of the heroes in Master of Magic
@@ -57,6 +58,7 @@ public class SolarSystem {
             "Endor",
             "Esmee",		// One of the witches in Pratchett's Discworld
             "Exo",
+            "Felix",
             "Ferris",		// Iron
             "Festen",		// A great Scandinavian movie
             "Fourmi",		// An ant, in French
@@ -78,6 +80,7 @@ public class SolarSystem {
             "Kira",			// My dog's name
             "Klaatu",		// From a classic SF movie
             "Klaestron",
+            "Kobayashi",
             "Korma",		// An Indian sauce
             "Kravat",		// Interesting spelling of the French word for "tie"
             "Krios",
@@ -85,6 +88,7 @@ public class SolarSystem {
             "Largo",
             "Lave",			// The starting system in Elite
             "Ligon",
+            "Lily",
             "Lowry",		// The name of the "hero" in Terry Gilliam's "Brazil"
             "Magrat",		// The second of the witches in Pratchett's Discworld
             "Malcoria",
@@ -133,6 +137,7 @@ public class SolarSystem {
             "Terosa",
             "Thera",		// A seldom encountered Dutch girl's name
             "Titan",		// The largest moon of Jupiter
+            "Tohru",
             "Torin",		// A hero from Master of Magic
             "Triacus",
             "Turkana",
