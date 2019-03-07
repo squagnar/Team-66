@@ -14,7 +14,7 @@ public class Planet {
     private TechLevel techLevel;
 
     /** Has one predominant resource */
-    private Resource resource;
+    private ResourceEvent resourceEvent;
 
     // TODO: Implement Markets
 //    private Market market
@@ -25,10 +25,10 @@ public class Planet {
      * @param name planet's name
      * @param solarSystem planet's solar system
      */
-    public Planet(String name, TechLevel techLevel, Resource resource, SolarSystem solarSystem) {
+    public Planet(String name, TechLevel techLevel, ResourceEvent resourceEvent, SolarSystem solarSystem) {
         this.name = name;
         this.techLevel = techLevel;
-        this.resource = resource;
+        this.resourceEvent = resourceEvent;
         this.solarSystem = solarSystem;
     }
 
@@ -53,7 +53,7 @@ public class Planet {
     public String toString() {
         return "Planet Name: " + name + "\n" +
                 "Tech Level: " + techLevel.getName() + "\n" +
-                "Resource: " + resource.getName() + "\n";
+                "Resource: " + resourceEvent.getName() + "\n";
     }
 
 }

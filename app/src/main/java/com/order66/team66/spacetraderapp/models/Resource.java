@@ -1,62 +1,162 @@
 package com.order66.team66.spacetraderapp.models;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 /**
- * Represents Resources in a Solar System
+ * Represents a given type of trade-able resource
  */
 public enum Resource {
 
-    /**
-     * Types of Resources in Order
-     */
-    NOSPECIALRESOURCES("No Special Resources"),
-    MINERALRICH("Mineral Rich"),
-    MINERALPOOR("Mineral Poor"),
-    DESERT("Desert"),
-    LOTSOFWATER("Lots of Water"),
-    RICHSOIL("Rich Soil"),
-    POORSOIL("Poor Soil"),
-    RICHFAUNA("Rich Fauna"),
-    LIFELESS("Lifeless"),
-    WEIRDMUSHROOMS("Weird Mushrooms"),
-    LOTSOFHERBS("Lots of Herbs"),
-    ARTISTIC("Artistic"),
-    WARLIKE("Warlike");
+    WATER("Water", 0, 0, 2, 30, 3, 4,
+            ResourceModifier.DROUGHT, ResourceModifier.LOTSOFWATER, ResourceModifier.DESERT, 30, 50),
+    FURS(),
+    FOOD(),
+    ORE(),
+    GAMES(),
+    FIREARMS(),
+    MEDICINE(),
+    MACHINES(),
+    NARCOTICS(),
+    ROBOTS();
 
-    /** Name of Resource */
     private String name;
+    private int minTechSell;
+    private int minTechBuy;
+    private int optimalTech;
+    private int basePrice;
+    private int priceIncPerTech;
+    private int priceVariance;
+    private ResourceModifier shortageEvent;
+    private ResourceModifier surplusEvent;
+    private ResourceModifier expensiveEvent;
+    private int minTraderStock;
+    private int maxTraderStock;
 
     /**
-     * Makes Resource
+     * Creates a new Resource object to store the general data about a resource type
      *
-     * @param name name to be displayed
+     * @param name name of the resource
+     * @param minTechSell the min tech level required for a planet to make this resource
+     * @param minTechBuy the min tech level required for a planet to buy this resource
+     * @param optimalTech the tech level where the most of this resource is produced
+     * @param basePrice the base price of this resource
+     * @param priceIncPerTech the increase in price per tech level for this resource
+     * @param priceVariance the price variance for this resource
+     * @param shortageEvent the type of ResourceModifier that causes a shortage of this resource
+     * @param surplusEvent the type of ResourceModifier that causes a surplus of this resource
+     * @param expensiveEvent the type of ResourceModifier that causes a price increase of this resource
+     * @param minTraderStock the minimum amount of this resource a trader selling it can have
+     * @param maxTraderStock the maximum amount of this resource a trader selling it can have
      */
-    Resource(String name) {
+    Resource(String name, int minTechSell, int minTechBuy, int optimalTech,
+                    int basePrice, int priceIncPerTech, int priceVariance,
+                    ResourceModifier shortageEvent, ResourceModifier surplusEvent, ResourceModifier expensiveEvent,
+                    int minTraderStock, int maxTraderStock) {
         this.name = name;
+        this.minTechSell = minTechSell;
+        this.minTechBuy = minTechBuy;
+        this.optimalTech = optimalTech;
+        this.basePrice = basePrice;
+        this.priceIncPerTech = priceIncPerTech;
+        this.priceVariance = priceVariance;
+        this.shortageEvent = shortageEvent;
+        this.surplusEvent = surplusEvent;
+        this.expensiveEvent = expensiveEvent;
+        this.minTraderStock = minTraderStock;
+        this.maxTraderStock = maxTraderStock;
     }
 
     /**
-     * Returns name of resource to be displayed
-     *
-     * @return resource name
+     * Gets the name of the resource
+     * @return the resource name
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Returns a random resource
-     * NOSPECIALRESOURCES is three times more common
      *
-     * @return resource type
+     * @return
      */
-    public static Resource getRandom() {
-        List<Resource> resources = new ArrayList<>(Arrays.asList(Resource.values()));
-        resources.add(Resource.NOSPECIALRESOURCES);
-        resources.add(Resource.NOSPECIALRESOURCES);
-        return resources.get((int)(Math.random() * resources.size()));
+    public int getMinTechSell() {
+        return minTechSell;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getMinTechBuy() {
+        return minTechBuy;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getOptimalTech() {
+        return optimalTech;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getBasePrice() {
+        return basePrice;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getPriceIncPerTech() {
+        return priceIncPerTech;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getPriceVariance() {
+        return priceVariance;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ResourceModifier getShortageEvent() {
+        return shortageEvent;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ResourceModifier getSurplusEvent() {
+        return surplusEvent;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ResourceModifier getExpensiveEvent() {
+        return expensiveEvent;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getMinTraderStock() {
+        return minTraderStock;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getMaxTraderStock() {
+        return maxTraderStock;
     }
 }
