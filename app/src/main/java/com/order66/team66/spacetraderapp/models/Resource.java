@@ -1,5 +1,7 @@
 package com.order66.team66.spacetraderapp.models;
 
+import java.util.Random;
+
 /**
  * Represents a given type of trade-able resource
  */
@@ -31,13 +33,13 @@ public enum Resource {
     private int minTechBuy;
     private int optimalTech;
     private int basePrice;
-    private int priceIncPerTech;
+    private int priceChangePerTech;
     private int priceVariance;
     private ResourceModifier shortageEvent;
     private ResourceModifier surplusEvent;
     private ResourceModifier expensiveEvent;
-    private int minTraderStock;
-    private int maxTraderStock;
+    private int minTraderPrice;
+    private int maxTraderPrice;
 
     /**
      * Creates a new Resource object to store the general data about a resource type
@@ -47,30 +49,30 @@ public enum Resource {
      * @param minTechBuy the min tech level required for a planet to buy this resource
      * @param optimalTech the tech level where the most of this resource is produced
      * @param basePrice the base price of this resource
-     * @param priceIncPerTech the increase in price per tech level for this resource
+     * @param priceChangePerTech the increase in price per tech level for this resource
      * @param priceVariance the price variance for this resource
      * @param shortageEvent the type of ResourceModifier that causes a shortage of this resource
      * @param surplusEvent the type of ResourceModifier that causes a surplus of this resource
      * @param expensiveEvent the type of ResourceModifier that causes a price increase of this resource
-     * @param minTraderStock the minimum amount of this resource a trader selling it can have
-     * @param maxTraderStock the maximum amount of this resource a trader selling it can have
+     * @param minTraderPrice the minimum amount of this resource a trader selling it can have
+     * @param maxTraderPrice the maximum amount of this resource a trader selling it can have
      */
     Resource(String name, int minTechSell, int minTechBuy, int optimalTech,
-                    int basePrice, int priceIncPerTech, int priceVariance,
-                    ResourceModifier shortageEvent, ResourceModifier surplusEvent, ResourceModifier expensiveEvent,
-                    int minTraderStock, int maxTraderStock) {
+             int basePrice, int priceChangePerTech, int priceVariance,
+             ResourceModifier shortageEvent, ResourceModifier surplusEvent, ResourceModifier expensiveEvent,
+             int minTraderPrice, int maxTraderPrice) {
         this.name = name;
         this.minTechSell = minTechSell;
         this.minTechBuy = minTechBuy;
         this.optimalTech = optimalTech;
         this.basePrice = basePrice;
-        this.priceIncPerTech = priceIncPerTech;
+        this.priceChangePerTech = priceChangePerTech;
         this.priceVariance = priceVariance;
         this.shortageEvent = shortageEvent;
         this.surplusEvent = surplusEvent;
         this.expensiveEvent = expensiveEvent;
-        this.minTraderStock = minTraderStock;
-        this.maxTraderStock = maxTraderStock;
+        this.minTraderPrice = minTraderPrice;
+        this.maxTraderPrice = maxTraderPrice;
     }
 
     /**
@@ -117,8 +119,8 @@ public enum Resource {
      *
      * @return
      */
-    public int getPriceIncPerTech() {
-        return priceIncPerTech;
+    public int getPriceChangePerTech() {
+        return priceChangePerTech;
     }
 
     /**
@@ -157,15 +159,61 @@ public enum Resource {
      *
      * @return
      */
-    public int getMinTraderStock() {
-        return minTraderStock;
+    public int getMinTraderPrice() {
+        return minTraderPrice;
     }
 
     /**
      *
      * @return
      */
-    public int getMaxTraderStock() {
-        return maxTraderStock;
+    public int getMaxTraderPrice() {
+        return maxTraderPrice;
+    }
+
+    public int getPrice(int techLevel, ResourceModifier worldMod, ResourceModifier eventMod) {
+        int price;
+        int variance;
+        Random randVariance = new Random();
+
+        variance = randVariance.nextInt(priceVariance + 1) * priceVariance;
+        if(randVariance.nextBoolean()) { variance *= -1; }
+
+        price = basePrice + (priceChangePerTech * (techLevel - minTechBuy)) + variance;
+
+        if(worldMod.equals(shortageEvent) || eventMod.equals(shortageEvent)) {
+            price *= 2;
+        }
+
+        if(worldMod.equals(surplusEvent) || eventMod.equals(surplusEvent)) {
+            price *= .5;
+        }
+
+        if(worldMod.equals(expensiveEvent) || eventMod.equals(expensiveEvent)) {
+            price *= 1.5;
+        }
+
+        return price;
+    }
+
+    public int getStock(int techLevel, ResourceModifier worldMod, ResourceModifier eventMod) {
+        int stock;
+        int optimalDiff = Math.abs(optimalTech - techLevel);
+
+        stock = basePrice * (10 - minTechSell - optimalDiff);
+
+        if(worldMod.equals(shortageEvent) || eventMod.equals(shortageEvent)) {
+            stock *= .25;
+        }
+
+        if(worldMod.equals(surplusEvent) || eventMod.equals(surplusEvent)) {
+            stock *= 2;
+        }
+
+        if(worldMod.equals(expensiveEvent) || eventMod.equals(expensiveEvent)) {
+            stock *= .5;
+        }
+
+        return stock;
     }
 }
