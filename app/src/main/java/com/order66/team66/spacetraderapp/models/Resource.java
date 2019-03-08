@@ -7,15 +7,24 @@ public enum Resource {
 
     WATER("Water", 0, 0, 2, 30, 3, 4,
             ResourceModifier.DROUGHT, ResourceModifier.LOTSOFWATER, ResourceModifier.DESERT, 30, 50),
-    FURS(),
-    FOOD(),
-    ORE(),
-    GAMES(),
-    FIREARMS(),
-    MEDICINE(),
-    MACHINES(),
-    NARCOTICS(),
-    ROBOTS();
+    FURS("Furs", 0, 0, 0, 250, 10, 10,
+            ResourceModifier.COLD, ResourceModifier.RICHFAUNA, ResourceModifier.LIFELESS, 230, 280),
+    FOOD("Food", 1, 0, 1, 100, 5, 5,
+            ResourceModifier.CROPFAIL, ResourceModifier.RICHSOIL, ResourceModifier.POORSOIL, 90, 160),
+    ORE("Ore", 2, 2, 3, 350, 20, 10,
+            ResourceModifier.WAR, ResourceModifier.MINERALRICH, ResourceModifier.MINERALPOOR, 350, 420),
+    GAMES("Games", 3, 1, 6, 250, -10, 5,
+            ResourceModifier.BOREDOM, ResourceModifier.ARTISTIC, null, 160, 270),
+    FIREARMS("Firearms", 3, 1, 5, 1250, -75, 100,
+            ResourceModifier.WAR, ResourceModifier.WARLIKE, null, 600, 1100),
+    MEDICINE("Medicine", 4, 1, 6, 650, -20, 10,
+            ResourceModifier.PLAGUE, ResourceModifier.LOTSOFHERBS, null, 400, 700),
+    MACHINES("Machines", 4, 3, 5, 900, -30, 5,
+            ResourceModifier.LACKOFWORKERS, null, null, 600, 800),
+    NARCOTICS("Narcotics", 5, 0, 5, 3500, -125, 150,
+            ResourceModifier.BOREDOM, ResourceModifier.WEIRDMUSHROOMS, null, 2000, 3000),
+    ROBOTS("Robots", 6, 4, 7, 5000, -150, 100,
+            ResourceModifier.LACKOFWORKERS, null, null, 3500, 5000);
 
     private String name;
     private int minTechSell;
