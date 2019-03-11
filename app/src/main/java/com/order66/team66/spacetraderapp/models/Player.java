@@ -28,6 +28,8 @@ public class Player {
     /** Player's Spaceship */
     private Spaceship spaceship;
 
+    private CargoHold cargoHold = new CargoHold(100);
+
     /**
      * Creates a new player with given skill points
      *
@@ -111,6 +113,13 @@ public class Player {
     public Spaceship getSpaceship() {
         return spaceship;
     }
+
+    /**
+     * Gets Player's CargoHold
+     *
+     * @return player CargoHold
+     */
+    public CargoHold getCargoHold() { return  cargoHold; }
 
     /**
      * Sets Player's Spaceship

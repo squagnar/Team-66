@@ -41,6 +41,7 @@ public class SolarSystem {
             "Castor",		// A Greek demi-god
             "Cestus",
             "Cheron",
+            "Concordia",
             "Courteney",	// After Courteney Cox…
             "Daled",
             "Damast",
