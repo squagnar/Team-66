@@ -10,6 +10,9 @@ public class Planet {
     // Solar System of Planet
     private SolarSystem solarSystem;
 
+    // Market of Planet
+    private Market market;
+
     /** Has one tech level */
     private TechLevel techLevel;
 
@@ -25,11 +28,12 @@ public class Planet {
      * @param name planet's name
      * @param solarSystem planet's solar system
      */
-    public Planet(String name, TechLevel techLevel, ResourceModifier WorldModifier, SolarSystem solarSystem) {
+    public Planet(String name, TechLevel techLevel, ResourceModifier worldModifier, SolarSystem solarSystem) {
         this.name = name;
         this.techLevel = techLevel;
-        this.WorldModifier = WorldModifier;
+        this.WorldModifier = worldModifier;
         this.solarSystem = solarSystem;
+        this.market = new Market(worldModifier, techLevel);
     }
 
     /**
@@ -40,6 +44,13 @@ public class Planet {
     public SolarSystem getSolarSystem() {
         return solarSystem;
     }
+
+    /**
+     * Gets Planet's Market
+     *
+     * @return market
+     */
+    public Market getMarket() { return  market; }
 
     /**
      * Gets planet name

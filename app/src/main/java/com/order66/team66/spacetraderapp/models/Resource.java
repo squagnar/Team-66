@@ -29,8 +29,8 @@ public enum Resource {
             ResourceModifier.LACKOFWORKERS, null, null, 3500, 5000);
 
     private String name;
-    private int minTechSell;
-    private int minTechBuy;
+    private int minTechMake;
+    private int minTechUse;
     private int optimalTech;
     private int basePrice;
     private int priceChangePerTech;
@@ -45,8 +45,8 @@ public enum Resource {
      * Creates a new Resource object to store the general data about a resource type
      *
      * @param name name of the resource
-     * @param minTechSell the min tech level required for a planet to make this resource
-     * @param minTechBuy the min tech level required for a planet to buy this resource
+     * @param minTechMake the min tech level required for a planet to make this resource
+     * @param minTechUse the min tech level required for a planet to buy this resource
      * @param optimalTech the tech level where the most of this resource is produced
      * @param basePrice the base price of this resource
      * @param priceChangePerTech the increase in price per tech level for this resource
@@ -57,13 +57,13 @@ public enum Resource {
      * @param minTraderPrice the minimum amount of this resource a trader selling it can have
      * @param maxTraderPrice the maximum amount of this resource a trader selling it can have
      */
-    Resource(String name, int minTechSell, int minTechBuy, int optimalTech,
+    Resource(String name, int minTechMake, int minTechUse, int optimalTech,
              int basePrice, int priceChangePerTech, int priceVariance,
              ResourceModifier shortageEvent, ResourceModifier surplusEvent, ResourceModifier expensiveEvent,
              int minTraderPrice, int maxTraderPrice) {
         this.name = name;
-        this.minTechSell = minTechSell;
-        this.minTechBuy = minTechBuy;
+        this.minTechMake = minTechMake;
+        this.minTechUse = minTechUse;
         this.optimalTech = optimalTech;
         this.basePrice = basePrice;
         this.priceChangePerTech = priceChangePerTech;
@@ -87,16 +87,16 @@ public enum Resource {
      *
      * @return
      */
-    public int getMinTechSell() {
-        return minTechSell;
+    public int getMinTechMake() {
+        return minTechMake;
     }
 
     /**
      *
      * @return
      */
-    public int getMinTechBuy() {
-        return minTechBuy;
+    public int getMinTechUse() {
+        return minTechUse;
     }
 
     /**
@@ -179,7 +179,7 @@ public enum Resource {
         variance = randVariance.nextInt(priceVariance + 1) * priceVariance;
         if(randVariance.nextBoolean()) { variance *= -1; }
 
-        price = basePrice + (priceChangePerTech * (techLevel - minTechBuy)) + variance;
+        price = basePrice + (priceChangePerTech * (techLevel - minTechUse)) + variance;
 
         if(worldMod.equals(shortageEvent) || eventMod.equals(shortageEvent)) {
             price *= 2;
@@ -200,7 +200,7 @@ public enum Resource {
         int stock;
         int optimalDiff = Math.abs(optimalTech - techLevel);
 
-        stock = basePrice * (10 - minTechSell - optimalDiff);
+        stock = basePrice * (10 - minTechMake - optimalDiff);
 
         if(worldMod.equals(shortageEvent) || eventMod.equals(shortageEvent)) {
             stock *= .25;
