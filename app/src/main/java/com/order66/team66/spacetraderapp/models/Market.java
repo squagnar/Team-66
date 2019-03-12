@@ -1,5 +1,6 @@
 package com.order66.team66.spacetraderapp.models;
 
+import java.sql.ResultSet;
 import java.util.EnumMap;
 
 /**
@@ -8,7 +9,7 @@ import java.util.EnumMap;
 public class Market {
 
     ResourceModifier worldModifier;
-    ResourceModifier eventModifier = null;
+    ResourceModifier eventModifier = ResourceModifier.NULL;
     int techLevel;
 
     EnumMap<Resource, Integer> resourceStock = new EnumMap<>(Resource.class);

@@ -1,5 +1,6 @@
 package com.order66.team66.spacetraderapp.models;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -16,17 +17,17 @@ public enum Resource {
     ORE("Ore", 2, 2, 3, 350, 20, 10,
             ResourceModifier.WAR, ResourceModifier.MINERALRICH, ResourceModifier.MINERALPOOR, 350, 420),
     GAMES("Games", 3, 1, 6, 250, -10, 5,
-            ResourceModifier.BOREDOM, ResourceModifier.ARTISTIC, null, 160, 270),
+            ResourceModifier.BOREDOM, ResourceModifier.ARTISTIC, ResourceModifier.NULL, 160, 270),
     FIREARMS("Firearms", 3, 1, 5, 1250, -75, 100,
-            ResourceModifier.WAR, ResourceModifier.WARLIKE, null, 600, 1100),
+            ResourceModifier.WAR, ResourceModifier.WARLIKE, ResourceModifier.NULL, 600, 1100),
     MEDICINE("Medicine", 4, 1, 6, 650, -20, 10,
-            ResourceModifier.PLAGUE, ResourceModifier.LOTSOFHERBS, null, 400, 700),
+            ResourceModifier.PLAGUE, ResourceModifier.LOTSOFHERBS, ResourceModifier.NULL, 400, 700),
     MACHINES("Machines", 4, 3, 5, 900, -30, 5,
-            ResourceModifier.LACKOFWORKERS, null, null, 600, 800),
+            ResourceModifier.LACKOFWORKERS, ResourceModifier.NULL, ResourceModifier.NULL, 600, 800),
     NARCOTICS("Narcotics", 5, 0, 5, 3500, -125, 150,
-            ResourceModifier.BOREDOM, ResourceModifier.WEIRDMUSHROOMS, null, 2000, 3000),
+            ResourceModifier.BOREDOM, ResourceModifier.WEIRDMUSHROOMS, ResourceModifier.NULL, 2000, 3000),
     ROBOTS("Robots", 6, 4, 7, 5000, -150, 100,
-            ResourceModifier.LACKOFWORKERS, null, null, 3500, 5000);
+            ResourceModifier.LACKOFWORKERS, ResourceModifier.NULL, ResourceModifier.NULL, 3500, 5000);
 
     private String name;
     private int minTechMake;
@@ -216,4 +217,5 @@ public enum Resource {
 
         return stock;
     }
+
 }

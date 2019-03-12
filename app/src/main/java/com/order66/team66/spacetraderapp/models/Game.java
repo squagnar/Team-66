@@ -56,8 +56,8 @@ public class Game {
             // Choose Tech Level
             TechLevel techLevel = TechLevel.getRandom();
             // Choose Resource
-            Resource resource = Resource.getRandom();
-            curr.addPlanet(new Planet(name, techLevel, resource, curr));
+            ResourceModifier resourceMod = ResourceModifier.getRandomWorldMod();
+            curr.addPlanet(new Planet(name, techLevel, resourceMod, curr));
             planets--;
         }
         return solarSystems;

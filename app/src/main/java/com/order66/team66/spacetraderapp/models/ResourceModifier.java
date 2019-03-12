@@ -41,7 +41,8 @@ public enum ResourceModifier {
     WAR("War", "Event"),
     BOREDOM("Boredom", "Event"),
     PLAGUE("Plague", "Event"),
-    LACKOFWORKERS("Lack of Workers", "Event");
+    LACKOFWORKERS("Lack of Workers", "Event"),
+    NULL("No Event", "Event");
 
     /** Name of Resource */
     private String name;
