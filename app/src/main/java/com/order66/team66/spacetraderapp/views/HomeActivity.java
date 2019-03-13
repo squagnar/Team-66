@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import com.order66.team66.spacetraderapp.R;
 
-public class TransitionActivity extends Activity {
+public class HomeActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transition);
+        setContentView(R.layout.activity_home);
     }
     
     public void exitGame(View view) {
@@ -19,5 +19,15 @@ public class TransitionActivity extends Activity {
         homeIntent.addCategory(Intent.CATEGORY_HOME);
         homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(homeIntent);
+    }
+
+    public void goToMarket(View view) {
+        Intent intent = new Intent(HomeActivity.this, MarketActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToTravel(View view) {
+        Intent intent = new Intent(HomeActivity.this, MarketActivity.class);
+        startActivity(intent);
     }
 }

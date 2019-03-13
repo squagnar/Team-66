@@ -1,7 +1,10 @@
 package com.order66.team66.spacetraderapp.models;
 
+import android.widget.ListAdapter;
+
 import java.sql.ResultSet;
 import java.util.EnumMap;
+import java.util.Set;
 
 /**
  * Represents the market on a given planet
@@ -16,7 +19,6 @@ public class Market {
     EnumMap<Resource, Integer> resourcePrice = new EnumMap<>(Resource.class);
     EnumMap<Resource, Boolean> canUseResource = new EnumMap<>(Resource.class);
     EnumMap<Resource, Boolean> canMakeResource = new EnumMap<>(Resource.class);
-
     /**
      * Creates a new Market object
      *
@@ -156,4 +158,7 @@ public class Market {
         resourceStock.put(resource, newStock);
     }
 
+    public Set<Resource> getAvailableResources() {
+        return canUseResource.keySet();
+    }
 }

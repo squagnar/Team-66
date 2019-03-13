@@ -11,6 +11,7 @@ import com.order66.team66.spacetraderapp.models.Difficulty;
 import com.order66.team66.spacetraderapp.models.Player;
 import com.order66.team66.spacetraderapp.models.Skill;
 import com.order66.team66.spacetraderapp.viewmodels.ConfigurationViewModel;
+
 import java.util.ArrayList;
 
 /**
@@ -152,7 +153,7 @@ public class ConfigurationActivity extends AppCompatActivity {
             Log.d("New player added", "Player data: \n" + viewModel.getPlayer());
             viewModel.createSolarSystems();
             largeLog("New solar systems added", "Solar System data: \n" + viewModel.getSolarSystems());
-            Intent intent = new Intent(ConfigurationActivity.this, TransitionActivity.class);
+            Intent intent = new Intent(ConfigurationActivity.this, HomeActivity.class);
             startActivity(intent);
         }
     }
