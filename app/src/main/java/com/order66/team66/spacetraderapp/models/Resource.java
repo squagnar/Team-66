@@ -177,7 +177,7 @@ public enum Resource {
         int variance;
         Random randVariance = new Random();
 
-        variance = randVariance.nextInt(priceVariance + 1) * priceVariance;
+        variance = randVariance.nextInt(priceVariance + 1);
         if(randVariance.nextBoolean()) { variance *= -1; }
 
         price = basePrice + (priceChangePerTech * (techLevel - minTechUse)) + variance;
@@ -194,7 +194,7 @@ public enum Resource {
             price *= 1.5;
         }
 
-        return price;
+        return price;1
     }
 
     public int getStock(int techLevel, ResourceModifier worldMod, ResourceModifier eventMod) {
