@@ -12,9 +12,9 @@ public class MarketViewModel extends ViewModel {
     private Market market;
     private Planet planet;
 
-    public MarketViewModel(Player player, Planet planet) {
-        this.planet = planet;
-        this.player = player;
+    public MarketViewModel() {
+        this.planet = null;
+        this.player = null;
         market = this.planet.getMarket();
     }
 

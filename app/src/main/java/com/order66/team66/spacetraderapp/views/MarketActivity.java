@@ -27,9 +27,8 @@ public class MarketActivity extends AppCompatActivity {
 
     private Market market;
     private CargoHold cargo;
-    private Resource resource;
     private Player player;
-    private Planet planet;
+
 
     private Button waterButton;
     private Button furButton;
@@ -79,7 +78,11 @@ public class MarketActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_market);
-        viewmodel = new MarketViewModel(player, planet);
+        viewmodel = new MarketViewModel();
+
+        market = viewmodel.getMarket();
+        player = viewmodel.getPlayer();
+        cargo = player.getCargoHold();
 
         water = Resource.WATER;
         fur = Resource.FURS;
