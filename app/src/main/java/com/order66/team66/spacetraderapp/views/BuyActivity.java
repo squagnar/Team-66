@@ -75,7 +75,7 @@ public class BuyActivity extends AppCompatActivity {
         if (player.getCredits() + creditChange < 0) {
             Toast.makeText(this, "You don't have enough credits for that!", Toast.LENGTH_LONG).show();
         } else {
-            player.setCredits(player.getCredits() - creditChange);
+            player.setCredits(player.getCredits() + creditChange);
             market.decreaseStock(resource, buyQuantity - sellQuantity);
         }
     }
