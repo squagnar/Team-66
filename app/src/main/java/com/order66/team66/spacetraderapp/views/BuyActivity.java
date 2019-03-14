@@ -55,7 +55,8 @@ public class BuyActivity extends AppCompatActivity {
 
         remainingSellQuantity = cargo.getStock(resource);
         remainingBuyQuantity = market.getStock(resource);
-
+        updateRemainingBuyQuantity();
+        updateRemainingSellQuantity();
 
         resourceText = findViewById(R.id.resource_header);
         resourcePriceText = findViewById(R.id.resource_price_text);
