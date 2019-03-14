@@ -91,14 +91,14 @@
             android:text="Sell"
             android:textStyle="bold"
             android:textSize="18sp"
-            android:layout_marginTop="360dp"
+            android:layout_marginTop="350dp"
             android:layout_marginLeft="100dp"
     />
     <LinearLayout
             android:id="@+id/sell_buttons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="400dp"
+            android:layout_marginTop="390dp"
             android:layout_marginLeft="60dp"
             android:orientation="horizontal">
         <Button
@@ -177,5 +177,49 @@
             android:textSize="15sp"
             android:id="@+id/trade_button"
             android:onClick="onClickTrade"
+    />
+
+    <TextView
+            android:id="@+id/total_transaction_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$0"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="470dp"
+            android:layout_marginLeft="100dp"
+    />
+
+    <TextView
+            android:id="@+id/total_transaction_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Transaction"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginTop="500dp"
+            android:layout_marginLeft="55dp"
+    />
+
+    <TextView
+            android:id="@+id/player_cash_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$0"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="470dp"
+            android:layout_marginLeft="280dp"
+    />
+
+    <TextView
+            android:id="@+id/player_cash_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Player Cash"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginTop="500dp"
+            android:layout_marginLeft="255dp"
     />
 </RelativeLayout>

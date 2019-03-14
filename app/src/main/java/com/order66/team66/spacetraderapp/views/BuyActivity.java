@@ -28,6 +28,8 @@ public class BuyActivity extends AppCompatActivity {
     private TextView marketBuyText;
     private TextView marketSellText;
     private Button tradeButton;
+    private TextView totalTransactionText;
+    private TextView playerCashText;
     private int creditChange;
 
     Intent intent = getIntent();
@@ -63,6 +65,8 @@ public class BuyActivity extends AppCompatActivity {
         marketBuyText = findViewById(R.id.resource_stock_market_text);
         marketSellText = findViewById(R.id.resource_stock_cargo_text);
         tradeButton = findViewById(R.id.trade_button);
+        totalTransactionText = findViewById(R.id.total_transaction_text);
+        playerCashText = findViewById(R.id.player_cash_text);
     }
 
     public void updatePlayer() {
