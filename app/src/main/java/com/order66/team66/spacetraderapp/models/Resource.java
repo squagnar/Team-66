@@ -1,5 +1,6 @@
 package com.order66.team66.spacetraderapp.models;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Random;
 

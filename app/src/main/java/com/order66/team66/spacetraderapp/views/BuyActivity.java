@@ -31,8 +31,8 @@ public class BuyActivity extends AppCompatActivity {
     private TextView totalTransactionText;
     private TextView playerCashText;
 
-    Intent intent = getIntent();
-    Resource resource = intent.getParcelableExtra("Resource");
+    Intent intent;
+    Resource resource;
 
     private Market market;
     private CargoHold cargo;
@@ -49,6 +49,8 @@ public class BuyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy);
 
+        intent = getIntent();
+        resource = (Resource) intent.getExtras().get("Resource");
         viewmodel = new MarketViewModel();
 
         market = viewmodel.getMarket();
@@ -87,6 +89,7 @@ public class BuyActivity extends AppCompatActivity {
             market.decreaseStock(resource, buyQuantity - sellQuantity);
             cargo.increaseStock(resource, buyQuantity - sellQuantity);
         }
+        finish();
     }
 
     public void increaseBuyQuantity(View view) {
