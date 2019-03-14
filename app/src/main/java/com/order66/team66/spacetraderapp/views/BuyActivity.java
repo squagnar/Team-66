@@ -30,6 +30,8 @@ public class BuyActivity extends AppCompatActivity {
     private Button tradeButton;
     private TextView totalTransactionText;
     private TextView playerCashText;
+    private TextView remainingBuyQuantityText;
+    private TextView remainingSellQuantityText;
 
     Intent intent;
     Resource resource;
@@ -73,6 +75,8 @@ public class BuyActivity extends AppCompatActivity {
         tradeButton = findViewById(R.id.trade_button);
         totalTransactionText = findViewById(R.id.total_transaction_text);
         playerCashText = findViewById(R.id.player_cash_text);
+        remainingBuyQuantityText = findViewById(R.id.resource_stock_market_text);
+        remainingSellQuantityText = findViewById(R.id.resource_stock_cargo_text);
 
         updateRemainingBuyQuantity();
         updateRemainingSellQuantity();
@@ -128,11 +132,13 @@ public class BuyActivity extends AppCompatActivity {
     }
 
     private void updateRemainingBuyQuantity() {
-        buyQuantityText.setText(String.format("%s", remainingBuyQuantity));
+        buyQuantityText.setText(String.format("%s", buyQuantity));
+        remainingBuyQuantityText.setText(String.format("%s", remainingBuyQuantity));
     }
 
     private void updateRemainingSellQuantity() {
-        sellQuantityText.setText(String.format("%s", remainingSellQuantity));
+        sellQuantityText.setText(String.format("%s", sellQuantity));
+        remainingSellQuantityText.setText(String.format("%s", remainingSellQuantity));
     }
 
     private void updateRemainingPlayerCash() { playerCashText.setText(String.format("%s", player.getCredits()));}
