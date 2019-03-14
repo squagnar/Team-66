@@ -28,7 +28,6 @@ public class BuyActivity extends AppCompatActivity {
     private TextView marketBuyText;
     private TextView marketSellText;
     private Button tradeButton;
-    private int creditChange;
 
     Intent intent = getIntent();
     Resource resource = intent.getParcelableExtra("Resource");
@@ -37,7 +36,11 @@ public class BuyActivity extends AppCompatActivity {
     private CargoHold cargo;
     private Player player;
 
-    private int quantity = 0;
+
+    private int buyQuantity;
+    private int sellQuantity;
+    private int remainingBuyQuantity;
+    private int remainingSellQuantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +53,9 @@ public class BuyActivity extends AppCompatActivity {
         player = viewmodel.getPlayer();
         cargo = player.getCargoHold();
 
-        creditChange = 0;
+        remainingSellQuantity = cargo.getStock(resource);
+        remainingBuyQuantity = market.getStock(resource);
+
 
         resourceText = findViewById(R.id.resource_header);
         resourcePriceText = findViewById(R.id.resource_price_text);
@@ -66,50 +71,52 @@ public class BuyActivity extends AppCompatActivity {
     }
 
     public void updatePlayer() {
-        if (player.getCredits() < creditChange) {
+        int creditChange = (sellQuantity - buyQuantity) * market.getPrice(resource);
+        if (player.getCredits() + creditChange < 0) {
             Toast.makeText(this, "You don't have enough credits for that!", Toast.LENGTH_LONG).show();
         } else {
             player.setCredits(player.getCredits() - creditChange);
+            market.decreaseStock(resource, buyQuantity - sellQuantity);
         }
     }
 
     public void increaseBuyQuantity(View view) {
-        if (quantity <= remainingQuantity) {
-            remainingQuantity--;
-            quantity++;
-            updateQuantity(remainingQuantity);
-            creditChange += market.getPrice(resource);
+        if (remainingBuyQuantity > 0) {
+            remainingBuyQuantity--;
+            buyQuantity++;
+            updateRemainingBuyQuantity();
         }
     }
 
     public void increaseSellQuantity(View view) {
-        if (quantity > 0) {
-            remainingQuantity++;
-            quantity--;
-            updateQuantity(remainingQuantity);
-            creditChange += market.getPrice(resource);
+        if (remainingSellQuantity > 0) {
+            remainingSellQuantity--;
+            sellQuantity++;
+            updateRemainingSellQuantity();
         }
     }
 
     public void decreaseBuyQuantity(View view) {
-        if (quantity > 0) {
-            remainingQuantity++;
-            quantity--;
-            updateQuantity(remainingQuantity);
-            creditChange += market.getPrice(resource);
+        if (buyQuantity > 0) {
+            remainingBuyQuantity++;
+            buyQuantity--;
+            updateRemainingBuyQuantity();
         }
     }
 
     public void decreaseSellQuantity(View view) {
-        if (quantity <= remainingQuantity) {
-            remainingQuantity--;
-            quantity++;
-            updateQuantity(remainingQuantity);
-            creditChange += market.getPrice(resource);
+        if (sellQuantity > 0) {
+            remainingSellQuantity++;
+            sellQuantity--;
+            updateRemainingSellQuantity();
         }
     }
 
-    private void updateQuantity(int quantity) {
-        quantityText.setText(String.format("%s", remainingQuantity));
+    private void updateRemainingBuyQuantity() {
+        buyQuantityText.setText(String.format("%s", remainingBuyQuantity));
+    }
+
+    private void updateRemainingSellQuantity() {
+        sellQuantityText.setText(String.format("%s", remainingSellQuantity));
     }
 }
