@@ -184,6 +184,10 @@ public class SolarSystem {
         return name;
     }
 
+    public Planet getPlanet(int num){
+        return planets.get(num);
+    }
+
     /**
      * Displays Solar System
      *

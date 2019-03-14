@@ -1,5 +1,6 @@
 package com.order66.team66.spacetraderapp.viewmodels;
 import android.arch.lifecycle.ViewModel;
+import com.order66.team66.spacetraderapp.models.Game;
 import com.order66.team66.spacetraderapp.models.Player;
 import com.order66.team66.spacetraderapp.models.Market;
 import com.order66.team66.spacetraderapp.models.Planet;
@@ -8,15 +9,10 @@ import java.util.List;
 
 public class MarketViewModel extends ViewModel {
 
-    private Player player;
-    private Market market;
-    private Planet planet;
-
-    public MarketViewModel() {
-        this.planet = null;
-        this.player = null;
-        market = this.planet.getMarket();
-    }
+    private Game GAME_STATE = Game.getInstance();
+    private Planet planet = GAME_STATE.getCurrentPlanet();
+    private Market market = planet.getMarket();
+    private Player player = GAME_STATE.getPlayer();
 
     public Planet getPlanet() {
         return planet;

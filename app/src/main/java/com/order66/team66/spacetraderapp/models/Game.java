@@ -10,6 +10,8 @@ import java.util.List;
  */
 public class Game {
 
+    private static final Game GAME_STATE = new Game();
+
     /** Game Difficulty */
     private Difficulty difficulty;
 
@@ -19,13 +21,50 @@ public class Game {
     /** Game Solar System */
     private static List<SolarSystem> solarSystems;
 
+    private static Planet currentPlanet;
+
+    private Game(){
+        difficulty = null;
+        player = null;
+        solarSystems = createSolarSystem();
+        solarSystems.get(0)
+                .addPlanet(new Planet("Ferris", TechLevel.INDUSTRIAL, ResourceModifier.NOSPECIALRESOURCES, solarSystems.get(0)));
+        currentPlanet = solarSystems.get(0).getPlanet(0);
+    }
+
+    public static Game getInstance(){
+        return GAME_STATE;
+    }
+
     /** Max X and Y Coordinates in Game */
     public static final int MAX_X_COORDINATES = 150;
     public static final int MAX_Y_COORDINATES = 100;
 
+    public Player getPlayer(){
+        return player;
+    }
 
+    public Difficulty getDifficulty(){
+        return difficulty;
+    }
 
-    public static List<SolarSystem> createSolarSystem() {
+    public List<SolarSystem> getSolarSystem() {
+        return  solarSystems;
+    }
+
+    public Planet getCurrentPlanet() {
+        return currentPlanet;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public void setDifficulty(Difficulty diff) {
+        difficulty = diff;
+    }
+
+    private static List<SolarSystem> createSolarSystem() {
         solarSystems = new ArrayList<>();
         List<String> planetNames = Arrays.asList(SolarSystem.planetNames);
         Collections.shuffle(planetNames);

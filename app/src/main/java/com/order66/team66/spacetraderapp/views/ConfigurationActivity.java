@@ -151,7 +151,6 @@ public class ConfigurationActivity extends AppCompatActivity {
         } else {
             viewModel.createPlayer(nameFieldText.getText().toString(), pilot, fighter, trader, engineer);
             Log.d("New player added", "Player data: \n" + viewModel.getPlayer());
-            viewModel.createSolarSystems();
             largeLog("New solar systems added", "Solar System data: \n" + viewModel.getSolarSystems());
             Intent intent = new Intent(ConfigurationActivity.this, HomeActivity.class);
             startActivity(intent);

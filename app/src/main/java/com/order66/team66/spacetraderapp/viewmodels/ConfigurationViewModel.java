@@ -10,9 +10,7 @@ import java.util.List;
 
 public class ConfigurationViewModel extends ViewModel {
 
-    private Player player;
-
-    private List<SolarSystem> solarSystems;
+    private Game GAME_STATE = Game.getInstance();
 
     /**
      * Passthrough method to allow a view to create a Player object
@@ -24,18 +22,13 @@ public class ConfigurationViewModel extends ViewModel {
      * @param engineer total engineer skill points
      */
     public void createPlayer(String name, Skill pilot, Skill fighter, Skill trader, Skill engineer) {
-        player = new Player(name, pilot, fighter, trader, engineer);
-        //TODO: store this somewhere, maybe firebase database
-
+        Player player = new Player(name, pilot, fighter, trader, engineer);
+        GAME_STATE.setPlayer(player);
     }
 
-    public Player getPlayer() { return player;}
-
-    public void createSolarSystems() {
-        solarSystems = Game.createSolarSystem();
-    }
+    public Player getPlayer() { return GAME_STATE.getPlayer();}
 
     public List<SolarSystem> getSolarSystems() {
-        return solarSystems;
+        return GAME_STATE.getSolarSystem();
     }
 }
