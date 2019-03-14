@@ -30,7 +30,6 @@ public class BuyActivity extends AppCompatActivity {
     private Button tradeButton;
     private TextView totalTransactionText;
     private TextView playerCashText;
-    private int creditChange;
 
     Intent intent = getIntent();
     Resource resource = intent.getParcelableExtra("Resource");
@@ -59,7 +58,6 @@ public class BuyActivity extends AppCompatActivity {
         remainingSellQuantity = cargo.getStock(resource);
         remainingBuyQuantity = market.getStock(resource);
 
-
         resourceText = findViewById(R.id.resource_header);
         resourcePriceText = findViewById(R.id.resource_price_text);
         decreaseBuyQuantity = findViewById(R.id.decrease_buy_quantity);
@@ -73,15 +71,21 @@ public class BuyActivity extends AppCompatActivity {
         tradeButton = findViewById(R.id.trade_button);
         totalTransactionText = findViewById(R.id.total_transaction_text);
         playerCashText = findViewById(R.id.player_cash_text);
+
+        updateRemainingBuyQuantity();
+        updateRemainingSellQuantity();
     }
 
     public void confirmTrade(View view) {
         int creditChange = (sellQuantity - buyQuantity) * market.getPrice(resource);
         if (player.getCredits() + creditChange < 0) {
             Toast.makeText(this, "You don't have enough credits for that!", Toast.LENGTH_LONG).show();
+        } else if ((buyQuantity - sellQuantity + cargo.getCurrentCapactity()) > cargo.getMaxCapacity()) {
+            Toast.makeText(this, "You don't have enough cargo space for that!", Toast.LENGTH_LONG).show();
         } else {
             player.setCredits(player.getCredits() + creditChange);
             market.decreaseStock(resource, buyQuantity - sellQuantity);
+            cargo.increaseStock(resource, buyQuantity - sellQuantity);
         }
     }
 
