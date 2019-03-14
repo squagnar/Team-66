@@ -65,7 +65,7 @@
                 android:id="@+id/decrease_buy_quantity"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:onClick="decreaseQuantity"
+                android:onClick="decreaseBuyQuantity"
                 android:text="-"/>
         <TextView
                 android:id="@+id/buy_quantity_text"
@@ -80,7 +80,7 @@
                 android:id="@+id/increase_buy_quantity"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:onClick="increaseQuantity"
+                android:onClick="increaseBuyQuantity"
                 android:text="+"/>
     </LinearLayout>
 
@@ -105,7 +105,7 @@
                 android:id="@+id/decrease_sell_quantity"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:onClick="decreaseQuantity"
+                android:onClick="decreaseSellQuantity"
                 android:text="-"/>
         <TextView
                 android:id="@+id/sell_quantity_text"
@@ -120,7 +120,7 @@
                 android:id="@+id/increase_sell_quantity"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:onClick="increaseQuantity"
+                android:onClick="increaseSellQuantity"
                 android:text="+"/>
     </LinearLayout>
 
@@ -176,7 +176,7 @@
             android:layout_marginLeft="255dp"
             android:textSize="15sp"
             android:id="@+id/trade_button"
-            android:onClick="onClickTrade"
+            android:onClick="confirmTrade"
     />
 
     <TextView
