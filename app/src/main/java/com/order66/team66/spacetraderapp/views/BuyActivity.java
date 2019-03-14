@@ -70,7 +70,7 @@ public class BuyActivity extends AppCompatActivity {
         tradeButton = findViewById(R.id.trade_button);
     }
 
-    public void updatePlayer() {
+    public void confirmTrade(View view) {
         int creditChange = (sellQuantity - buyQuantity) * market.getPrice(resource);
         if (player.getCredits() + creditChange < 0) {
             Toast.makeText(this, "You don't have enough credits for that!", Toast.LENGTH_LONG).show();

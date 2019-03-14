@@ -194,7 +194,7 @@ public enum Resource {
             price *= 1.5;
         }
 
-        return price;1
+        return price;
     }
 
     public int getStock(int techLevel, ResourceModifier worldMod, ResourceModifier eventMod) {
