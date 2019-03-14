@@ -244,6 +244,7 @@ public class MarketActivity extends AppCompatActivity {
     public void onClick(View view) {
         Intent intent = new Intent(MarketActivity.this, BuyActivity.class);
         intent.putExtra("Resource", (Resource) view.getTag());
+
         startActivity(intent);
     }
 }
