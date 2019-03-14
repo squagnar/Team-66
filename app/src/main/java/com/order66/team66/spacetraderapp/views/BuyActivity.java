@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.order66.team66.spacetraderapp.R;
 import com.order66.team66.spacetraderapp.models.CargoHold;
 import com.order66.team66.spacetraderapp.models.Market;
@@ -27,6 +28,7 @@ public class BuyActivity extends AppCompatActivity {
     private TextView marketBuyText;
     private TextView marketSellText;
     private Button tradeButton;
+    private int creditChange;
 
     Intent intent = getIntent();
     Resource resource = intent.getParcelableExtra("Resource");
@@ -48,6 +50,8 @@ public class BuyActivity extends AppCompatActivity {
         player = viewmodel.getPlayer();
         cargo = player.getCargoHold();
 
+        creditChange = 0;
+
         resourceText = findViewById(R.id.resource_header);
         resourcePriceText = findViewById(R.id.resource_price_text);
         decreaseBuyQuantity = findViewById(R.id.decrease_buy_quantity);
@@ -59,25 +63,53 @@ public class BuyActivity extends AppCompatActivity {
         marketBuyText = findViewById(R.id.resource_stock_market_text);
         marketSellText = findViewById(R.id.resource_stock_cargo_text);
         tradeButton = findViewById(R.id.trade_button);
+    }
 
-//        public void increaseQuantity(View view) {
-//            if (quantity <= remainingQuantity) {
-//                remainingQuantity--;
-//                quantity++;
-//                updateQuantity(remainingQuantity);
-//            }
-//        }
-//
-//        public void decreaseQuantity(View view) {
-//            if (quantity > 0) {
-//                remainingQuantity++;
-//                quantity--;
-//                updateQuantity(remainingQuantity);
-//            }
-//        }
-//
-//        private void updateQuantity(int quantity) {
-//            quantityText.setText(String.format("%s", remainingQuantity));
-//        }
+    public void updatePlayer() {
+        if (player.getCredits() < creditChange) {
+            Toast.makeText(this, "You don't have enough credits for that!", Toast.LENGTH_LONG).show();
+        } else {
+            player.setCredits(player.getCredits() - creditChange);
+        }
+    }
+
+    public void increaseBuyQuantity(View view) {
+        if (quantity <= remainingQuantity) {
+            remainingQuantity--;
+            quantity++;
+            updateQuantity(remainingQuantity);
+            creditChange += market.getPrice(resource);
+        }
+    }
+
+    public void increaseSellQuantity(View view) {
+        if (quantity > 0) {
+            remainingQuantity++;
+            quantity--;
+            updateQuantity(remainingQuantity);
+            creditChange += market.getPrice(resource);
+        }
+    }
+
+    public void decreaseBuyQuantity(View view) {
+        if (quantity > 0) {
+            remainingQuantity++;
+            quantity--;
+            updateQuantity(remainingQuantity);
+            creditChange += market.getPrice(resource);
+        }
+    }
+
+    public void decreaseSellQuantity(View view) {
+        if (quantity <= remainingQuantity) {
+            remainingQuantity--;
+            quantity++;
+            updateQuantity(remainingQuantity);
+            creditChange += market.getPrice(resource);
+        }
+    }
+
+    private void updateQuantity(int quantity) {
+        quantityText.setText(String.format("%s", remainingQuantity));
     }
 }
