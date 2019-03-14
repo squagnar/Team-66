@@ -13,6 +13,8 @@ import com.order66.team66.spacetraderapp.models.Skill;
 import com.order66.team66.spacetraderapp.viewmodels.ConfigurationViewModel;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Class for adding a new player
@@ -145,8 +147,10 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     public void onAddPressed(View view) {
         //difficulty.setDifficulty((String) difficultySpinner.getSelectedItem());
-
-        if (pointsUnspent > 0) {
+        Pattern regex = Pattern.compile("[a-zA-Z]+");
+        if (!regex.matcher(nameFieldText.getText()).find()) {
+            Toast.makeText(this, "Please enter a valid name!", Toast.LENGTH_LONG).show();
+        } else if (pointsUnspent > 0) {
             Toast.makeText(this, "Please allocate all skill points!", Toast.LENGTH_LONG).show();
         } else {
             viewModel.createPlayer(nameFieldText.getText().toString(), pilot, fighter, trader, engineer);
