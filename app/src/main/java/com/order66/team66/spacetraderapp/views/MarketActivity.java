@@ -1,5 +1,7 @@
 package com.order66.team66.spacetraderapp.views;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.OnLifecycleEvent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
@@ -158,6 +160,17 @@ public class MarketActivity extends AppCompatActivity {
         robotsPrice.setText(String.format("%s", market.getPrice(robots)));
         robotsPrice.setTag(robots);
 
+        updateStocks();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        updateStocks();
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    private void updateStocks() {
         // bind market stock TextView widgets to variables
         waterMarketStock = findViewById(R.id.water_market_text);
         waterMarketStock.setText(String.format("%s", market.getStock(water)));
@@ -242,9 +255,16 @@ public class MarketActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        Intent intent = new Intent(MarketActivity.this, BuyActivity.class);
-        intent.putExtra("Resource", (Resource) view.getTag());
+        Resource resource = (Resource) view.getTag();
+        boolean canUse = market.canUse(resource);
 
-        startActivity(intent);
+        if(canUse) {
+            Intent intent = new Intent(MarketActivity.this, BuyActivity.class);
+            intent.putExtra("Resource", resource);
+
+            startActivity(intent);
+        } else {
+            Toast.makeText(this,"This planet cannot trade that resource!", Toast.LENGTH_LONG).show();
+        }
     }
 }

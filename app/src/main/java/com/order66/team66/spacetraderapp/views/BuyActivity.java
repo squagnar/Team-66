@@ -70,13 +70,13 @@ public class BuyActivity extends AppCompatActivity {
         decreaseSellQuantity = findViewById(R.id.decrease_sell_quantity);
         sellQuantityText = findViewById(R.id.sell_quantity_text);
         increaseSellQuantity = findViewById(R.id.increase_sell_quantity);
-        marketBuyText = findViewById(R.id.resource_stock_market_text);
-        marketSellText = findViewById(R.id.resource_stock_cargo_text);
         tradeButton = findViewById(R.id.trade_button);
         totalTransactionText = findViewById(R.id.total_transaction_text);
         playerCashText = findViewById(R.id.player_cash_text);
         remainingBuyQuantityText = findViewById(R.id.resource_stock_market_text);
         remainingSellQuantityText = findViewById(R.id.resource_stock_cargo_text);
+
+        resourcePriceText.setText(String.format("%s", market.getPrice(resource)));
 
         updateRemainingBuyQuantity();
         updateRemainingSellQuantity();
@@ -96,7 +96,6 @@ public class BuyActivity extends AppCompatActivity {
             cargo.increaseStock(resource, buyQuantity - sellQuantity);
             finish();
         }
-        finish();
     }
 
     public void increaseBuyQuantity(View view) {
@@ -104,6 +103,7 @@ public class BuyActivity extends AppCompatActivity {
             remainingBuyQuantity--;
             buyQuantity++;
             updateRemainingBuyQuantity();
+            updateTotalTradeCost();
         }
     }
 
@@ -112,6 +112,7 @@ public class BuyActivity extends AppCompatActivity {
             remainingSellQuantity--;
             sellQuantity++;
             updateRemainingSellQuantity();
+            updateTotalTradeCost();
         }
     }
 
@@ -120,6 +121,7 @@ public class BuyActivity extends AppCompatActivity {
             remainingBuyQuantity++;
             buyQuantity--;
             updateRemainingBuyQuantity();
+            updateTotalTradeCost();
         }
     }
 
@@ -128,6 +130,7 @@ public class BuyActivity extends AppCompatActivity {
             remainingSellQuantity++;
             sellQuantity--;
             updateRemainingSellQuantity();
+            updateTotalTradeCost();
         }
     }
 
@@ -144,7 +147,7 @@ public class BuyActivity extends AppCompatActivity {
     private void updateRemainingPlayerCash() { playerCashText.setText(String.format("%s", player.getCredits()));}
 
     private void updateTotalTradeCost() {
-        Integer tradeCost = (player.getCredits() + ((sellQuantity + buyQuantity) * market.getPrice(resource)));
+        Integer tradeCost = ((sellQuantity - buyQuantity) * market.getPrice(resource));
         totalTransactionText.setText(String.format("%s", tradeCost));
     }
 }
