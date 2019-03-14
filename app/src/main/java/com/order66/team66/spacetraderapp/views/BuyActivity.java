@@ -76,6 +76,8 @@ public class BuyActivity extends AppCompatActivity {
 
         updateRemainingBuyQuantity();
         updateRemainingSellQuantity();
+        updateRemainingPlayerCash();
+        updateTotalTradeCost();
     }
 
     public void confirmTrade(View view) {
@@ -88,6 +90,7 @@ public class BuyActivity extends AppCompatActivity {
             player.setCredits(player.getCredits() + creditChange);
             market.decreaseStock(resource, buyQuantity - sellQuantity);
             cargo.increaseStock(resource, buyQuantity - sellQuantity);
+            finish();
         }
         finish();
     }
@@ -130,5 +133,12 @@ public class BuyActivity extends AppCompatActivity {
 
     private void updateRemainingSellQuantity() {
         sellQuantityText.setText(String.format("%s", remainingSellQuantity));
+    }
+
+    private void updateRemainingPlayerCash() { playerCashText.setText(String.format("%s", player.getCredits()));}
+
+    private void updateTotalTradeCost() {
+        Integer tradeCost = (player.getCredits() + ((sellQuantity + buyQuantity) * market.getPrice(resource)));
+        totalTransactionText.setText(String.format("%s", tradeCost));
     }
 }
