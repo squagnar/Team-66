@@ -27,8 +27,6 @@ public class Game {
         difficulty = null;
         player = null;
         solarSystems = createSolarSystem();
-        solarSystems.get(0)
-                .addPlanet(new Planet("Ferris", TechLevel.INDUSTRIAL, ResourceModifier.NOSPECIALRESOURCES, solarSystems.get(0)));
         currentPlanet = solarSystems.get(0).getPlanet(0);
     }
 
