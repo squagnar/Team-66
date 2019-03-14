@@ -2,129 +2,245 @@ package com.order66.team66.spacetraderapp.views;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import com.order66.team66.spacetraderapp.R;
 import com.order66.team66.spacetraderapp.models.*;
 import com.order66.team66.spacetraderapp.viewmodels.MarketViewModel;
-
-import java.util.EnumMap;
-import java.util.Set;
+import org.w3c.dom.Text;
 
 public class MarketActivity extends AppCompatActivity {
+
     private MarketViewModel viewmodel;
+
+    private Resource water;
+    private Resource fur;
+    private Resource food;
+    private Resource ore;
+    private Resource games;
+    private Resource firearms;
+    private Resource medicine;
+    private Resource machines;
+    private Resource narcotics;
+    private Resource robots;
 
     private Market market;
     private CargoHold cargo;
-
-    private TextView priceHeader;
-    private TextView priceText;
-    private TextView marketStockHeader;
-    private TextView marketStockText;
-    private TextView cargoStockHeader;
-    private TextView cargoStockText;
-    private TextView quantityHeader;
-    private TextView quantityText;
-    private Button decreaseQuantity;
-    private Button increaseQuantity;
-    private Button buy;
-    private LinearLayout quantitySelector;
-    private Spinner resourcesSpinner;
-
-    private int quantity = 0;
-    private int remainingQuantity;
     private Resource resource;
+    private Player player;
+    private Planet planet;
+
+    private Button waterButton;
+    private Button furButton;
+    private Button foodButton;
+    private Button oreButton;
+    private Button gamesButton;
+    private Button firearmsButton;
+    private Button medicineButton;
+    private Button machinesButton;
+    private Button narcoticsButton;
+    private Button robotsButton;
+
+    private TextView waterPrice;
+    private TextView furPrice;
+    private TextView foodPrice;
+    private TextView orePrice;
+    private TextView gamesPrice;
+    private TextView firearmsPrice;
+    private TextView medicinePrice;
+    private TextView machinesPrice;
+    private TextView narcoticsPrice;
+    private TextView robotsPrice;
+
+    private TextView waterMarketStock;
+    private TextView furMarketStock;
+    private TextView foodMarketStock;
+    private TextView oreMarketStock;
+    private TextView gamesMarketStock;
+    private TextView firearmsMarketStock;
+    private TextView medicineMarketStock;
+    private TextView machinesMarketStock;
+    private TextView narcoticsMarketStock;
+    private TextView robotsMarketStock;
+
+    private TextView waterCargoStock;
+    private TextView furCargoStock;
+    private TextView foodCargoStock;
+    private TextView oreCargoStock;
+    private TextView gamesCargoStock;
+    private TextView firearmsCargoStock;
+    private TextView medicineCargoStock;
+    private TextView machinesCargoStock;
+    private TextView narcoticsCargoStock;
+    private TextView robotsCargoStock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_market);
+        viewmodel = new MarketViewModel(player, planet);
 
-        resourcesSpinner = findViewById(R.id.resources_spinner);
-        priceHeader = findViewById(R.id.price_header);
-        priceText = findViewById(R.id.price_text);
-        marketStockHeader = findViewById(R.id.market_stock_header);
-        marketStockText = findViewById(R.id.market_stock_text);
-        cargoStockHeader = findViewById(R.id.ship_stock_header);
-        cargoStockText = findViewById(R.id.ship_stock_text);
-        quantityHeader = findViewById(R.id.quantity_header);
-        quantityText = findViewById(R.id.remaining_quantity_text);
-        decreaseQuantity = findViewById(R.id.decrease_quantity);
-        increaseQuantity = findViewById(R.id.increase_quantity);
-        quantitySelector = findViewById(R.id.quantity_selector);
+        water = Resource.WATER;
+        fur = Resource.FURS;
+        food = Resource.FOOD;
+        ore = Resource.ORE;
+        games = Resource.GAMES;
+        firearms = Resource.FIREARMS;
+        medicine = Resource.MEDICINE;
+        machines = Resource.MACHINES;
+        narcotics = Resource.NARCOTICS;
+        robots = Resource.ROBOTS;
 
-        Resource[] resources = market.getAvailableResources().toArray(new Resource[market.getAvailableResources().size()]);
+        // bind buttons to variables
+        waterButton = findViewById(R.id.water_button);
+        waterButton.setTag(water);
+        furButton = findViewById(R.id.furs_button);
+        furButton.setTag(fur);
+        foodButton = findViewById(R.id.food_button);
+        foodButton.setTag(food);
+        oreButton = findViewById(R.id.ore_button);
+        oreButton.setTag(ore);
+        gamesButton = findViewById(R.id.games_button);
+        gamesButton.setTag(games);
+        firearmsButton = findViewById(R.id.firearms_button);
+        firearmsButton.setTag(firearms);
+        medicineButton = findViewById(R.id.medicine_button);
+        medicineButton.setTag(medicine);
+        machinesButton = findViewById(R.id.machines_button);
+        machinesButton.setTag(machines);
+        narcoticsButton = findViewById(R.id.narcotics_button);
+        narcoticsButton.setTag(narcotics);
+        robotsButton = findViewById(R.id.robots_button);
+        robotsButton.setTag(robots);
 
-        final ArrayAdapter<Resource> resourcesAdapter = new ArrayAdapter<Resource>(this,
-                android.R.layout.simple_spinner_item, resources);
-        resourcesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        resourcesSpinner.setAdapter(resourcesAdapter);
+        // bind prices to TextView and set tags
+        waterPrice = findViewById(R.id.water_price_text);
+        waterPrice.setText(String.format("%s", market.getPrice(water)));
+        waterPrice.setTag(water);
 
-        resourcesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                resource = resourcesAdapter.getItem(position);
-                remainingQuantity = market.getStock(resource);
+        furPrice = findViewById(R.id.furs_price_text);
+        furPrice.setText(String.format("%s", market.getPrice(fur)));
+        furPrice.setTag(fur);
 
-                priceText.setText(market.getPrice(resource));
-                marketStockText.setText(market.getStock(resource));
-                cargoStockText.setText(cargo.getStock(resource));
+        foodPrice = findViewById(R.id.food_price_text);
+        foodPrice.setText(String.format("%s", market.getPrice(food)));
+        foodPrice.setTag(food);
 
-                // sets visibility of attributes
-                priceHeader.setVisibility((priceHeader.getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE);
-                priceText.setVisibility((priceText.getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE);
-                marketStockHeader.setVisibility((marketStockHeader.getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE);
-                marketStockText.setVisibility((marketStockText.getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE);
-                cargoStockHeader.setVisibility((cargoStockHeader.getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE);
-                cargoStockText.setVisibility((cargoStockText.getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE);
-                quantityHeader.setVisibility((quantityHeader.getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE);
-                quantitySelector.setVisibility((quantitySelector.getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE);
-            }
+        orePrice = findViewById(R.id.ore_price_text);
+        orePrice.setText(String.format("%s", market.getPrice(ore)));
+        orePrice.setTag(ore);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) { }
-        });
+        gamesPrice = findViewById(R.id.games_price_text);
+        gamesPrice.setText(String.format("%s", market.getPrice(games)));
+        gamesPrice.setTag(games);
+
+        firearmsPrice = findViewById(R.id.firearms_price_text);
+        firearmsPrice.setText(String.format("%s", market.getPrice(firearms)));
+        firearmsPrice.setTag(firearms);
+
+        medicinePrice = findViewById(R.id.medicine_price_text);
+        medicinePrice.setText(String.format("%s", market.getPrice(medicine)));
+        medicinePrice.setTag(medicine);
+
+        machinesPrice = findViewById(R.id.machines_price_text);
+        machinesPrice.setText(String.format("%s", market.getPrice(machines)));
+        machinesPrice.setTag(machines);
+
+        narcoticsPrice = findViewById(R.id.narcotics_price_text);
+        narcoticsPrice.setText(String.format("%s", market.getPrice(narcotics)));
+        narcoticsPrice.setTag(narcotics);
+
+        robotsPrice = findViewById(R.id.robots_price_text);
+        robotsPrice.setText(String.format("%s", market.getPrice(robots)));
+        robotsPrice.setTag(robots);
+
+        // bind market stock TextView widgets to variables
+        waterMarketStock = findViewById(R.id.water_market_text);
+        waterMarketStock.setText(String.format("%s", market.getStock(water)));
+        waterMarketStock.setTag(water);
+
+        furMarketStock = findViewById(R.id.furs_market_text);
+        furMarketStock.setText(String.format("%s", market.getStock(fur)));
+        furMarketStock.setTag(fur);
+
+        foodMarketStock = findViewById(R.id.food_market_text);
+        foodMarketStock.setText(String.format("%s", market.getStock(food)));
+        foodMarketStock.setTag(food);
+
+        oreMarketStock = findViewById(R.id.ore_market_text);
+        oreMarketStock.setText(String.format("%s", market.getStock(ore)));
+        oreMarketStock.setTag(ore);
+
+        gamesMarketStock = findViewById(R.id.games_market_text);
+        gamesMarketStock.setText(String.format("%s", market.getStock(games)));
+        gamesMarketStock.setTag(games);
+
+        firearmsMarketStock = findViewById(R.id.firearms_market_text);
+        firearmsMarketStock.setText(String.format("%s", market.getStock(firearms)));
+        firearmsMarketStock.setTag(firearms);
+
+        medicineMarketStock = findViewById(R.id.medicine_market_text);
+        medicineMarketStock.setText(String.format("%s", market.getStock(medicine)));
+        medicineMarketStock.setTag(medicine);
+
+        machinesMarketStock = findViewById(R.id.machines_market_text);
+        machinesMarketStock.setText(String.format("%s", market.getStock(machines)));
+        machinesMarketStock.setTag(machines);
+
+        narcoticsMarketStock = findViewById(R.id.narcotics_market_text);
+        narcoticsMarketStock.setText(String.format("%s", market.getStock(narcotics)));
+        narcoticsMarketStock.setTag(narcotics);
+
+        robotsMarketStock = findViewById(R.id.robots_market_text);
+        robotsMarketStock.setText(String.format("%s", market.getStock(robots)));
+        robotsMarketStock.setTag(robots);
+
+        // bind cargo stock TextView widgets to variables
+        waterCargoStock = findViewById(R.id.water_cargo_text);
+        waterCargoStock.setText(String.format("%s", cargo.getStock(water)));
+        waterCargoStock.setTag(water);
+
+        furCargoStock = findViewById(R.id.furs_cargo_text);
+        furCargoStock.setText(String.format("%s", cargo.getStock(fur)));
+        furCargoStock.setTag(fur);
+
+        foodCargoStock = findViewById(R.id.food_cargo_text);
+        foodCargoStock.setText(String.format("%s", cargo.getStock(food)));
+        foodCargoStock.setTag(food);
+
+        oreCargoStock = findViewById(R.id.ore_cargo_text);
+        oreCargoStock.setText(String.format("%s", cargo.getStock(ore)));
+        oreCargoStock.setTag(ore);
+
+        gamesCargoStock = findViewById(R.id.games_cargo_text);
+        gamesCargoStock.setText(String.format("%s", cargo.getStock(games)));
+        gamesCargoStock.setTag(games);
+
+        firearmsCargoStock = findViewById(R.id.firearms_cargo_text);
+        firearmsCargoStock.setText(String.format("%s", cargo.getStock(firearms)));
+        firearmsCargoStock.setTag(firearms);
+
+        medicineCargoStock = findViewById(R.id.medicine_cargo_text);
+        medicineCargoStock.setText(String.format("%s", cargo.getStock(medicine)));
+        medicineCargoStock.setTag(medicine);
+
+        machinesCargoStock = findViewById(R.id.machines_cargo_text);
+        machinesCargoStock.setText(String.format("%s", cargo.getStock(machines)));
+        machinesCargoStock.setTag(machines);
+
+        narcoticsCargoStock = findViewById(R.id.narcotics_cargo_text);
+        narcoticsCargoStock.setText(String.format("%s", cargo.getStock(narcotics)));
+        narcoticsCargoStock.setTag(narcotics);
+
+        robotsCargoStock = findViewById(R.id.robots_cargo_text);
+        robotsCargoStock.setText(String.format("%s", cargo.getStock(robots)));
+        robotsCargoStock.setTag(robots);
     }
 
-//    private void updateQuantity(Integer stock) {
-//        quantityText.setText(String.format("%s", remainingQuantity));
-//        TextView skillDisplay = null;
-//        for(TextView display : skillDisplays) {
-//            if(display.getTag().equals(skill)){
-//                skillDisplay = display;
-//                break;
-//            }
-//        }
-//        skillDisplay.setText(String.format("%s", market.decreaseStock(resource, );));
-//    }
-
-    public void increaseQuantity(View view) {
-        if (quantity <= remainingQuantity) {
-            remainingQuantity--;
-            quantity++;
-            updateQuantity(remainingQuantity);
-        }
-    }
-
-    public void decreaseQuantity(View view) {
-        if (quantity > 0) {
-            remainingQuantity++;
-            quantity--;
-            updateQuantity(remainingQuantity);
-        }
-    }
-
-    private void updateQuantity(int quantity) {
-        quantityText.setText(String.format("%s", remainingQuantity));
-    }
-
-    private void onAddPressed(View view) {
-        viewmodel.getMarket().decreaseStock(resource, quantity);
-        viewmodel.getPlayer().getCargoHold().increaseStock(resource, quantity);
-        Intent intent = new Intent(MarketActivity.this, HomeActivity.class);
+    public void onClick(View view) {
+        Intent intent = new Intent(MarketActivity.this, BuyActivity.class);
+        intent.putExtra("Resource", (Resource) view.getTag());
         startActivity(intent);
     }
 }

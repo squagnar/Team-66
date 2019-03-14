@@ -40,5 +40,5 @@
             android:id="@+id/travel_button"
             android:layout_marginTop="340dp"
             android:layout_marginLeft="170dp"
-            android:onClick="goToTravel"/>
+            android:onClick="exitGame"/>
 </RelativeLayout>
