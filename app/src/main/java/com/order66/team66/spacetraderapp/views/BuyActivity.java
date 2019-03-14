@@ -55,8 +55,6 @@ public class BuyActivity extends AppCompatActivity {
 
         remainingSellQuantity = cargo.getStock(resource);
         remainingBuyQuantity = market.getStock(resource);
-        updateRemainingBuyQuantity();
-        updateRemainingSellQuantity();
 
         resourceText = findViewById(R.id.resource_header);
         resourcePriceText = findViewById(R.id.resource_price_text);
@@ -69,6 +67,9 @@ public class BuyActivity extends AppCompatActivity {
         marketBuyText = findViewById(R.id.resource_stock_market_text);
         marketSellText = findViewById(R.id.resource_stock_cargo_text);
         tradeButton = findViewById(R.id.trade_button);
+
+        updateRemainingBuyQuantity();
+        updateRemainingSellQuantity();
     }
 
     public void confirmTrade(View view) {
