@@ -1,5 +1,7 @@
 package com.order66.team66.spacetraderapp.models;
 
+import java.util.NoSuchElementException;
+
 /**
  * Player class stores information about the player's name, credits,
  * spaceship, and skill points.
@@ -30,6 +32,8 @@ public class Player {
 
     private CargoHold cargoHold = new CargoHold(10);
 
+    private int currentFuel;
+
     /**
      * Creates a new player with given skill points
      *
@@ -50,6 +54,7 @@ public class Player {
         this.engineer = engineer;
         credits = 1000;
         spaceship = Spaceship.GNAT;
+        currentFuel = spaceship.getFuelCap();
     }
 
     /**
@@ -128,6 +133,41 @@ public class Player {
      */
     public void setSpaceship(Spaceship spaceship) {
         this.spaceship = spaceship;
+    }
+
+    /**
+     * Gets Player's Current Fuel
+     *
+     * @return current fuel count
+     */
+    public int getCurrentFuel(){
+        return currentFuel;
+    }
+
+    /**
+     * Adds fuel to the currentFuel if it doesn't go over the maximum fuel capacity.
+     *
+     * @param amt the amount to add
+     */
+    public void addFuel(int amt) {
+        if(currentFuel + amt >= spaceship.getFuelCap()) {
+            throw new RuntimeException("Tried to overfuel!");
+        } else {
+            currentFuel += amt;
+        }
+    }
+
+    /**
+     * Removes fuel from the currentFuel if it doesn't go below zero.
+     *
+     * @param amt the amount to remove
+     */
+    public void removeFuel(int amt) {
+        if(!(currentFuel - amt <= 0)) {
+            currentFuel -= amt;
+        } else {
+            throw new RuntimeException("Not Enough Fuel!");
+        }
     }
 
     @Override
