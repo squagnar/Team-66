@@ -26,8 +26,8 @@ public class HomeActivity extends Activity {
         startActivity(intent);
     }
 
-//    public void goToTravel(View view) {
-//        Intent intent = new Intent(HomeActivity.this, MarketActivity.class);
-//        startActivity(intent);
-//    }
+    public void goToTravel(View view) {
+        Intent intent = new Intent(HomeActivity.this, TravelActivity.class);
+        startActivity(intent);
+    }
 }
