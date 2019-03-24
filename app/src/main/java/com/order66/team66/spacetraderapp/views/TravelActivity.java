@@ -1,7 +1,9 @@
 package com.order66.team66.spacetraderapp.views;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -50,5 +52,11 @@ public class TravelActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, SolarSystem.planetNames);
         planetAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         planetSpinner.setAdapter(planetAdapter);
+    }
+
+    public void onClick(View view) {
+       // planet = (Planet) planetSpinner.getSelectedItem(); 
+        Intent intent = new Intent(TravelActivity.this, HomeActivity.class);
+        startActivity(intent);
     }
 }
