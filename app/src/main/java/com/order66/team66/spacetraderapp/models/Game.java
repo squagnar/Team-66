@@ -1,9 +1,6 @@
 package com.order66.team66.spacetraderapp.models;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Stores Game Data
@@ -21,13 +18,16 @@ public class Game {
     /** Game Solar System */
     private static List<SolarSystem> solarSystems;
 
+    private static SolarSystem currentSystem;
     private static Planet currentPlanet;
 
     private Game(){
         difficulty = null;
         player = null;
         solarSystems = createSolarSystem();
+
         currentPlanet = solarSystems.get(0).getPlanet(0);
+        currentSystem = currentPlanet.getSolarSystem();
     }
 
     public static Game getInstance(){
@@ -50,6 +50,10 @@ public class Game {
         return  solarSystems;
     }
 
+    public SolarSystem getCurrentSystem() {
+        return currentSystem;
+    }
+
     public Planet getCurrentPlanet() {
         return currentPlanet;
     }
@@ -60,6 +64,29 @@ public class Game {
 
     public void setDifficulty(Difficulty diff) {
         difficulty = diff;
+    }
+
+    public void shortTravel(Planet planet) {
+        if(currentSystem.hasPlanet(planet)){
+            currentPlanet = planet;
+        } else {
+            throw new NoSuchElementException("Planet does not exist in this solar system!");
+        }
+    }
+
+    public void longTravel(SolarSystem system, Planet planet) {
+        try {
+            player.removeFuel(1);
+            if(system.hasPlanet(planet)){
+                currentSystem = system;
+                currentPlanet = planet;
+                //TODO: run an encounter check here
+            } else {
+                throw new NoSuchElementException("Planet does not exist in this solar system!");
+            }
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Not enough fuel!");
+        }
     }
 
     private static List<SolarSystem> createSolarSystem() {

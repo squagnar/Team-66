@@ -188,6 +188,15 @@ public class SolarSystem {
         return planets.get(num);
     }
 
+    public boolean hasPlanet(Planet target) {
+        for (Planet planet: planets) {
+            if(planet.equals(target)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Displays Solar System
      *
