@@ -12,6 +12,8 @@ import com.order66.team66.spacetraderapp.R;
 import com.order66.team66.spacetraderapp.models.*;
 import com.order66.team66.spacetraderapp.viewmodels.MarketViewModel;
 
+import java.util.Arrays;
+
 public class TravelActivity extends AppCompatActivity {
 
     private TextView currentPlanet;
@@ -23,6 +25,7 @@ public class TravelActivity extends AppCompatActivity {
 
     private MarketViewModel viewmodel;
     private Planet planet;
+    private SolarSystem solarSystem;
     private Player player;
     private CargoHold cargo;
 
@@ -52,10 +55,12 @@ public class TravelActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, SolarSystem.planetNames);
         planetAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         planetSpinner.setAdapter(planetAdapter);
+
+        planetSpinner.setSelection(Arrays.asList(SolarSystem.planetNames).indexOf(planet.getName()));
     }
 
     public void onClick(View view) {
-       // planet = (Planet) planetSpinner.getSelectedItem(); 
+        planet.setName(planetSpinner.getSelectedItem().toString());
         Intent intent = new Intent(TravelActivity.this, HomeActivity.class);
         startActivity(intent);
     }

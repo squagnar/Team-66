@@ -61,6 +61,10 @@ public class Planet {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String toString() {
         return "Planet Name: " + name + "\n" +
                 "Tech Level: " + techLevel.getName() + "\n" +
