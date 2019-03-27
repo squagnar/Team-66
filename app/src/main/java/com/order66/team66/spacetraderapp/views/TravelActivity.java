@@ -49,7 +49,8 @@ public class TravelActivity extends AppCompatActivity {
         currentPlanet.setText(planet.getName());
         shipType.setText(player.getSpaceship().getName());
         fuelRemaining.setText(String.format("%s", player.getCurrentFuel()));
-        cargoRemaining.setText(String.format("%s", player.getCargoHold().getCurrentCapactity()));
+        cargoRemaining.setText(String.format("%s", (player.getCargoHold().getMaxCapacity() -
+                player.getCargoHold().getCurrentCapactity())));
 
         ArrayAdapter<String> planetAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, SolarSystem.planetNames);
