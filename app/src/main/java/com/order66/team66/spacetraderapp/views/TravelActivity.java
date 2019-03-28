@@ -4,10 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.*;
 import com.order66.team66.spacetraderapp.R;
 import com.order66.team66.spacetraderapp.models.*;
 import com.order66.team66.spacetraderapp.viewmodels.MarketViewModel;
@@ -68,8 +65,12 @@ public class TravelActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        viewmodel.travel(solarSystem.getPlanet(planetSpinner.getSelectedItemPosition()));
-        Intent intent = new Intent(TravelActivity.this, HomeActivity.class);
-        startActivity(intent);
+        try {
+            viewmodel.travel(solarSystem.getPlanet(planetSpinner.getSelectedItemPosition()));
+            Intent intent = new Intent(TravelActivity.this, HomeActivity.class);
+            startActivity(intent);
+        } catch (RuntimeException e) {
+            Toast.makeText(this,"You don't have enough fuel for that!", Toast.LENGTH_LONG).show();
+        }
     }
 }

@@ -163,7 +163,7 @@ public class Player {
      * @param amt the amount to remove
      */
     public void removeFuel(int amt) {
-        if(!(currentFuel - amt <= 0)) {
+        if(currentFuel > 0) {
             currentFuel -= amt;
         } else {
             throw new RuntimeException("Not Enough Fuel!");
