@@ -22,5 +22,12 @@ public class MarketViewModel extends ViewModel {
         return market;
     }
 
-    public Player getPlayer() { return player;}
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlanet(Planet planet) {
+        this.planet = planet;
+        GAME_STATE.setCurrentPlanet(planet);
+    }
 }

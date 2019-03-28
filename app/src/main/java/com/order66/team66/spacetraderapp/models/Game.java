@@ -66,6 +66,11 @@ public class Game {
         difficulty = diff;
     }
 
+    public void setCurrentPlanet(Planet planet) {
+        currentPlanet = planet;
+        currentSystem = planet.getSolarSystem();
+    }
+
     public void shortTravel(Planet planet) {
         if(currentSystem.hasPlanet(planet)){
             currentPlanet = planet;

@@ -61,7 +61,7 @@ public class TravelActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        planet.setName(planetSpinner.getSelectedItem().toString());
+        viewmodel.setPlanet((Planet)planetSpinner.getSelectedItem());
         Intent intent = new Intent(TravelActivity.this, HomeActivity.class);
         startActivity(intent);
     }
