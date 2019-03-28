@@ -29,5 +29,6 @@ public class MarketViewModel extends ViewModel {
     public void setPlanet(Planet planet) {
         this.planet = planet;
         GAME_STATE.setCurrentPlanet(planet);
+        this.market = planet.getMarket();
     }
 }
