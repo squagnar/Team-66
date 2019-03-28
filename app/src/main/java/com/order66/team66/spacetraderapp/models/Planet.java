@@ -71,4 +71,17 @@ public class Planet {
                 "Resource: " + WorldModifier.getName() + "\n";
     }
 
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (other instanceof Planet) {
+            Planet p = (Planet) other;
+            if (name.equals(p.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

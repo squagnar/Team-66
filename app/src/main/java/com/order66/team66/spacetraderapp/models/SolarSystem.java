@@ -188,7 +188,7 @@ public class SolarSystem {
         return planets.get(num);
     }
 
-    public List getAllPlanets() {
+    public List<Planet> getAllPlanets() {
         return planets;
     }
 
