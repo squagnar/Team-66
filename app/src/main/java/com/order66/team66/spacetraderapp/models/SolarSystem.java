@@ -1,5 +1,7 @@
 package com.order66.team66.spacetraderapp.models;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +21,11 @@ public class SolarSystem {
     private List<Planet> planets;
 
     /** Max Planets in one Solar System */
-    public static final int MAX_PLANETS = 12;
+    @Exclude
+    public static final int MAX_PLANETS = 4;
 
     /** Set of Planet Names */
+    @Exclude
     public static final String[] planetNames =
     {
             "Acamar",
@@ -184,6 +188,7 @@ public class SolarSystem {
         return name;
     }
 
+    @Exclude
     public Planet getPlanet(int num){
         return planets.get(num);
     }
@@ -216,4 +221,13 @@ public class SolarSystem {
         }
         return toRet;
     }
+
+    public int getX(){
+        return x;
+    }
+
+    public int getY(){
+        return  y;
+    }
+
 }

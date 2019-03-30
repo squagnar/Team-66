@@ -88,7 +88,7 @@ public class BuyActivity extends AppCompatActivity {
         int creditChange = (sellQuantity - buyQuantity) * market.getPrice(resource);
         if (player.getCredits() + creditChange < 0) {
             Toast.makeText(this, "You don't have enough credits for that!", Toast.LENGTH_LONG).show();
-        } else if ((buyQuantity - sellQuantity + cargo.getCurrentCapactity()) > cargo.getMaxCapacity()) {
+        } else if ((buyQuantity - sellQuantity + cargo.getCurrentCapacity()) > cargo.getMaxCapacity()) {
             Toast.makeText(this, "You don't have enough cargo space for that!", Toast.LENGTH_LONG).show();
         } else {
             player.setCredits(player.getCredits() + creditChange);

@@ -1,5 +1,7 @@
 package com.order66.team66.spacetraderapp.models;
 
+import com.google.firebase.database.Exclude;
+
 /**
  * Planets in a Solar System
  */
@@ -8,6 +10,7 @@ public class Planet {
     private String name;
 
     // Solar System of Planet
+    @Exclude
     private SolarSystem solarSystem;
 
     // Market of Planet
@@ -41,6 +44,7 @@ public class Planet {
      *
      * @return solar system
      */
+    @Exclude
     public SolarSystem getSolarSystem() {
         return solarSystem;
     }

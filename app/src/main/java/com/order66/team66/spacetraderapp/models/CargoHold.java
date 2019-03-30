@@ -1,12 +1,15 @@
 package com.order66.team66.spacetraderapp.models;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.EnumMap;
+import java.util.HashMap;
 
 public class CargoHold {
 
-    private EnumMap<Resource, Integer> cargoStock = new EnumMap<>(Resource.class);
+    private HashMap<String, Integer> cargoStock = new HashMap<>();
     private int maxCapacity;
-    private int currentCapactity;
+    private int currentCapacity;
 
     /**
      * Creates a cargohold object and populates the cargoStock with resources
@@ -17,7 +20,7 @@ public class CargoHold {
         maxCapacity = capacity;
 
         for (Resource resource : Resource.values()) {
-            cargoStock.put(resource, 0);
+            cargoStock.put(resource.getName(), 0);
         }
     }
 
@@ -28,7 +31,7 @@ public class CargoHold {
      * @return the amount of the given resource in the CargoHold
      */
     public int getStock(Resource resource) {
-        return cargoStock.get(resource);
+        return cargoStock.get(resource.getName());
     }
 
     /**
@@ -38,9 +41,9 @@ public class CargoHold {
      * @param amount the amount to increase the stock by
      */
     public void increaseStock(Resource resource, int amount) {
-        int newStock = cargoStock.get(resource) + amount;
-        cargoStock.put(resource, newStock);
-        currentCapactity += amount;
+        int newStock = cargoStock.get(resource.getName()) + amount;
+        cargoStock.put(resource.getName(), newStock);
+        currentCapacity += amount;
     }
 
     /**
@@ -50,17 +53,27 @@ public class CargoHold {
      * @param amount the amount to decrease the stock by
      */
     public void decreaseStock(Resource resource, int amount) {
-        int newStock = Math.max(cargoStock.get(resource) - amount, 0);
-        cargoStock.put(resource, newStock);
-        currentCapactity -= amount;
+        int newStock = Math.max(cargoStock.get(resource.getName()) - amount, 0);
+        cargoStock.put(resource.getName(), newStock);
+        currentCapacity -= amount;
     }
 
     public int getMaxCapacity() {
         return maxCapacity;
     }
 
-    public int getCurrentCapactity() {
-        return currentCapactity;
+    public int getCurrentCapacity() {
+        return currentCapacity;
+    }
+
+    /**
+     * Getter for cargoStock.
+     * For use with FIREBASE ONLY
+     *
+     * @return the enumMap cargoStock
+     */
+    public HashMap<String, Integer> getCargoStock() {
+        return cargoStock;
     }
 
 }

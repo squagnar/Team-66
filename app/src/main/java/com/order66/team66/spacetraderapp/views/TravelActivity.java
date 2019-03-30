@@ -49,7 +49,7 @@ public class TravelActivity extends AppCompatActivity {
         shipType.setText(player.getSpaceship().getName());
         fuelRemaining.setText(String.format("%s", player.getCurrentFuel()));
         cargoRemaining.setText(String.format("%s", (player.getCargoHold().getMaxCapacity() -
-                player.getCargoHold().getCurrentCapactity())));
+                player.getCargoHold().getCurrentCapacity())));
 
         ArrayList<String> planetNames = new ArrayList<>();
         for(Planet planet : solarSystem.getAllPlanets()) {

@@ -1,9 +1,11 @@
 package com.order66.team66.spacetraderapp.models;
 
 import android.widget.ListAdapter;
+import com.google.firebase.database.Exclude;
 
 import java.sql.ResultSet;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Set;
 
 /**
@@ -11,14 +13,14 @@ import java.util.Set;
  */
 public class Market {
 
-    ResourceModifier worldModifier;
-    ResourceModifier eventModifier = ResourceModifier.NULL;
-    int techLevel;
+    private ResourceModifier worldModifier;
+    private ResourceModifier eventModifier = ResourceModifier.NULL;
+    private int techLevel;
 
-    EnumMap<Resource, Integer> resourceStock = new EnumMap<>(Resource.class);
-    EnumMap<Resource, Integer> resourcePrice = new EnumMap<>(Resource.class);
-    EnumMap<Resource, Boolean> canUseResource = new EnumMap<>(Resource.class);
-    EnumMap<Resource, Boolean> canMakeResource = new EnumMap<>(Resource.class);
+    private HashMap<String, Integer> resourceStock = new HashMap<>();
+    private HashMap<String, Integer> resourcePrice = new HashMap<>();
+    private HashMap<String, Boolean> canUseResource = new HashMap<>();
+    private HashMap<String, Boolean> canMakeResource = new HashMap<>();
     /**
      * Creates a new Market object
      *
@@ -45,23 +47,23 @@ public class Market {
             minTechToMake = resource.getMinTechMake();
 
             if(techLevel >= minTechToUse) {
-                canUseResource.put(resource, true);
-                resourcePrice.put(resource, resource.getPrice(techLevel, worldModifier, eventModifier));
+                canUseResource.put(resource.getName(), true);
+                resourcePrice.put(resource.getName(), resource.getPrice(techLevel, worldModifier, eventModifier));
 
                 if(techLevel >= minTechToMake) {
-                    canMakeResource.put(resource,true);
-                    resourceStock.put(resource, resource.getStock(techLevel, worldModifier, eventModifier));
+                    canMakeResource.put(resource.getName(),true);
+                    resourceStock.put(resource.getName(), resource.getStock(techLevel, worldModifier, eventModifier));
                 }
                 else {
-                    canMakeResource.put(resource, false);
-                    resourceStock.put(resource, 0);
+                    canMakeResource.put(resource.getName(), false);
+                    resourceStock.put(resource.getName(), 0);
                 }
             }
             else {
-                canUseResource.put(resource, false);
-                resourcePrice.put(resource, 0);
-                canMakeResource.put(resource, false);
-                resourceStock.put(resource, 0);
+                canUseResource.put(resource.getName(), false);
+                resourcePrice.put(resource.getName(), 0);
+                canMakeResource.put(resource.getName(), false);
+                resourceStock.put(resource.getName(), 0);
             }
         }
     }
@@ -73,7 +75,7 @@ public class Market {
      * @return true if it can be bought from the player, otherwise false
      */
     public boolean canUse(Resource resource) {
-        return canUseResource.get(resource);
+        return canUseResource.get(resource.getName());
     }
 
     /**
@@ -83,7 +85,7 @@ public class Market {
      * @return true if it can be sold to the player, otherwise false
      */
     public boolean canMake(Resource resource) {
-        return canMakeResource.get(resource);
+        return canMakeResource.get(resource.getName());
     }
 
     /**
@@ -92,8 +94,9 @@ public class Market {
      * @param resource the resource to check
      * @return the price if it has one, else 0
      */
+    @Exclude
     public int getPrice(Resource resource) {
-        return resourcePrice.get(resource);
+        return resourcePrice.get(resource.getName());
     }
 
     /**
@@ -102,8 +105,9 @@ public class Market {
      * @param resource the resource to check
      * @return the stock if any is present, else 0
      */
+    @Exclude
     public int getStock(Resource resource) {
-        return  resourceStock.get(resource);
+        return  resourceStock.get(resource.getName());
     }
 
     /**
@@ -111,8 +115,12 @@ public class Market {
      *
      * @return the current ResourceModifier event, or null if there is none
      */
-    public ResourceModifier getCurrentEvent() {
+    public ResourceModifier getEventModifier() {
         return eventModifier;
+    }
+
+    public ResourceModifier getWorldModifier() {
+        return worldModifier;
     }
 
     /**
@@ -126,11 +134,11 @@ public class Market {
         for (Resource resource : Resource.values()) {
             if(canUse(resource)) {
                 int newPrice = resource.getPrice(techLevel, worldModifier, eventModifier);
-                resourcePrice.put(resource, newPrice);
+                resourcePrice.put(resource.getName(), newPrice);
 
                 if(canMake(resource)) {
                     int newStock = resource.getStock(techLevel, worldModifier, eventModifier);
-                    resourceStock.put(resource, newStock);
+                    resourceStock.put(resource.getName(), newStock);
                 }
             }
         }
@@ -143,8 +151,8 @@ public class Market {
      * @param amount the amount to increase stock by
      */
     public void increaseStock(Resource resource, int amount) {
-        int newStock = resourceStock.get(resource) + amount;
-        resourceStock.put(resource, newStock);
+        int newStock = resourceStock.get(resource.getName()) + amount;
+        resourceStock.put(resource.getName(), newStock);
     }
 
     /**
@@ -154,11 +162,28 @@ public class Market {
      * @param amount the amount to decrease stock by
      */
     public void decreaseStock(Resource resource, int amount) {
-        int newStock = Math.max(resourceStock.get(resource) - amount, 0);
-        resourceStock.put(resource, newStock);
+        int newStock = Math.max(resourceStock.get(resource.getName()) - amount, 0);
+        resourceStock.put(resource.getName(), newStock);
     }
 
-    public Set<Resource> getAvailableResources() {
-        return canUseResource.keySet();
+    //@Exclude
+    //public Set<Resource> getAvailableResources() {
+    //    return canUseResource.keySet();
+    //}
+
+    public HashMap<String, Integer> getResourceStock(){
+        return resourceStock;
+    }
+
+    public HashMap<String, Integer> getResourcePrice() {
+        return resourcePrice;
+    }
+
+    public HashMap<String, Boolean> getCanUseResource() {
+        return canUseResource;
+    }
+
+    public HashMap<String, Boolean> getCanMakeResource() {
+        return canMakeResource;
     }
 }
