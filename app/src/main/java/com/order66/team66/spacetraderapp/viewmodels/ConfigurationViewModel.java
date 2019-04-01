@@ -30,6 +30,6 @@ public class ConfigurationViewModel extends ViewModel {
     public Player getPlayer() { return GAME_STATE.getPlayer();}
 
     public List<SolarSystem> getSolarSystems() {
-        return GAME_STATE.getSolarSystem();
+        return GAME_STATE.getSolarSystems();
     }
 }

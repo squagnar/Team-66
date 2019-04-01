@@ -1,6 +1,8 @@
 package com.order66.team66.spacetraderapp.models;
 
 import java.util.*;
+
+import android.support.annotation.NonNull;
 import com.google.firebase.database.*;
 
 /**
@@ -10,9 +12,10 @@ public class Game {
 
     private static final Game GAME_STATE = new Game();
 
-    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-
     private String userID = "test";
+
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference mUserData = mDatabase.child("users").child(userID);
 
     /** Game Difficulty */
     private Difficulty difficulty;
@@ -28,7 +31,7 @@ public class Game {
     private static Planet currentPlanet;
 
     private Game(){
-        difficulty = null;
+        difficulty = Difficulty.EASY;
         player = null;
         solarSystems = createSolarSystem();
 
@@ -52,7 +55,7 @@ public class Game {
         return difficulty;
     }
 
-    public List<SolarSystem> getSolarSystem() {
+    public List<SolarSystem> getSolarSystems() {
         return  solarSystems;
     }
 
@@ -142,7 +145,30 @@ public class Game {
     }
 
     public void writeUserData() {
-        mDatabase.child("users").child(userID).setValue(getInstance());
+        mUserData.setValue(getInstance());
+    }
+
+    public void readUserData() {
+        ValueEventListener downloader = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //Get the saved data from the Database
+                Game loadedState = dataSnapshot.getValue(Game.class);
+
+                //Update the game with the saved data
+                difficulty = loadedState.getDifficulty();
+                setPlayer(loadedState.getPlayer());
+                solarSystems = loadedState.getSolarSystems();
+                currentPlanet = loadedState.getCurrentPlanet();
+                currentSystem = loadedState.getCurrentSystem();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+        mUserData.addListenerForSingleValueEvent(downloader);
     }
 }
 
