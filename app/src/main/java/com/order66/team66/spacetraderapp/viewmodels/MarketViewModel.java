@@ -1,9 +1,6 @@
 package com.order66.team66.spacetraderapp.viewmodels;
 import android.arch.lifecycle.ViewModel;
-import com.order66.team66.spacetraderapp.models.Game;
-import com.order66.team66.spacetraderapp.models.Player;
-import com.order66.team66.spacetraderapp.models.Market;
-import com.order66.team66.spacetraderapp.models.Planet;
+import com.order66.team66.spacetraderapp.models.*;
 
 import java.util.List;
 
@@ -30,8 +27,13 @@ public class MarketViewModel extends ViewModel {
         if (!planet.equals(this.planet)) {
             this.planet = planet;
             GAME_STATE.setCurrentPlanet(planet);
-            this.market = planet.getMarket();
+            market = planet.getMarket();
             player.removeFuel(1);
+
+            //Check if we trigger a market event for this world
+            if(Math.random() > .7) {
+                market.updateMarket(ResourceModifier.getRandomEventMod());
+            }
         }
     }
 }
