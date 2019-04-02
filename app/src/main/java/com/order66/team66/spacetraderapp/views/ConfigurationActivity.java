@@ -13,7 +13,7 @@ import com.order66.team66.spacetraderapp.models.Skill;
 import com.order66.team66.spacetraderapp.viewmodels.ConfigurationViewModel;
 
 import java.util.ArrayList;
-import java.util.regex.Matcher;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -41,14 +41,15 @@ public class ConfigurationActivity extends AppCompatActivity {
     private Spinner difficultySpinner;
     private Button transitionButton;
 
-    private ArrayList<TextView> skillDisplays;
+    private List<TextView> skillDisplays;
 
     private Skill pilot;
     private Skill fighter;
     private Skill trader;
     private Skill engineer;
-    final int TOTAL_POINTS = 16;
-    int pointsUnspent = TOTAL_POINTS;
+    private final int TOTAL_POINTS = 16;
+    private int pointsUnspent = TOTAL_POINTS;
+    private static final int LOG_SIZE = 4000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +113,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     public void levelUpSkill(View view) {
         Skill skill = (Skill)view.getTag();
-        if(pointsUnspent > 0 && skill.getLevel() != TOTAL_POINTS) {
+        if((pointsUnspent > 0) && (skill.getLevel() != TOTAL_POINTS)) {
             skill.levelUp();
             pointsUnspent--;
             TextView skillDisplay;
@@ -123,7 +124,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     public void levelDownSkill(View view) {
         Skill skill = (Skill)view.getTag();
-        if(pointsUnspent < 16 && skill.getLevel() != 0) {
+        if((pointsUnspent < TOTAL_POINTS) && (skill.getLevel() != 0)) {
             skill.levelDown();
             pointsUnspent++;
             updatePointsDisplay(skill);
@@ -162,9 +163,9 @@ public class ConfigurationActivity extends AppCompatActivity {
     }
 
     public static void largeLog(String tag, String content) {
-        if (content.length() > 4000) {
-            Log.d(tag, content.substring(0, 4000));
-            largeLog(tag, content.substring(4000));
+        if (content.length() > LOG_SIZE) {
+            Log.d(tag, content.substring(0, LOG_SIZE));
+            largeLog(tag, content.substring(LOG_SIZE));
         } else {
             Log.d(tag, content);
         }

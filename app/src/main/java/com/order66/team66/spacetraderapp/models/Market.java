@@ -1,8 +1,6 @@
 package com.order66.team66.spacetraderapp.models;
 
-import android.widget.ListAdapter;
 
-import java.sql.ResultSet;
 import java.util.EnumMap;
 import java.util.Set;
 
@@ -73,7 +71,10 @@ public class Market {
      * @return true if it can be bought from the player, otherwise false
      */
     public boolean canUse(Resource resource) {
-        return canUseResource.get(resource);
+        if (canUseResource.containsKey(resource)) {
+            return canUseResource.get(resource);
+        }
+        return false;
     }
 
     /**
@@ -83,7 +84,10 @@ public class Market {
      * @return true if it can be sold to the player, otherwise false
      */
     public boolean canMake(Resource resource) {
-        return canMakeResource.get(resource);
+        if (canMakeResource.containsKey(resource)) {
+            return canMakeResource.get(resource);
+        }
+        return false;
     }
 
     /**
@@ -93,7 +97,10 @@ public class Market {
      * @return the price if it has one, else 0
      */
     public int getPrice(Resource resource) {
-        return resourcePrice.get(resource);
+        if (resourcePrice.containsKey(resource)) {
+            return resourcePrice.get(resource);
+        }
+        return 0;
     }
 
     /**
@@ -103,7 +110,10 @@ public class Market {
      * @return the stock if any is present, else 0
      */
     public int getStock(Resource resource) {
-        return  resourceStock.get(resource);
+        if (resourceStock.containsKey(resource)) {
+            return resourceStock.get(resource);
+        }
+        return 0;
     }
 
     /**
@@ -143,8 +153,10 @@ public class Market {
      * @param amount the amount to increase stock by
      */
     public void increaseStock(Resource resource, int amount) {
-        int newStock = resourceStock.get(resource) + amount;
-        resourceStock.put(resource, newStock);
+        if (resourceStock.containsKey(resource)) {
+            int newStock = resourceStock.get(resource) + amount;
+            resourceStock.put(resource, newStock);
+        }
     }
 
     /**
@@ -154,8 +166,10 @@ public class Market {
      * @param amount the amount to decrease stock by
      */
     public void decreaseStock(Resource resource, int amount) {
-        int newStock = Math.max(resourceStock.get(resource) - amount, 0);
-        resourceStock.put(resource, newStock);
+        if (resourceStock.containsKey(resource)) {
+            int newStock = Math.max(resourceStock.get(resource) - amount, 0);
+            resourceStock.put(resource, newStock);
+        }
     }
 
     public Set<Resource> getAvailableResources() {

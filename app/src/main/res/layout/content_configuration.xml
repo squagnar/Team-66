@@ -43,6 +43,7 @@
             android:layout_marginTop="123dp"
             android:layout_marginLeft="30dp"
             android:textSize="16sp"
+            android:autofillHints="Name"
             android:hint="Name"/>
 
     <!-- Difficulty selector-->

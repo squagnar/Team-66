@@ -13,7 +13,7 @@ public enum Skill {
     NULL("N/A");
 
     //Formatted name of the skill
-    private String name;
+    private final String name;
     //Level of the skill, a number from 0 to Integer.MAX_VALUE
     private int level;
 

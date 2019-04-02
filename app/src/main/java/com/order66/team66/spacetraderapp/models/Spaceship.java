@@ -11,8 +11,8 @@ public enum Spaceship {
     NULL("N/A", 0);
 
     /** Name of spaceship to be displayed */
-    private String name;
-    private int fuelCap;
+    private final String name;
+    private final int fuelCap;
 
     /**
      * Makes a Spaceship

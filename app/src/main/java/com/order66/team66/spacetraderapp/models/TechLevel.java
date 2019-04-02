@@ -12,7 +12,7 @@ public enum TechLevel {
      * Tech Levels in Order
      */
     PREAGRICULTURE("Pre-Agriculture", 0),
-    AGRICULTURE("Agriculure", 1),
+    AGRICULTURE("Agriculture", 1),
     MEDIEVAL("Medieval", 2),
     RENAISSANCE("Renaissance", 3),
     EARLYINDUSTRIAL("Early Industrial", 4),
@@ -21,8 +21,8 @@ public enum TechLevel {
     HITECH("Hi-Tech", 7);
 
     /** Name of Tech Level */
-    private String name;
-    private int levelNumber;
+    private final String name;
+    private final int levelNumber;
 
     /**
      * Makes TechLevel

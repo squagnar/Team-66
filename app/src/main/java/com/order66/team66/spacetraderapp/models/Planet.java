@@ -1,5 +1,7 @@
 package com.order66.team66.spacetraderapp.models;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Planets in a Solar System
  */
@@ -8,19 +10,16 @@ public class Planet {
     private String name;
 
     // Solar System of Planet
-    private SolarSystem solarSystem;
+    private final SolarSystem solarSystem;
 
     // Market of Planet
-    private Market market;
+    private final Market market;
 
     /** Has one tech level */
-    private TechLevel techLevel;
+    private final TechLevel techLevel;
 
     /** Has one predominant resource */
-    private ResourceModifier WorldModifier;
-
-    // TODO: Implement Markets
-//    private Market market
+    private final ResourceModifier WorldModifier;
 
     /**
      * Makes planet
@@ -65,12 +64,15 @@ public class Planet {
         this.name = name;
     }
 
+    @NotNull
+    @Override
     public String toString() {
         return "Planet Name: " + name + "\n" +
                 "Tech Level: " + techLevel.getName() + "\n" +
                 "Resource: " + WorldModifier.getName() + "\n";
     }
 
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -84,4 +86,8 @@ public class Planet {
         return false;
     }
 
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
 }

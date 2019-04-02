@@ -14,6 +14,8 @@ import com.order66.team66.spacetraderapp.models.Player;
 import com.order66.team66.spacetraderapp.models.Resource;
 import com.order66.team66.spacetraderapp.viewmodels.MarketViewModel;
 
+import java.util.Objects;
+
 public class BuyActivity extends AppCompatActivity {
     private MarketViewModel viewmodel;
 
@@ -52,7 +54,7 @@ public class BuyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_buy);
 
         intent = getIntent();
-        resource = (Resource) intent.getExtras().get("Resource");
+        resource = (Resource) Objects.requireNonNull(intent.getExtras()).get("Resource");
         viewmodel = new MarketViewModel();
 
         market = viewmodel.getMarket();
@@ -86,9 +88,9 @@ public class BuyActivity extends AppCompatActivity {
 
     public void confirmTrade(View view) {
         int creditChange = (sellQuantity - buyQuantity) * market.getPrice(resource);
-        if (player.getCredits() + creditChange < 0) {
+        if ((player.getCredits() + creditChange) < 0) {
             Toast.makeText(this, "You don't have enough credits for that!", Toast.LENGTH_LONG).show();
-        } else if ((buyQuantity - sellQuantity + cargo.getCurrentCapactity()) > cargo.getMaxCapacity()) {
+        } else if (((buyQuantity - sellQuantity) + cargo.getCurrentCapacity()) > cargo.getMaxCapacity()) {
             Toast.makeText(this, "You don't have enough cargo space for that!", Toast.LENGTH_LONG).show();
         } else {
             player.setCredits(player.getCredits() + creditChange);

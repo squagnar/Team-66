@@ -5,7 +5,7 @@ import java.util.EnumMap;
 public class CargoHold {
 
     private EnumMap<Resource, Integer> cargoStock = new EnumMap<>(Resource.class);
-    private int maxCapacity;
+    private final int maxCapacity;
     private int currentCapacity;
 
     /**
@@ -28,7 +28,10 @@ public class CargoHold {
      * @return the amount of the given resource in the CargoHold
      */
     public int getStock(Resource resource) {
-        return cargoStock.get(resource);
+        if (cargoStock.containsKey(resource)) {
+            return cargoStock.get(resource);
+        }
+        return 0;
     }
 
     /**
@@ -38,9 +41,11 @@ public class CargoHold {
      * @param amount the amount to increase the stock by
      */
     public void increaseStock(Resource resource, int amount) {
-        int newStock = cargoStock.get(resource) + amount;
-        cargoStock.put(resource, newStock);
-        currentCapacity += amount;
+        if (cargoStock.containsKey(resource)) {
+            int newStock = cargoStock.get(resource) + amount;
+            cargoStock.put(resource, newStock);
+            currentCapacity += amount;
+        }
     }
 
     /**
@@ -50,9 +55,11 @@ public class CargoHold {
      * @param amount the amount to decrease the stock by
      */
     public void decreaseStock(Resource resource, int amount) {
-        int newStock = Math.max(cargoStock.get(resource) - amount, 0);
-        cargoStock.put(resource, newStock);
-        currentCapacity -= amount;
+        if (cargoStock.containsKey(resource)) {
+            int newStock = Math.max(cargoStock.get(resource) - amount, 0);
+            cargoStock.put(resource, newStock);
+            currentCapacity -= amount;
+        }
     }
 
     public int getMaxCapacity() {

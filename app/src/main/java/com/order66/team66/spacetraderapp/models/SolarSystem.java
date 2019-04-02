@@ -1,5 +1,7 @@
 package com.order66.team66.spacetraderapp.models;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,20 +10,21 @@ import java.util.List;
  */
 public class SolarSystem {
 
-    private String name;
+    private final String name;
 
     /** Solar System Location */
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
 
     /** Planets in Solar System */
-    private List<Planet> planets;
+    private final List<Planet> planets;
 
     /** Max Planets in one Solar System */
     public static final int MAX_PLANETS = 12;
 
     /** Set of Planet Names */
+    @SuppressWarnings("SpellCheckingInspection")
     public static final String[] planetNames =
     {
             "Acamar",
@@ -201,19 +204,16 @@ public class SolarSystem {
         return false;
     }
 
-    /**
-     * Displays Solar System
-     *
-     * @return solar system attributes
-     */
+    @NotNull
+    @Override
     public String toString() {
-        String toRet =
-                "Solar System Name: " + name + "\n" +
+        StringBuilder toRet = new StringBuilder();
+        toRet.append("Solar System Name: " + name + "\n" +
                 "Coordinates: " + "(" + x + ", " + y + ")\n" +
-                "Planets: \n";
+                "Planets: \n");
         for (Planet p: planets) {
-            toRet += p + "\n";
+            toRet.append(p + "\n");
         }
-        return toRet;
+        return toRet.toString();
     }
 }

@@ -16,10 +16,10 @@ public class Game {
     private Player player;
 
     /** Game Solar System */
-    private static List<SolarSystem> solarSystems;
+    private List<SolarSystem> solarSystems;
 
-    private static SolarSystem currentSystem;
-    private static Planet currentPlanet;
+    private SolarSystem currentSystem;
+    private Planet currentPlanet;
 
     private Game(){
         difficulty = null;
@@ -94,7 +94,7 @@ public class Game {
         }
     }
 
-    private static List<SolarSystem> createSolarSystem() {
+    private List<SolarSystem> createSolarSystem() {
         solarSystems = new ArrayList<>();
         List<String> planetNames = Arrays.asList(SolarSystem.planetNames);
         Collections.shuffle(planetNames);
@@ -105,7 +105,7 @@ public class Game {
             // If planets == 0, make a new Solar System
             if (planets == 0) {
                 // New number of planets for Solar System
-                planets = (int) (Math.random() * 12) + 1;
+                planets = (int) (Math.random() * SolarSystem.MAX_PLANETS) + 1;
                 // Find coordinates for new Solar System
                 int x = -1;
                 int y = -1;

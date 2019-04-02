@@ -1,6 +1,7 @@
 package com.order66.team66.spacetraderapp.models;
 
-import java.util.NoSuchElementException;
+import org.jetbrains.annotations.NotNull;
+
 
 /**
  * Player class stores information about the player's name, credits,
@@ -19,10 +20,10 @@ public class Player {
      *
      * Should not exceed MAX_SKILL_POINTS
      */
-    private Skill pilot;
-    private Skill fighter;
-    private Skill trader;
-    private Skill engineer;
+    private final Skill pilot;
+    private final Skill fighter;
+    private final Skill trader;
+    private final Skill engineer;
 
     /** Player's Maximum Number of Skill Points */
     private static final int MAX_SKILL_POINTS = 16;
@@ -56,19 +57,6 @@ public class Player {
         spaceship = Spaceship.GNAT;
         currentFuel = spaceship.getFuelCap();
     }
-
-    /**
-     * Creates a new player with skill points set to 0
-     *
-     * Sets initial credits to 1000
-     * Sets initial spaceship to Gnat
-     *
-     * @param name Player Name
-     */
-    //TODO: decide if we need a default constructor
-    //public Player(String name) {
-    //    this(name, 4, 4, 4, 4);
-    //}
 
     /**
      * Gets Player's Name
@@ -150,7 +138,7 @@ public class Player {
      * @param amt the amount to add
      */
     public void addFuel(int amt) {
-        if(currentFuel + amt >= spaceship.getFuelCap()) {
+        if((currentFuel + amt) >= spaceship.getFuelCap()) {
             throw new RuntimeException("Tried to overfuel!");
         } else {
             currentFuel += amt;
@@ -170,6 +158,7 @@ public class Player {
         }
     }
 
+    @NotNull
     @Override
     public String toString() {
         String toRet = "Name: " + name + "\n" +

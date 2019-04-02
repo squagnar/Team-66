@@ -1,17 +1,12 @@
 package com.order66.team66.spacetraderapp.models;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * Represents Resources in a Solar System
  */
 public enum ResourceModifier {
-
-    /**
-     * Types of Resource Modifiers in Order
-     */
 
     /**
      * World Resource Modifiers
@@ -45,10 +40,10 @@ public enum ResourceModifier {
     NULL("No Event", "Event");
 
     /** Name of Resource */
-    private String name;
+    private final String name;
 
     /** Type of Modifier */
-    private String type;
+    private final String type;
 
     /**
      * Makes Resource
@@ -78,7 +73,7 @@ public enum ResourceModifier {
     public static ResourceModifier getRandomWorldMod() {
         List<ResourceModifier> worldModifiers = new ArrayList<>();
         for (ResourceModifier mod: ResourceModifier.values()) {
-            if (mod.type.equalsIgnoreCase("World")) {
+            if ("World".equalsIgnoreCase(mod.type)) {
                 worldModifiers.add(mod);
 
                 //This way "No Special Resources" is the most common world type
@@ -97,7 +92,7 @@ public enum ResourceModifier {
     public static ResourceModifier getRandomEventMod() {
         List<ResourceModifier> eventModifiers = new ArrayList<>();
         for (ResourceModifier mod: ResourceModifier.values()) {
-            if (mod.type.equalsIgnoreCase("Event")) {
+            if ("Event".equalsIgnoreCase(mod.type)) {
                 eventModifiers.add(mod);
             }
         }

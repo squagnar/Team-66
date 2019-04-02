@@ -1,7 +1,5 @@
 package com.order66.team66.spacetraderapp.models;
 
-import java.io.Serializable;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -30,18 +28,18 @@ public enum Resource {
     ROBOTS("Robots", 6, 4, 7, 5000, -150, 100,
             ResourceModifier.LACKOFWORKERS, ResourceModifier.NULL, ResourceModifier.NULL, 3500, 5000);
 
-    private String name;
-    private int minTechMake;
-    private int minTechUse;
-    private int optimalTech;
-    private int basePrice;
-    private int priceChangePerTech;
-    private int priceVariance;
-    private ResourceModifier shortageEvent;
-    private ResourceModifier surplusEvent;
-    private ResourceModifier expensiveEvent;
-    private int minTraderPrice;
-    private int maxTraderPrice;
+    private final String name;
+    private final int minTechMake;
+    private final int minTechUse;
+    private final int optimalTech;
+    private final int basePrice;
+    private final int priceChangePerTech;
+    private final int priceVariance;
+    private final ResourceModifier shortageEvent;
+    private final ResourceModifier surplusEvent;
+    private final ResourceModifier expensiveEvent;
+    private final int minTraderPrice;
+    private final int maxTraderPrice;
 
     /**
      * Creates a new Resource object to store the general data about a resource type

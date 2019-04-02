@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ConfigurationViewModel extends ViewModel {
 
-    private Game GAME_STATE = Game.getInstance();
+    private final Game GAME_STATE = Game.getInstance();
 
     /**
      * Passthrough method to allow a view to create a Player object

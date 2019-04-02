@@ -10,7 +10,7 @@ import com.order66.team66.spacetraderapp.models.*;
 import com.order66.team66.spacetraderapp.viewmodels.MarketViewModel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 public class TravelActivity extends AppCompatActivity {
 
@@ -51,7 +51,7 @@ public class TravelActivity extends AppCompatActivity {
         cargoRemaining.setText(String.format("%s", (player.getCargoHold().getMaxCapacity() -
                 player.getCargoHold().getCurrentCapacity())));
 
-        ArrayList<String> planetNames = new ArrayList<>();
+        List<String> planetNames = new ArrayList<>();
         for(Planet planet : solarSystem.getAllPlanets()) {
             planetNames.add(planet.getName());
         }
@@ -61,7 +61,7 @@ public class TravelActivity extends AppCompatActivity {
         planetAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         planetSpinner.setAdapter(planetAdapter);
 
-        planetSpinner.setSelection(Arrays.asList(planetNames).indexOf(planet.getName()));
+        planetSpinner.setSelection(planetNames.indexOf(planet.getName()));
     }
 
     public void onClick(View view) {

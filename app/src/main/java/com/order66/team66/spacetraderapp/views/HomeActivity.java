@@ -8,7 +8,6 @@ import android.widget.TextView;
 import com.order66.team66.spacetraderapp.R;
 import com.order66.team66.spacetraderapp.models.Planet;
 import com.order66.team66.spacetraderapp.viewmodels.MarketViewModel;
-import org.w3c.dom.Text;
 
 public class HomeActivity extends Activity {
 

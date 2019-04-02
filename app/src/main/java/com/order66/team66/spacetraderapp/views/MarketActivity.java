@@ -10,7 +10,6 @@ import android.widget.*;
 import com.order66.team66.spacetraderapp.R;
 import com.order66.team66.spacetraderapp.models.*;
 import com.order66.team66.spacetraderapp.viewmodels.MarketViewModel;
-import org.w3c.dom.Text;
 
 public class MarketActivity extends AppCompatActivity {
 
