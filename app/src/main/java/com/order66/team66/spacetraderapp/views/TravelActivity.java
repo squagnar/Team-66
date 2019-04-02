@@ -4,9 +4,16 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 import com.order66.team66.spacetraderapp.R;
-import com.order66.team66.spacetraderapp.models.*;
+import com.order66.team66.spacetraderapp.models.CargoHold;
+import com.order66.team66.spacetraderapp.models.Planet;
+import com.order66.team66.spacetraderapp.models.Player;
+import com.order66.team66.spacetraderapp.models.SolarSystem;
 import com.order66.team66.spacetraderapp.viewmodels.MarketViewModel;
 
 import java.util.ArrayList;
@@ -21,7 +28,7 @@ public class TravelActivity extends AppCompatActivity {
     private Spinner planetSpinner;
     private Button travelButton;
 
-    private MarketViewModel viewmodel;
+    private MarketViewModel viewModel;
     private Planet planet;
     private SolarSystem solarSystem;
     private Player player;
@@ -32,10 +39,10 @@ public class TravelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_travel);
 
-        viewmodel = new MarketViewModel();
-        planet = viewmodel.getPlanet();
-        solarSystem = viewmodel.getPlanet().getSolarSystem();
-        player = viewmodel.getPlayer();
+        viewModel = new MarketViewModel();
+        planet = viewModel.getPlanet();
+        solarSystem = viewModel.getPlanet().getSolarSystem();
+        player = viewModel.getPlayer();
         cargo = player.getCargoHold();
 
         currentPlanet = findViewById(R.id.current_planet_text);
@@ -66,7 +73,7 @@ public class TravelActivity extends AppCompatActivity {
 
     public void onClick(View view) {
         try {
-            viewmodel.travel(solarSystem.getPlanet(planetSpinner.getSelectedItemPosition()));
+            viewModel.travel(solarSystem.getPlanet(planetSpinner.getSelectedItemPosition()));
             Intent intent = new Intent(TravelActivity.this, HomeActivity.class);
             startActivity(intent);
         } catch (RuntimeException e) {

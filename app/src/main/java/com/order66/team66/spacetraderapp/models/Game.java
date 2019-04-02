@@ -1,11 +1,15 @@
 package com.order66.team66.spacetraderapp.models;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * Stores Game Data
  */
-public class Game {
+public final class Game {
 
     private static final Game GAME_STATE = new Game();
 

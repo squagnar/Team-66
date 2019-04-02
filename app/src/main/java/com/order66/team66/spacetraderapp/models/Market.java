@@ -21,11 +21,11 @@ public class Market {
      * Creates a new Market object
      *
      * @param worldModifier the world resource modifier of the associated planet
-     * @param techlevel the tech level of the associated planet
+     * @param techLevel the tech level of the associated planet
      */
-    public Market(ResourceModifier worldModifier, TechLevel techlevel) {
+    public Market(ResourceModifier worldModifier, TechLevel techLevel) {
         this.worldModifier = worldModifier;
-        this.techLevel = techlevel.getLevelNumber();
+        this.techLevel = techLevel.getLevelNumber();
 
         generateMarket();
     }

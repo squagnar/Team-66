@@ -4,12 +4,12 @@ import java.util.EnumMap;
 
 public class CargoHold {
 
-    private EnumMap<Resource, Integer> cargoStock = new EnumMap<>(Resource.class);
+    private final EnumMap<Resource, Integer> cargoStock = new EnumMap<>(Resource.class);
     private final int maxCapacity;
     private int currentCapacity;
 
     /**
-     * Creates a cargohold object and populates the cargoStock with resources
+     * Creates a CargoHold object and populates the cargoStock with resources
      *
      * @param capacity the max storage capacity of the CargoHold
      */

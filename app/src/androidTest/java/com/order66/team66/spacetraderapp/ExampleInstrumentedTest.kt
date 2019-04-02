@@ -19,6 +19,7 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
+        @Suppress("SpellCheckingInspection")
         assertEquals("com.order66.team66.spacetraderapp", appContext.packageName)
     }
 }

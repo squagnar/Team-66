@@ -6,14 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 import com.order66.team66.spacetraderapp.R;
-import com.order66.team66.spacetraderapp.models.*;
+import com.order66.team66.spacetraderapp.models.CargoHold;
+import com.order66.team66.spacetraderapp.models.Market;
+import com.order66.team66.spacetraderapp.models.Player;
+import com.order66.team66.spacetraderapp.models.Resource;
 import com.order66.team66.spacetraderapp.viewmodels.MarketViewModel;
 
 public class MarketActivity extends AppCompatActivity {
 
-    private MarketViewModel viewmodel;
+    private MarketViewModel viewModel;
 
     private Resource water;
     private Resource fur;
@@ -79,10 +84,10 @@ public class MarketActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_market);
-        viewmodel = new MarketViewModel();
+        viewModel = new MarketViewModel();
 
-        market = viewmodel.getMarket();
-        player = viewmodel.getPlayer();
+        market = viewModel.getMarket();
+        player = viewModel.getPlayer();
         cargo = player.getCargoHold();
 
         water = Resource.WATER;

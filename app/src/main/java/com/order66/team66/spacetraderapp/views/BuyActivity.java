@@ -17,7 +17,7 @@ import com.order66.team66.spacetraderapp.viewmodels.MarketViewModel;
 import java.util.Objects;
 
 public class BuyActivity extends AppCompatActivity {
-    private MarketViewModel viewmodel;
+    private MarketViewModel viewModel;
 
     private TextView resourceText;
     private TextView resourcePriceText;
@@ -55,10 +55,10 @@ public class BuyActivity extends AppCompatActivity {
 
         intent = getIntent();
         resource = (Resource) Objects.requireNonNull(intent.getExtras()).get("Resource");
-        viewmodel = new MarketViewModel();
+        viewModel = new MarketViewModel();
 
-        market = viewmodel.getMarket();
-        player = viewmodel.getPlayer();
+        market = viewModel.getMarket();
+        player = viewModel.getPlayer();
         cargo = player.getCargoHold();
 
         remainingSellQuantity = cargo.getStock(resource);

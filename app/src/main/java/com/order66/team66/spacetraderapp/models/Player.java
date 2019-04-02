@@ -31,7 +31,7 @@ public class Player {
     /** Player's Spaceship */
     private Spaceship spaceship;
 
-    private CargoHold cargoHold = new CargoHold(10);
+    private final CargoHold cargoHold = new CargoHold(10);
 
     private int currentFuel;
 
@@ -139,7 +139,7 @@ public class Player {
      */
     public void addFuel(int amt) {
         if((currentFuel + amt) >= spaceship.getFuelCap()) {
-            throw new RuntimeException("Tried to overfuel!");
+            throw new RuntimeException("Tried to over fuel!");
         } else {
             currentFuel += amt;
         }

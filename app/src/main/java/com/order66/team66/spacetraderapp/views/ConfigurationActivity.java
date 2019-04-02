@@ -5,10 +5,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 import com.order66.team66.spacetraderapp.R;
 import com.order66.team66.spacetraderapp.models.Difficulty;
-import com.order66.team66.spacetraderapp.models.Player;
 import com.order66.team66.spacetraderapp.models.Skill;
 import com.order66.team66.spacetraderapp.viewmodels.ConfigurationViewModel;
 
@@ -25,10 +29,6 @@ public class ConfigurationActivity extends AppCompatActivity {
      */
     private ConfigurationViewModel viewModel;
 
-    /**
-     * Data for player and difficulty being edited
-     */
-    private Player player;
     private Difficulty difficulty;
 
     // Widgets to get info
@@ -116,7 +116,6 @@ public class ConfigurationActivity extends AppCompatActivity {
         if((pointsUnspent > 0) && (skill.getLevel() != TOTAL_POINTS)) {
             skill.levelUp();
             pointsUnspent--;
-            TextView skillDisplay;
 
             updatePointsDisplay(skill);
         }

@@ -12,7 +12,7 @@ import com.order66.team66.spacetraderapp.viewmodels.MarketViewModel;
 public class HomeActivity extends Activity {
 
     private TextView planetText;
-    private MarketViewModel viewmodel;
+    private MarketViewModel viewModel;
     private Planet planet;
 
     @Override
@@ -20,8 +20,8 @@ public class HomeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        viewmodel = new MarketViewModel();
-        planet = viewmodel.getPlanet();
+        viewModel = new MarketViewModel();
+        planet = viewModel.getPlanet();
 
         planetText = findViewById(R.id.planet_home_text);
         planetText.setText(planet.getName());

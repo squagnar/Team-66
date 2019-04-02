@@ -24,7 +24,6 @@ public class SolarSystem {
     public static final int MAX_PLANETS = 12;
 
     /** Set of Planet Names */
-    @SuppressWarnings("SpellCheckingInspection")
     public static final String[] planetNames =
     {
             "Acamar",
@@ -159,8 +158,8 @@ public class SolarSystem {
      * Makes a solar system
      *
      * @param name solar system name
-     * @param x x coord
-     * @param y y coord
+     * @param x x coordinate
+     * @param y y coordinate
      */
     public SolarSystem(String name, int x, int y) {
         this.name = name;

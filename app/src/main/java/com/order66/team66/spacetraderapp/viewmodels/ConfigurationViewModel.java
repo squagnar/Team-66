@@ -13,7 +13,7 @@ public class ConfigurationViewModel extends ViewModel {
     private final Game GAME_STATE = Game.getInstance();
 
     /**
-     * Passthrough method to allow a view to create a Player object
+     * Pass-Through method to allow a view to create a Player object
      *
      * @param name name of the player
      * @param pilot total pilot skill points
