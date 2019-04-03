@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+        <View
+                android:id="@+id/background_market"
+                android:layout_width="800dp"
+                android:layout_height="800dp"
+                android:background="@drawable/rectangle"/>
+        <Button
+                android:id="@+id/create_player"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create Player"
+                android:textStyle="bold"
+                android:fontFamily="serif"
+                android:layout_marginLeft="125dp"
+                android:layout_marginTop="200dp"
+                android:onClick="goToCreatePlayer"/>
+
+    <Button
+            android:id="@+id/load_player"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Load Player"
+            android:textStyle="bold"
+            android:fontFamily="serif"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="270dp"
+            android:onClick="loadPlayer"/>
+    </RelativeLayout>
