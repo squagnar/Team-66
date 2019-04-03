@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import com.order66.team66.spacetraderapp.R;
+import com.order66.team66.spacetraderapp.models.Game;
 import com.order66.team66.spacetraderapp.models.Planet;
 import com.order66.team66.spacetraderapp.viewmodels.MarketViewModel;
 import org.w3c.dom.Text;
@@ -15,6 +16,7 @@ public class HomeActivity extends Activity {
     private TextView planetText;
     private MarketViewModel viewmodel;
     private Planet planet;
+    private Game GAME_STATE = Game.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,5 +45,9 @@ public class HomeActivity extends Activity {
     public void goToTravel(View view) {
         Intent intent = new Intent(HomeActivity.this, TravelActivity.class);
         startActivity(intent);
+    }
+
+    public void saveGame(View view) {
+        GAME_STATE.writeUserData();
     }
 }
