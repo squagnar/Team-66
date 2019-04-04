@@ -10,7 +10,6 @@ import android.widget.*;
 import com.order66.team66.spacetraderapp.R;
 import com.order66.team66.spacetraderapp.models.*;
 import com.order66.team66.spacetraderapp.viewmodels.MarketViewModel;
-import org.w3c.dom.Text;
 
 public class MarketActivity extends AppCompatActivity {
 
@@ -75,6 +74,9 @@ public class MarketActivity extends AppCompatActivity {
     private TextView machinesCargoStock;
     private TextView narcoticsCargoStock;
     private TextView robotsCargoStock;
+
+    private TextView currentWorldEvent;
+    private TextView eventMod;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -252,15 +254,12 @@ public class MarketActivity extends AppCompatActivity {
         robotsCargoStock = findViewById(R.id.robots_cargo_text);
         robotsCargoStock.setText(String.format("%s", cargo.getStock(robots)));
         robotsCargoStock.setTag(robots);
-<<<<<<< HEAD
-=======
 
-        currentPlanet = findViewById(R.id.planet_market_text);
-        currentPlanet.setText(viewmodel.getMarket().getWorldModifier().toString());
+        currentWorldEvent = findViewById(R.id.planet_market_text);
+        currentWorldEvent.setText(viewmodel.getMarket().getWorldModifier().toString());
 
         eventMod = findViewById(R.id.event_market_text);
         eventMod.setText(viewmodel.getMarket().getEventModifier().toString());
->>>>>>> parent of 32f878d... fixed code checker issues w/ xml files
     }
 
     public void onClick(View view) {

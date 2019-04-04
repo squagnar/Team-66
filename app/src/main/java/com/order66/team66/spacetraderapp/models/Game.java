@@ -3,7 +3,6 @@ package com.order66.team66.spacetraderapp.models;
 import java.util.*;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 import com.google.firebase.database.*;
 
 /**

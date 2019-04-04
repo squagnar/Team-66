@@ -517,7 +517,7 @@
             android:layout_marginLeft="315dp"/>
 
         <TextView
-             android:text="Current Planet: "
+             android:text="World Type: "
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
             android:id="@+id/current_planet_market_text"
@@ -535,7 +535,7 @@
                 android:id="@+id/planet_market_text"/>
 
         <TextView
-                android:text="Affected by: "
+                android:text="Current Event: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/event_mod_market_text"
