@@ -11,15 +11,15 @@ import java.util.List;
  */
 public class SolarSystem {
 
-    private final String name;
+    private String name;
 
     /** Solar System Location */
-    private final int x;
-    private final int y;
+    private int x;
+    private int y;
 
 
     /** Planets in Solar System */
-    private final List<Planet> planets;
+    private List<Planet> planets;
 
     /** Max Planets in one Solar System */
     @Exclude

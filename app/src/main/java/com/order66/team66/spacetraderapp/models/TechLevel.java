@@ -21,8 +21,8 @@ public enum TechLevel {
     HITECH("Hi-Tech", 7);
 
     /** Name of Tech Level */
-    private final String name;
-    private final int levelNumber;
+    private String name;
+    private int levelNumber;
 
     /**
      * Makes TechLevel

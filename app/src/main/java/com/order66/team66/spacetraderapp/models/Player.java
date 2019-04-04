@@ -20,10 +20,10 @@ public class Player {
      *
      * Should not exceed MAX_SKILL_POINTS
      */
-    private final Skill pilot;
-    private final Skill fighter;
-    private final Skill trader;
-    private final Skill engineer;
+    private Skill pilot;
+    private Skill fighter;
+    private Skill trader;
+    private Skill engineer;
 
     /** Player's Maximum Number of Skill Points */
     private static final int MAX_SKILL_POINTS = 16;

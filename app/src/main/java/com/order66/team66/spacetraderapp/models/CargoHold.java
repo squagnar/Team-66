@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class CargoHold {
 
     private final HashMap<String, Integer> cargoStock = new HashMap<>();
-    private final int maxCapacity;
+    private int maxCapacity;
     private int currentCapacity;
 
     /**

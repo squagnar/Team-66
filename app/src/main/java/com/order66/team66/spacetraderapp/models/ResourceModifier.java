@@ -40,10 +40,10 @@ public enum ResourceModifier {
     NULL("No Event", "Event");
 
     /** Name of Resource */
-    private final String name;
+    private String name;
 
     /** Type of Modifier */
-    private final String type;
+    private String type;
 
     /**
      * Makes Resource

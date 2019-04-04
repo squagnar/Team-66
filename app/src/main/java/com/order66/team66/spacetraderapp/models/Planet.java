@@ -10,13 +10,13 @@ public class Planet {
     private String name;
 
     // Market of Planet
-    private final Market market;
+    private Market market;
 
     /** Has one tech level */
-    private final TechLevel techLevel;
+    private TechLevel techLevel;
 
     /** Has one predominant resource */
-    private final ResourceModifier WorldModifier;
+    private ResourceModifier WorldModifier;
 
     /**
      * Makes planet
