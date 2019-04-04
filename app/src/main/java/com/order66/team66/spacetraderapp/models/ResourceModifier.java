@@ -55,6 +55,10 @@ public enum ResourceModifier {
         this.type = type;
     }
 
+    ResourceModifier() {
+
+    }
+
     /**
      * Returns name of resource to be displayed
      *

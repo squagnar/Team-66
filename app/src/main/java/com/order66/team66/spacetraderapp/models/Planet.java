@@ -9,9 +9,6 @@ public class Planet {
 
     private String name;
 
-    // Solar System of Planet
-    private final SolarSystem solarSystem;
-
     // Market of Planet
     private final Market market;
 
@@ -31,17 +28,11 @@ public class Planet {
         this.name = name;
         this.techLevel = techLevel;
         this.WorldModifier = worldModifier;
-        this.solarSystem = solarSystem;
         this.market = new Market(worldModifier, techLevel);
     }
 
-    /**
-     * Gets Planet's Solar System
-     *
-     * @return solar system
-     */
-    public SolarSystem getSolarSystem() {
-        return solarSystem;
+    public Planet(){
+
     }
 
     /**
@@ -58,6 +49,14 @@ public class Planet {
      */
     public String getName() {
         return name;
+    }
+
+    public TechLevel getTechLevel() {
+        return techLevel;
+    }
+
+    public ResourceModifier getWorldModifier(){
+        return WorldModifier;
     }
 
     public void setName(String name) {

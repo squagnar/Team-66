@@ -24,6 +24,10 @@ public enum Difficulty {
         this.difficulty = difficulty;
     }
 
+    Difficulty() {
+
+    }
+
     /**
      * Gets difficulty name
      *

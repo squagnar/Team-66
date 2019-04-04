@@ -24,11 +24,12 @@ public class ConfigurationViewModel extends ViewModel {
     public void createPlayer(String name, Skill pilot, Skill fighter, Skill trader, Skill engineer) {
         Player player = new Player(name, pilot, fighter, trader, engineer);
         GAME_STATE.setPlayer(player);
+        GAME_STATE.writeUserData();
     }
 
     public Player getPlayer() { return GAME_STATE.getPlayer();}
 
     public List<SolarSystem> getSolarSystems() {
-        return GAME_STATE.getSolarSystem();
+        return GAME_STATE.getSolarSystems();
     }
 }

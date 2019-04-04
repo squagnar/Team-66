@@ -58,6 +58,10 @@ public class Player {
         currentFuel = spaceship.getFuelCap();
     }
 
+    public Player(){
+
+    }
+
     /**
      * Gets Player's Name
      *

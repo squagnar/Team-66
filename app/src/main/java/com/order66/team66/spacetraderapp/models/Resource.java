@@ -75,6 +75,10 @@ public enum Resource {
         this.maxTraderPrice = maxTraderPrice;
     }
 
+    Resource(){
+
+    }
+
     /**
      * Gets the name of the resource
      * @return the resource name

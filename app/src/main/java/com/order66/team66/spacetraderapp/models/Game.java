@@ -6,12 +6,20 @@ import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import android.support.annotation.NonNull;
+import com.google.firebase.database.*;
+
 /**
  * Stores Game Data
  */
 public final class Game {
 
     private static final Game GAME_STATE = new Game();
+
+    private String userID = "test";
+
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference mUserData = mDatabase.child("users").child(userID);
 
     /** Game Difficulty */
     private Difficulty difficulty;
@@ -22,16 +30,17 @@ public final class Game {
     /** Game Solar System */
     private List<SolarSystem> solarSystems;
 
-    private SolarSystem currentSystem;
-    private Planet currentPlanet;
+    private static SolarSystem currentSystem;
+
+    private static Planet currentPlanet;
 
     private Game(){
-        difficulty = null;
+        difficulty = Difficulty.EASY;
         player = null;
         solarSystems = createSolarSystem();
 
         currentPlanet = solarSystems.get(0).getPlanet(0);
-        currentSystem = currentPlanet.getSolarSystem();
+        currentSystem = solarSystems.get(0);
     }
 
     public static Game getInstance(){
@@ -50,7 +59,7 @@ public final class Game {
         return difficulty;
     }
 
-    public List<SolarSystem> getSolarSystem() {
+    public List<SolarSystem> getSolarSystems() {
         return  solarSystems;
     }
 
@@ -72,7 +81,11 @@ public final class Game {
 
     public void setCurrentPlanet(Planet planet) {
         currentPlanet = planet;
-        currentSystem = planet.getSolarSystem();
+    }
+
+    public void setCurrentPlanet(Planet planet, SolarSystem system){
+        currentSystem = system;
+        currentPlanet = planet;
     }
 
     public void shortTravel(Planet planet) {
@@ -104,8 +117,11 @@ public final class Game {
         Collections.shuffle(planetNames);
         int[][] coordinates = new int[MAX_X_COORDINATES][MAX_Y_COORDINATES];
         int planets = 0;
+        int counter = 0;
         SolarSystem curr = null;
-        for (String name: planetNames) {
+        while (solarSystems.size() < 10) {
+            String name = planetNames.get(counter);
+            counter++;
             // If planets == 0, make a new Solar System
             if (planets == 0) {
                 // New number of planets for Solar System
@@ -134,6 +150,34 @@ public final class Game {
             planets--;
         }
         return solarSystems;
+    }
+
+    public void writeUserData() {
+        mUserData.setValue(getInstance());
+    }
+
+    public void readUserData() {
+        ValueEventListener downloader = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //Get the saved data from the Database
+                Game loadedState = dataSnapshot.getValue(Game.class);
+
+                //Update the game with the saved data
+                difficulty = loadedState.getDifficulty();
+                setPlayer(loadedState.getPlayer());
+                solarSystems = loadedState.getSolarSystems();
+                currentPlanet = loadedState.getCurrentPlanet();
+                currentSystem = loadedState.getCurrentSystem();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+        mUserData.addListenerForSingleValueEvent(downloader);
     }
 }
 

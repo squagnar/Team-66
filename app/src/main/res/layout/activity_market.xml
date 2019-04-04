@@ -504,8 +504,7 @@
             android:textStyle="bold"
             android:textSize="15sp"
             android:layout_marginTop="510dp"
-            android:layout_marginLeft="315dp"
-    />
+            android:layout_marginLeft="315dp"/>
 
     <TextView
             android:id="@+id/robots_cargo_text"
@@ -515,7 +514,42 @@
             android:textStyle="bold"
             android:textSize="15sp"
             android:layout_marginTop="550dp"
-            android:layout_marginLeft="315dp"
-    />
+            android:layout_marginLeft="315dp"/>
+
+        <TextView
+             android:text="World Type: "
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+            android:id="@+id/current_planet_market_text"
+            android:layout_marginTop="620dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="70dp"/>
+
+        <TextView
+                android:text="planet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="620dp"
+                android:layout_marginLeft="180dp"
+                android:textStyle="bold"
+                android:id="@+id/planet_market_text"/>
+
+        <TextView
+                android:text="Current Event: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/event_mod_market_text"
+                android:layout_marginTop="650dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="70dp"/>
+
+        <TextView
+                android:text="event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/event_market_text"
+                android:layout_marginTop="650dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="160dp"/>
     </RelativeLayout>
 </ScrollView>

@@ -41,7 +41,7 @@ public class TravelActivity extends AppCompatActivity {
 
         viewModel = new MarketViewModel();
         planet = viewModel.getPlanet();
-        solarSystem = viewModel.getPlanet().getSolarSystem();
+        solarSystem = viewModel.getSolarSystem();
         player = viewModel.getPlayer();
         cargo = player.getCargoHold();
 
@@ -58,8 +58,9 @@ public class TravelActivity extends AppCompatActivity {
         cargoRemaining.setText(String.format("%s", (player.getCargoHold().getMaxCapacity() -
                 player.getCargoHold().getCurrentCapacity())));
 
-        List<String> planetNames = new ArrayList<>();
-        for(Planet planet : solarSystem.getAllPlanets()) {
+
+        ArrayList<String> planetNames = new ArrayList<>();
+        for(Planet planet : solarSystem.getPlanets()) {
             planetNames.add(planet.getName());
         }
 
@@ -73,7 +74,7 @@ public class TravelActivity extends AppCompatActivity {
 
     public void onClick(View view) {
         try {
-            viewModel.travel(solarSystem.getPlanet(planetSpinner.getSelectedItemPosition()));
+            viewModel.travel(solarSystem.getPlanet(planetSpinner.getSelectedItemPosition()), solarSystem);
             Intent intent = new Intent(TravelActivity.this, HomeActivity.class);
             startActivity(intent);
         } catch (RuntimeException e) {
