@@ -76,6 +76,9 @@ public class MarketActivity extends AppCompatActivity {
     private TextView narcoticsCargoStock;
     private TextView robotsCargoStock;
 
+    private TextView currentPlanet;
+    private TextView eventMod;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -252,6 +255,12 @@ public class MarketActivity extends AppCompatActivity {
         robotsCargoStock = findViewById(R.id.robots_cargo_text);
         robotsCargoStock.setText(String.format("%s", cargo.getStock(robots)));
         robotsCargoStock.setTag(robots);
+
+        currentPlanet = findViewById(R.id.planet_market_text);
+        currentPlanet.setText(viewmodel.getMarket().getWorldModifier().toString());
+
+        eventMod = findViewById(R.id.event_market_text);
+        eventMod.setText(viewmodel.getMarket().getEventModifier().toString());
     }
 
     public void onClick(View view) {

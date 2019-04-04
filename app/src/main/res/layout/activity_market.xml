@@ -517,7 +517,7 @@
             android:layout_marginLeft="315dp"/>
 
         <TextView
-             android:text="Current Planet: "
+             android:text="Planet affected by: "
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
             android:id="@+id/current_planet_market_text"
@@ -530,12 +530,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="620dp"
-                android:layout_marginLeft="180dp"
+                android:layout_marginLeft="200dp"
                 android:textStyle="bold"
                 android:id="@+id/planet_market_text"/>
 
         <TextView
-                android:text="Affected by: "
+                android:text="Market affected by: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/event_mod_market_text"
@@ -550,6 +550,6 @@
                 android:id="@+id/event_market_text"
                 android:layout_marginTop="650dp"
                 android:textStyle="bold"
-                android:layout_marginLeft="160dp"/>
+                android:layout_marginLeft="205dp"/>
     </RelativeLayout>
 </ScrollView>
