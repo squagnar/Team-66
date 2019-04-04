@@ -1,19 +1,11 @@
 package com.order66.team66.spacetraderapp.models;
 
-import com.google.firebase.database.Exclude;
-
-import java.util.EnumMap;
 import java.util.HashMap;
 
 public class CargoHold {
 
-<<<<<<< HEAD
-    private final EnumMap<Resource, Integer> cargoStock = new EnumMap<>(Resource.class);
+    private final HashMap<String, Integer> cargoStock = new HashMap<>();
     private final int maxCapacity;
-=======
-    private HashMap<String, Integer> cargoStock = new HashMap<>();
-    private int maxCapacity;
->>>>>>> master
     private int currentCapacity;
 
     /**
@@ -40,14 +32,7 @@ public class CargoHold {
      * @return the amount of the given resource in the CargoHold
      */
     public int getStock(Resource resource) {
-<<<<<<< HEAD
-        if (cargoStock.containsKey(resource)) {
-            return cargoStock.get(resource);
-        }
-        return 0;
-=======
         return cargoStock.get(resource.getName());
->>>>>>> master
     }
 
     /**
@@ -57,17 +42,9 @@ public class CargoHold {
      * @param amount the amount to increase the stock by
      */
     public void increaseStock(Resource resource, int amount) {
-<<<<<<< HEAD
-        if (cargoStock.containsKey(resource)) {
-            int newStock = cargoStock.get(resource) + amount;
-            cargoStock.put(resource, newStock);
-            currentCapacity += amount;
-        }
-=======
         int newStock = cargoStock.get(resource.getName()) + amount;
         cargoStock.put(resource.getName(), newStock);
         currentCapacity += amount;
->>>>>>> master
     }
 
     /**
@@ -77,17 +54,9 @@ public class CargoHold {
      * @param amount the amount to decrease the stock by
      */
     public void decreaseStock(Resource resource, int amount) {
-<<<<<<< HEAD
-        if (cargoStock.containsKey(resource)) {
-            int newStock = Math.max(cargoStock.get(resource) - amount, 0);
-            cargoStock.put(resource, newStock);
-            currentCapacity -= amount;
-        }
-=======
         int newStock = Math.max(cargoStock.get(resource.getName()) - amount, 0);
         cargoStock.put(resource.getName(), newStock);
         currentCapacity -= amount;
->>>>>>> master
     }
 
     public int getMaxCapacity() {
@@ -96,8 +65,6 @@ public class CargoHold {
 
     public int getCurrentCapacity() {
         return currentCapacity;
-<<<<<<< HEAD
-=======
     }
 
     /**
@@ -108,7 +75,6 @@ public class CargoHold {
      */
     public HashMap<String, Integer> getCargoStock() {
         return cargoStock;
->>>>>>> master
     }
 
 }
