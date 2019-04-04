@@ -34,7 +34,7 @@ public class TravelActivity extends AppCompatActivity {
 
         viewmodel = new MarketViewModel();
         planet = viewmodel.getPlanet();
-        solarSystem = viewmodel.getPlanet().getSolarSystem();
+        solarSystem = viewmodel.getSolarSystem();
         player = viewmodel.getPlayer();
         cargo = player.getCargoHold();
 
@@ -52,7 +52,7 @@ public class TravelActivity extends AppCompatActivity {
                 player.getCargoHold().getCurrentCapacity())));
 
         ArrayList<String> planetNames = new ArrayList<>();
-        for(Planet planet : solarSystem.getAllPlanets()) {
+        for(Planet planet : solarSystem.getPlanets()) {
             planetNames.add(planet.getName());
         }
 
@@ -66,7 +66,7 @@ public class TravelActivity extends AppCompatActivity {
 
     public void onClick(View view) {
         try {
-            viewmodel.travel(solarSystem.getPlanet(planetSpinner.getSelectedItemPosition()));
+            viewmodel.travel(solarSystem.getPlanet(planetSpinner.getSelectedItemPosition()), solarSystem);
             Intent intent = new Intent(TravelActivity.this, HomeActivity.class);
             startActivity(intent);
         } catch (RuntimeException e) {

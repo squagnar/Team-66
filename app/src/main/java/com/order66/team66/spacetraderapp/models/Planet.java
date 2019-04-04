@@ -1,5 +1,6 @@
 package com.order66.team66.spacetraderapp.models;
 
+import android.icu.lang.UCharacter;
 import com.google.firebase.database.Exclude;
 
 /**
@@ -9,10 +10,6 @@ public class Planet {
 
     private String name;
 
-    // Solar System of Planet
-    @Exclude
-    private SolarSystem solarSystem;
-
     // Market of Planet
     private Market market;
 
@@ -21,9 +18,6 @@ public class Planet {
 
     /** Has one predominant resource */
     private ResourceModifier WorldModifier;
-
-    // TODO: Implement Markets
-//    private Market market
 
     /**
      * Makes planet
@@ -35,18 +29,11 @@ public class Planet {
         this.name = name;
         this.techLevel = techLevel;
         this.WorldModifier = worldModifier;
-        this.solarSystem = solarSystem;
         this.market = new Market(worldModifier, techLevel);
     }
 
-    /**
-     * Gets Planet's Solar System
-     *
-     * @return solar system
-     */
-    @Exclude
-    public SolarSystem getSolarSystem() {
-        return solarSystem;
+    public Planet(){
+
     }
 
     /**
@@ -63,6 +50,14 @@ public class Planet {
      */
     public String getName() {
         return name;
+    }
+
+    public TechLevel getTechLevel() {
+        return techLevel;
+    }
+
+    public ResourceModifier getWorldModifier(){
+        return WorldModifier;
     }
 
     public void setName(String name) {

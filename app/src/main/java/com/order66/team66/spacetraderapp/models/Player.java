@@ -57,6 +57,10 @@ public class Player {
         currentFuel = spaceship.getFuelCap();
     }
 
+    public Player(){
+
+    }
+
     /**
      * Creates a new player with skill points set to 0
      *

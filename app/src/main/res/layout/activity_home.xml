@@ -67,5 +67,5 @@
             android:layout_height="wrap_content"
             android:text="Save game"
             android:layout_marginTop="12dp"
-            android:layout_marginLeft="12dp"/>
+            android:layout_marginLeft="12dp" android:onClick="saveGame"/>
 </RelativeLayout>

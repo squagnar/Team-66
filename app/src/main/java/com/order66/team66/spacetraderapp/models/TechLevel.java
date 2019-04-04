@@ -34,6 +34,10 @@ public enum TechLevel {
         this.levelNumber = levelNumber;
     }
 
+    TechLevel() {
+
+    }
+
     /**
      * Returns level name
      *

@@ -8,6 +8,7 @@ public class MarketViewModel extends ViewModel {
 
     private Game GAME_STATE = Game.getInstance();
     private Planet planet = GAME_STATE.getCurrentPlanet();
+    private SolarSystem solarSystem = GAME_STATE.getCurrentSystem();
     private Market market = planet.getMarket();
     private Player player = GAME_STATE.getPlayer();
 
@@ -23,10 +24,14 @@ public class MarketViewModel extends ViewModel {
         return player;
     }
 
-    public void travel(Planet planet) {
+    public SolarSystem getSolarSystem() {
+        return solarSystem;
+    }
+
+    public void travel(Planet planet, SolarSystem system) {
         if (!planet.equals(this.planet)) {
             this.planet = planet;
-            GAME_STATE.setCurrentPlanet(planet);
+            GAME_STATE.setCurrentPlanet(planet, system);
             market = planet.getMarket();
             player.removeFuel(1);
 

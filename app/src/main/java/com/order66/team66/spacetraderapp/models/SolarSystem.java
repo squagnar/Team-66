@@ -170,6 +170,10 @@ public class SolarSystem {
         planets = new ArrayList<>();
     }
 
+    public SolarSystem(){
+
+    }
+
     /**
      * Adds a planet to the Solar System
      *
@@ -193,7 +197,7 @@ public class SolarSystem {
         return planets.get(num);
     }
 
-    public List<Planet> getAllPlanets() {
+    public List<Planet> getPlanets() {
         return planets;
     }
 

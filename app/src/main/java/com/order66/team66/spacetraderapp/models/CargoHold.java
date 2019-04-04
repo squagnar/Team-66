@@ -24,6 +24,10 @@ public class CargoHold {
         }
     }
 
+    public CargoHold() {
+
+    }
+
     /**
      * Gets the current amount of the given resource in the CargoHold
      *

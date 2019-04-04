@@ -34,6 +34,10 @@ public class Market {
         generateMarket();
     }
 
+    public Market(){
+
+    }
+
     /**
      * Using the tech level and worldModifier, populates the list of trade goods
      * in this market.

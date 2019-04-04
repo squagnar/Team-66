@@ -24,6 +24,10 @@ public enum Spaceship {
         this.fuelCap = fuelCap;
     }
 
+    Spaceship() {
+
+    }
+
     /**
      * Gets name of spaceship
      *

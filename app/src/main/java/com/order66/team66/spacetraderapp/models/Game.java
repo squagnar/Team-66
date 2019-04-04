@@ -3,6 +3,7 @@ package com.order66.team66.spacetraderapp.models;
 import java.util.*;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 import com.google.firebase.database.*;
 
 /**
@@ -36,7 +37,7 @@ public class Game {
         solarSystems = createSolarSystem();
 
         currentPlanet = solarSystems.get(0).getPlanet(0);
-        currentSystem = currentPlanet.getSolarSystem();
+        currentSystem = solarSystems.get(0);
     }
 
     public static Game getInstance(){
@@ -77,7 +78,11 @@ public class Game {
 
     public void setCurrentPlanet(Planet planet) {
         currentPlanet = planet;
-        currentSystem = planet.getSolarSystem();
+    }
+
+    public void setCurrentPlanet(Planet planet, SolarSystem system){
+        currentSystem = system;
+        currentPlanet = planet;
     }
 
     public void shortTravel(Planet planet) {
@@ -161,6 +166,7 @@ public class Game {
                 solarSystems = loadedState.getSolarSystems();
                 currentPlanet = loadedState.getCurrentPlanet();
                 currentSystem = loadedState.getCurrentSystem();
+
             }
 
             @Override
