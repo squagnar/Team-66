@@ -47,7 +47,7 @@ public class Market {
 
             if(techLevel >= minTechToUse) {
                 canUseResource.put(resource.getName(), true);
-                resourcePrice.put(resource.getName(), resource.getPrice(techLevel, worldModifier, eventModifier));
+                //resourcePrice.put(resource.getName(), resource.getPrice(techLevel, worldModifier, eventModifier));
 
                 if(techLevel >= minTechToMake) {
                     canMakeResource.put(resource.getName(),true);
@@ -132,8 +132,8 @@ public class Market {
 
         for (Resource resource : Resource.values()) {
             if(canUse(resource)) {
-                int newPrice = resource.getPrice(techLevel, worldModifier, eventModifier);
-                resourcePrice.put(resource.getName(), newPrice);
+                //int newPrice = resource.getPrice(techLevel, worldModifier, eventModifier);
+                //resourcePrice.put(resource.getName(), newPrice);
 
                 if(canMake(resource)) {
                     int newStock = resource.getStock(techLevel, worldModifier, eventModifier);

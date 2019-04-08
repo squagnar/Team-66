@@ -175,10 +175,10 @@ public enum Resource {
         return maxTraderPrice;
     }
 
-    public int getPrice(int techLevel, ResourceModifier worldMod, ResourceModifier eventMod) {
+    public int getPrice(int techLevel, ResourceModifier worldMod, ResourceModifier eventMod, Random randVariance) {
         int price;
         int variance;
-        Random randVariance = new Random();
+        //Random randVariance = new Random();
 
         variance = randVariance.nextInt(priceVariance + 1);
         if(randVariance.nextBoolean()) { variance *= -1; }
