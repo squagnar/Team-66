@@ -15,6 +15,7 @@ import com.order66.team66.spacetraderapp.R;
 import com.order66.team66.spacetraderapp.models.Difficulty;
 import com.order66.team66.spacetraderapp.models.Skill;
 import com.order66.team66.spacetraderapp.viewmodels.ConfigurationViewModel;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,13 +34,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     // Widgets to get info
     private EditText nameFieldText;
-    private TextView pointsPilotText;
-    private TextView pointsFighterText;
-    private TextView pointsTraderText;
-    private TextView pointsEngineerText;
     private TextView pointsUnspentText;
-    private Spinner difficultySpinner;
-    private Button transitionButton;
 
     private List<TextView> skillDisplays;
 
@@ -65,13 +60,13 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         //Assign widgets to variables
         nameFieldText = findViewById(R.id.player_name_input);
-        pointsPilotText = findViewById(R.id.pilot_points);
-        pointsFighterText = findViewById(R.id.fighter_points);
-        pointsTraderText = findViewById(R.id.trader_points);
-        pointsEngineerText = findViewById(R.id.engineer_points);
+        TextView pointsPilotText = findViewById(R.id.pilot_points);
+        TextView pointsFighterText = findViewById(R.id.fighter_points);
+        TextView pointsTraderText = findViewById(R.id.trader_points);
+        TextView pointsEngineerText = findViewById(R.id.engineer_points);
         pointsUnspentText = findViewById(R.id.points_remaining);
-        difficultySpinner = findViewById(R.id.difficulty_spinner);
-        transitionButton = findViewById(R.id.create_button);
+        Spinner difficultySpinner = findViewById(R.id.difficulty_spinner);
+        Button transitionButton = findViewById(R.id.create_button);
 
         //Assign tags to skill display textViews
         pointsPilotText.setTag(pilot);
@@ -111,6 +106,11 @@ public class ConfigurationActivity extends AppCompatActivity {
         difficultySpinner.setAdapter(difficultyAdapter);
     }
 
+    /**
+     * Levels up player skill
+     *
+     * @param view level up button
+     */
     public void levelUpSkill(View view) {
         Skill skill = (Skill)view.getTag();
         if((pointsUnspent > 0) && (skill.getLevel() != TOTAL_POINTS)) {
@@ -121,6 +121,11 @@ public class ConfigurationActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Levels down player skill
+     *
+     * @param view level down button
+     */
     public void levelDownSkill(View view) {
         Skill skill = (Skill)view.getTag();
         if((pointsUnspent < TOTAL_POINTS) && (skill.getLevel() != 0)) {
@@ -145,6 +150,11 @@ public class ConfigurationActivity extends AppCompatActivity {
         skillDisplay.setText(String.format("%s", skill.getLevel()));
     }
 
+    /**
+     * Creates player when submitted
+     *
+     * @param view submit button
+     */
     public void onAddPressed(View view) {
         //difficulty.setDifficulty((String) difficultySpinner.getSelectedItem());
         Pattern regex = Pattern.compile("[a-zA-Z]+");
@@ -161,7 +171,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         }
     }
 
-    public static void largeLog(String tag, String content) {
+    private static void largeLog(String tag, String content) {
         if (content.length() > LOG_SIZE) {
             Log.d(tag, content.substring(0, LOG_SIZE));
             largeLog(tag, content.substring(LOG_SIZE));

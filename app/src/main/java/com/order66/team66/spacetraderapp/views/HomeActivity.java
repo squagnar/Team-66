@@ -10,25 +10,30 @@ import com.order66.team66.spacetraderapp.models.Game;
 import com.order66.team66.spacetraderapp.models.Planet;
 import com.order66.team66.spacetraderapp.viewmodels.MarketViewModel;
 
+/**
+ * Represents Home Screen
+ */
 public class HomeActivity extends Activity {
 
-    private TextView planetText;
-    private MarketViewModel viewModel;
-    private Planet planet;
-    private Game GAME_STATE = Game.getInstance();
+    private final Game GAME_STATE = Game.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        viewModel = new MarketViewModel();
-        planet = viewModel.getPlanet();
+        MarketViewModel viewModel = new MarketViewModel();
+        Planet planet = viewModel.getPlanet();
 
-        planetText = findViewById(R.id.planet_home_text);
+        TextView planetText = findViewById(R.id.planet_home_text);
         planetText.setText(planet.getName());
     }
-    
+
+    /**
+     * Leaves the game
+     *
+     * @param view exit button
+     */
     public void exitGame(View view) {
         Intent homeIntent = new Intent(Intent.ACTION_MAIN);
         homeIntent.addCategory(Intent.CATEGORY_HOME);
@@ -36,16 +41,31 @@ public class HomeActivity extends Activity {
         startActivity(homeIntent);
     }
 
+    /**
+     * Goes to the market
+     *
+     * @param view market button
+     */
     public void goToMarket(View view) {
         Intent intent = new Intent(HomeActivity.this, MarketActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Goes to travel
+     *
+     * @param view travel button
+     */
     public void goToTravel(View view) {
         Intent intent = new Intent(HomeActivity.this, TravelActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Saves the game
+     *
+     * @param view save button
+     */
     public void saveGame(View view) {
         GAME_STATE.writeUserData();
     }

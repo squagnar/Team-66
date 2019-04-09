@@ -41,6 +41,9 @@ public enum Resource {
     private int minTraderPrice;
     private int maxTraderPrice;
 
+    private static final double eventPriceMod = .5;
+    private static final double eventStockMod = .25;
+
     /**
      * Creates a new Resource object to store the general data about a resource type
      *
@@ -81,6 +84,7 @@ public enum Resource {
 
     /**
      * Gets the name of the resource
+     *
      * @return the resource name
      */
     public String getName() {
@@ -88,93 +92,113 @@ public enum Resource {
     }
 
     /**
+     * Gets min tech to make resource
      *
-     * @return
+     * @return min tech to make
      */
     public int getMinTechMake() {
         return minTechMake;
     }
 
     /**
+     * Gets min tech to use resource
      *
-     * @return
+     * @return min tech to use
      */
     public int getMinTechUse() {
         return minTechUse;
     }
 
     /**
+     * Gets optimal tech for resource
      *
-     * @return
+     * @return optimal tech
      */
     public int getOptimalTech() {
         return optimalTech;
     }
 
     /**
+     * Gets resource base price
      *
-     * @return
+     * @return base price
      */
     public int getBasePrice() {
         return basePrice;
     }
 
     /**
+     * Gets price chance per tech
      *
-     * @return
+     * @return price change
      */
     public int getPriceChangePerTech() {
         return priceChangePerTech;
     }
 
     /**
+     * Gets resource price variance
      *
-     * @return
+     * @return resource price variance
      */
     public int getPriceVariance() {
         return priceVariance;
     }
 
     /**
+     * Gets shortage event
      *
-     * @return
+     * @return shortage event
      */
     public ResourceModifier getShortageEvent() {
         return shortageEvent;
     }
 
     /**
+     * Gets surplus event
      *
-     * @return
+     * @return surplus event
      */
     public ResourceModifier getSurplusEvent() {
         return surplusEvent;
     }
 
     /**
+     * Gets expensive event
      *
-     * @return
+     * @return expensive event
      */
     public ResourceModifier getExpensiveEvent() {
         return expensiveEvent;
     }
 
     /**
+     * Gets min trader price
      *
-     * @return
+     * @return min trader price
      */
     public int getMinTraderPrice() {
         return minTraderPrice;
     }
 
     /**
+     * Gets max trader price
      *
-     * @return
+     * @return trader price
      */
     public int getMaxTraderPrice() {
         return maxTraderPrice;
     }
 
+    /**
+     * Calculates resource price
+     *
+     * @param techLevel    current tech level
+     * @param worldMod     current world modifier
+     * @param eventMod     current event modifier
+     * @param randVariance random variance
+     * @return resource price
+     */
     public int getPrice(int techLevel, ResourceModifier worldMod, ResourceModifier eventMod, Random randVariance) {
         int price;
         int variance;
@@ -186,20 +210,28 @@ public enum Resource {
         price = basePrice + (priceChangePerTech * (techLevel - minTechUse)) + variance;
 
         if(worldMod.equals(shortageEvent) || eventMod.equals(shortageEvent)) {
-            price *= 2;
+            price *= eventPriceMod * 4;
         }
 
         if(worldMod.equals(surplusEvent) || eventMod.equals(surplusEvent)) {
-            price *= .5;
+            price *= eventPriceMod;
         }
 
         if(worldMod.equals(expensiveEvent) || eventMod.equals(expensiveEvent)) {
-            price *= 1.5;
+            price *= eventPriceMod * 3;
         }
 
         return price;
     }
 
+    /**
+     * Gets resource stock
+     *
+     * @param techLevel current tech level
+     * @param worldMod current world modifier
+     * @param eventMod current event modifier
+     * @return resource stock
+     */
     public int getStock(int techLevel, ResourceModifier worldMod, ResourceModifier eventMod) {
         int stock;
         int optimalDiff = Math.abs(optimalTech - techLevel);
@@ -207,15 +239,15 @@ public enum Resource {
         stock = basePrice * (10 - minTechMake - optimalDiff);
 
         if(worldMod.equals(shortageEvent) || eventMod.equals(shortageEvent)) {
-            stock *= .25;
+            stock *= eventStockMod;
         }
 
         if(worldMod.equals(surplusEvent) || eventMod.equals(surplusEvent)) {
-            stock *= 2;
+            stock *= eventStockMod * 8;
         }
 
         if(worldMod.equals(expensiveEvent) || eventMod.equals(expensiveEvent)) {
-            stock *= .5;
+            stock *= eventStockMod * 2;
         }
 
         return stock;

@@ -8,6 +8,9 @@ import com.order66.team66.spacetraderapp.models.SolarSystem;
 
 import java.util.List;
 
+/**
+ * View Model for Character Creation
+ */
 public class ConfigurationViewModel extends ViewModel {
 
     private final Game GAME_STATE = Game.getInstance();
@@ -27,8 +30,18 @@ public class ConfigurationViewModel extends ViewModel {
         GAME_STATE.writeUserData();
     }
 
+    /**
+     * Returns game state player
+     *
+     * @return player
+     */
     public Player getPlayer() { return GAME_STATE.getPlayer();}
 
+    /**
+     * Returns game state solar systems
+     *
+     * @return solar systems
+     */
     public List<SolarSystem> getSolarSystems() {
         return GAME_STATE.getSolarSystems();
     }

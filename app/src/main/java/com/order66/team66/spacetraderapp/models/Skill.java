@@ -27,14 +27,31 @@ public enum Skill {
         level = 0;
     }
 
+    /**
+     * Gets Skill Name
+     *
+     * @return skill name
+     */
     public String getName() { return name; }
 
-    public int getLevel() { return level; }
+    /**
+     * Gets Skill level
+     *
+     * @return skill level
+     */
+    public int getLevel() { return level;
+    }
 
+    /**
+     * levels skill up
+     */
     public void levelUp() {
         if(level < Integer.MAX_VALUE) { level++; }
     }
 
+    /**
+     * levels skill down
+     */
     public void levelDown() {
         if(level > 0) { level--; }
     }

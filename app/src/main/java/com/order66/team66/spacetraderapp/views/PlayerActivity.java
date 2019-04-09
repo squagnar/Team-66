@@ -10,10 +10,12 @@ import com.order66.team66.spacetraderapp.models.Game;
 import com.order66.team66.spacetraderapp.models.Player;
 import com.order66.team66.spacetraderapp.viewmodels.ConfigurationViewModel;
 
+/**
+ * Represents Load Screen
+ */
 public class PlayerActivity extends AppCompatActivity {
 
-    private Game GAME_STATE = Game.getInstance();
-    private ConfigurationViewModel viewmodel;
+    private final Game GAME_STATE = Game.getInstance();
     private Player player;
 
     @Override
@@ -21,14 +23,24 @@ public class PlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
 
-        viewmodel = new ConfigurationViewModel();
+        ConfigurationViewModel viewModel = new ConfigurationViewModel();
     }
 
+    /**
+     * Make a new player
+     *
+     * @param view new player button
+     */
     public void goToCreatePlayer(View view) {
         Intent intent = new Intent(PlayerActivity.this, ConfigurationActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Loads an existing player
+     *
+     * @param view load player button
+     */
     public void loadPlayer(View view) {
         GAME_STATE.readUserData();
 

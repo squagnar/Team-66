@@ -24,6 +24,9 @@ public enum Difficulty {
         this.difficulty = difficulty;
     }
 
+    /**
+     * Firebase constructor
+     */
     Difficulty() {
 
     }
@@ -37,6 +40,11 @@ public enum Difficulty {
         return difficulty;
     }
 
+    /**
+     * Sets game difficulty to different value
+     *
+     * @param difficulty new difficulty setting
+     */
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
     }

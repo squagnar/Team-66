@@ -19,18 +19,22 @@ public class Planet {
     private ResourceModifier WorldModifier;
 
     /**
-     * Makes planet
+     * Makes new planet
      *
-     * @param name planet's name
-     * @param solarSystem planet's solar system
+     * @param name planet name
+     * @param techLevel planet tech level
+     * @param worldModifier planet world modifier
      */
-    public Planet(String name, TechLevel techLevel, ResourceModifier worldModifier, SolarSystem solarSystem) {
+    public Planet(String name, TechLevel techLevel, ResourceModifier worldModifier) {
         this.name = name;
         this.techLevel = techLevel;
         this.WorldModifier = worldModifier;
         this.market = new Market(worldModifier, techLevel);
     }
 
+    /**
+     * Firebase constructor
+     */
     public Planet(){
 
     }
@@ -51,14 +55,29 @@ public class Planet {
         return name;
     }
 
+    /**
+     * Gets planet tech level
+     *
+     * @return tech level
+     */
     public TechLevel getTechLevel() {
         return techLevel;
     }
 
+    /**
+     * Gets planet world modifier
+     *
+     * @return world modifier
+     */
     public ResourceModifier getWorldModifier(){
         return WorldModifier;
     }
 
+    /**
+     * Sets planet name
+     *
+     * @param name of planet
+     */
     public void setName(String name) {
         this.name = name;
     }

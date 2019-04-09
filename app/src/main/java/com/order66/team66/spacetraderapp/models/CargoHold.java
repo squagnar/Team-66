@@ -2,10 +2,13 @@ package com.order66.team66.spacetraderapp.models;
 
 import java.util.HashMap;
 
+/**
+ * Represents a cargo hold with resources
+ */
 public class CargoHold {
 
     private final HashMap<String, Integer> cargoStock = new HashMap<>();
-    private int maxCapacity;
+    private final int maxCapacity;
     private int currentCapacity;
 
     /**
@@ -13,16 +16,12 @@ public class CargoHold {
      *
      * @param capacity the max storage capacity of the CargoHold
      */
-    public CargoHold(int capacity) {
+    CargoHold(int capacity) {
         maxCapacity = capacity;
 
         for (Resource resource : Resource.values()) {
             cargoStock.put(resource.getName(), 0);
         }
-    }
-
-    public CargoHold() {
-
     }
 
     /**
@@ -32,7 +31,10 @@ public class CargoHold {
      * @return the amount of the given resource in the CargoHold
      */
     public int getStock(Resource resource) {
-        return cargoStock.get(resource.getName());
+        if (cargoStock.containsKey(resource.getName())) {
+            return cargoStock.get(resource.getName());
+        }
+        return 0;
     }
 
     /**
@@ -42,9 +44,11 @@ public class CargoHold {
      * @param amount the amount to increase the stock by
      */
     public void increaseStock(Resource resource, int amount) {
-        int newStock = cargoStock.get(resource.getName()) + amount;
-        cargoStock.put(resource.getName(), newStock);
-        currentCapacity += amount;
+        if (resource != null && cargoStock.containsKey(resource.getName())) {
+            int newStock = cargoStock.get(resource.getName()) + amount;
+            cargoStock.put(resource.getName(), newStock);
+            currentCapacity += amount;
+        }
     }
 
     /**
@@ -54,15 +58,27 @@ public class CargoHold {
      * @param amount the amount to decrease the stock by
      */
     public void decreaseStock(Resource resource, int amount) {
-        int newStock = Math.max(cargoStock.get(resource.getName()) - amount, 0);
-        cargoStock.put(resource.getName(), newStock);
-        currentCapacity -= amount;
+        if (resource != null && cargoStock.containsKey(resource.getName())) {
+            int newStock = Math.max(cargoStock.get(resource.getName()) - amount, 0);
+            cargoStock.put(resource.getName(), newStock);
+            currentCapacity -= amount;
+        }
     }
 
+    /**
+     * Returns max capacity of hold
+     *
+     * @return max capacity
+     */
     public int getMaxCapacity() {
         return maxCapacity;
     }
 
+    /**
+     * Returns current capacity
+     *
+     * @return current capacity
+     */
     public int getCurrentCapacity() {
         return currentCapacity;
     }

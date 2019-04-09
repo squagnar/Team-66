@@ -19,20 +19,15 @@ import com.order66.team66.spacetraderapp.viewmodels.MarketViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents Travel Screen
+ */
 public class TravelActivity extends AppCompatActivity {
 
-    private TextView currentPlanet;
-    private TextView shipType;
-    private TextView fuelRemaining;
-    private TextView cargoRemaining;
     private Spinner planetSpinner;
-    private Button travelButton;
-
     private MarketViewModel viewModel;
-    private Planet planet;
     private SolarSystem solarSystem;
-    private Player player;
-    private CargoHold cargo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,17 +35,17 @@ public class TravelActivity extends AppCompatActivity {
         setContentView(R.layout.activity_travel);
 
         viewModel = new MarketViewModel();
-        planet = viewModel.getPlanet();
+        Planet planet = viewModel.getPlanet();
         solarSystem = viewModel.getSolarSystem();
-        player = viewModel.getPlayer();
-        cargo = player.getCargoHold();
+        Player player = viewModel.getPlayer();
+        CargoHold cargo = player.getCargoHold();
 
-        currentPlanet = findViewById(R.id.current_planet_text);
-        shipType = findViewById(R.id.ship_type_text);
-        fuelRemaining = findViewById(R.id.fuel_remaining_amount_text);
-        cargoRemaining = findViewById(R.id.available_cargo_amount_text);
+        TextView currentPlanet = findViewById(R.id.current_planet_text);
+        TextView shipType = findViewById(R.id.ship_type_text);
+        TextView fuelRemaining = findViewById(R.id.fuel_remaining_amount_text);
+        TextView cargoRemaining = findViewById(R.id.available_cargo_amount_text);
         planetSpinner = findViewById(R.id.planet_spinner);
-        travelButton = findViewById(R.id.travel_button);
+        Button travelButton = findViewById(R.id.travel_button);
 
         currentPlanet.setText(planet.getName());
         shipType.setText(player.getSpaceship().getName());
@@ -60,8 +55,8 @@ public class TravelActivity extends AppCompatActivity {
 
 
         ArrayList<String> planetNames = new ArrayList<>();
-        for(Planet planet : solarSystem.getPlanets()) {
-            planetNames.add(planet.getName());
+        for (Planet p : solarSystem.getPlanets()) {
+            planetNames.add(p.getName());
         }
 
         ArrayAdapter<String> planetAdapter = new ArrayAdapter<>(this,
@@ -72,6 +67,11 @@ public class TravelActivity extends AppCompatActivity {
         planetSpinner.setSelection(planetNames.indexOf(planet.getName()));
     }
 
+    /**
+     * Travel on confirmation
+     *
+     * @param view travel button
+     */
     public void onClick(View view) {
         try {
             viewModel.travel(solarSystem.getPlanet(planetSpinner.getSelectedItemPosition()), solarSystem);

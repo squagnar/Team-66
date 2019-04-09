@@ -16,27 +16,19 @@ import com.order66.team66.spacetraderapp.viewmodels.MarketViewModel;
 
 import java.util.Objects;
 
+/**
+ * Represents Buying a Resource
+ */
 public class BuyActivity extends AppCompatActivity {
-    private MarketViewModel viewModel;
 
-    private TextView resourceText;
-    private TextView resourcePriceText;
-    private Button decreaseBuyQuantity;
     private TextView buyQuantityText;
-    private Button increaseBuyQuantity;
-    private Button decreaseSellQuantity;
     private TextView sellQuantityText;
-    private Button increaseSellQuantity;
-    private TextView marketBuyText;
-    private TextView marketSellText;
-    private Button tradeButton;
     private TextView totalTransactionText;
     private TextView playerCashText;
     private TextView remainingBuyQuantityText;
     private TextView remainingSellQuantityText;
 
-    Intent intent;
-    Resource resource;
+    private Resource resource;
 
     private Market market;
     private CargoHold cargo;
@@ -53,9 +45,9 @@ public class BuyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy);
 
-        intent = getIntent();
+        Intent intent = getIntent();
         resource = (Resource) Objects.requireNonNull(intent.getExtras()).get("Resource");
-        viewModel = new MarketViewModel();
+        MarketViewModel viewModel = new MarketViewModel();
 
         market = viewModel.getMarket();
         player = viewModel.getPlayer();
@@ -64,15 +56,15 @@ public class BuyActivity extends AppCompatActivity {
         remainingSellQuantity = cargo.getStock(resource);
         remainingBuyQuantity = market.getStock(resource);
 
-        resourceText = findViewById(R.id.resource_header);
-        resourcePriceText = findViewById(R.id.resource_price_text);
-        decreaseBuyQuantity = findViewById(R.id.decrease_buy_quantity);
+        TextView resourceText = findViewById(R.id.resource_header);
+        TextView resourcePriceText = findViewById(R.id.resource_price_text);
+        Button decreaseBuyQuantity = findViewById(R.id.decrease_buy_quantity);
         buyQuantityText = findViewById(R.id.buy_quantity_text);
-        increaseBuyQuantity = findViewById(R.id.increase_buy_quantity);
-        decreaseSellQuantity = findViewById(R.id.decrease_sell_quantity);
+        Button increaseBuyQuantity = findViewById(R.id.increase_buy_quantity);
+        Button decreaseSellQuantity = findViewById(R.id.decrease_sell_quantity);
         sellQuantityText = findViewById(R.id.sell_quantity_text);
-        increaseSellQuantity = findViewById(R.id.increase_sell_quantity);
-        tradeButton = findViewById(R.id.trade_button);
+        Button increaseSellQuantity = findViewById(R.id.increase_sell_quantity);
+        Button tradeButton = findViewById(R.id.trade_button);
         totalTransactionText = findViewById(R.id.total_transaction_text);
         playerCashText = findViewById(R.id.player_cash_text);
         remainingBuyQuantityText = findViewById(R.id.resource_stock_market_text);
@@ -86,6 +78,11 @@ public class BuyActivity extends AppCompatActivity {
         updateTotalTradeCost();
     }
 
+    /**
+     * Confirms a player's resource trade
+     *
+     * @param view linked to trade button
+     */
     public void confirmTrade(View view) {
         int creditChange = (sellQuantity - buyQuantity) * market.getPrice(resource);
         if ((player.getCredits() + creditChange) < 0) {
@@ -100,6 +97,11 @@ public class BuyActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Increase buy amount of resource
+     *
+     * @param view add buy button
+     */
     public void increaseBuyQuantity(View view) {
         if (remainingBuyQuantity > 0) {
             remainingBuyQuantity--;
@@ -109,6 +111,11 @@ public class BuyActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Increase sell amount of resource
+     *
+     * @param view add sell button
+     */
     public void increaseSellQuantity(View view) {
         if (remainingSellQuantity > 0) {
             remainingSellQuantity--;
@@ -118,6 +125,11 @@ public class BuyActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Decrease buy amount of resource
+     *
+     * @param view lower buy amount
+     */
     public void decreaseBuyQuantity(View view) {
         if (buyQuantity > 0) {
             remainingBuyQuantity++;
@@ -127,6 +139,11 @@ public class BuyActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Decrease sell amount of resource
+     *
+     * @param view lower sell amount
+     */
     public void decreaseSellQuantity(View view) {
         if (sellQuantity > 0) {
             remainingSellQuantity++;

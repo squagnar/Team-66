@@ -58,6 +58,9 @@ public class Player {
         currentFuel = spaceship.getFuelCap();
     }
 
+    /**
+     * Firebase constructor
+     */
     public Player(){
 
     }
@@ -98,6 +101,11 @@ public class Player {
         this.credits = credits;
     }
 
+    /**
+     * Returns max skill points a player can have
+     *
+     * @return max skill points
+     */
     public int getMaxSkillPoints() {
         return MAX_SKILL_POINTS;
     }
@@ -165,13 +173,12 @@ public class Player {
     @NotNull
     @Override
     public String toString() {
-        String toRet = "Name: " + name + "\n" +
+        return "Name: " + name + "\n" +
                 "Credits: " + credits + "\n" +
                 "Spaceship: " + spaceship.getName() + "\n" +
                 "Pilot Skill: " + pilot.getLevel() + "\n" +
                 "Fighter Skill: " + fighter.getLevel() + "\n" +
                 "Trader Skill: "+ trader.getLevel() + "\n" +
                 "Engineer Skill: " + engineer.getLevel() + "\n";
-        return toRet;
     }
 }

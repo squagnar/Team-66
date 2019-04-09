@@ -12,10 +12,10 @@ public class Market {
     private ResourceModifier eventModifier = ResourceModifier.NULL;
     private int techLevel;
 
-    private HashMap<String, Integer> resourceStock = new HashMap<>();
-    private HashMap<String, Integer> resourcePrice = new HashMap<>();
-    private HashMap<String, Boolean> canUseResource = new HashMap<>();
-    private HashMap<String, Boolean> canMakeResource = new HashMap<>();
+    private final HashMap<String, Integer> resourceStock = new HashMap<>();
+    private final HashMap<String, Integer> resourcePrice = new HashMap<>();
+    private final HashMap<String, Boolean> canUseResource = new HashMap<>();
+    private final HashMap<String, Boolean> canMakeResource = new HashMap<>();
     /**
      * Creates a new Market object
      *
@@ -29,6 +29,9 @@ public class Market {
         generateMarket();
     }
 
+    /**
+     * Firebase constructor
+     */
     public Market(){
 
     }
@@ -118,6 +121,11 @@ public class Market {
         return eventModifier;
     }
 
+    /**
+     * Gets world modifier
+     *
+     * @return world modifier
+     */
     public ResourceModifier getWorldModifier() {
         return worldModifier;
     }
@@ -170,18 +178,38 @@ public class Market {
     //    return canUseResource.keySet();
     //}
 
+    /**
+     * Returns resource stock
+     *
+     * @return resource stock
+     */
     public HashMap<String, Integer> getResourceStock(){
         return resourceStock;
     }
 
+    /**
+     * Returns resource price
+     *
+     * @return resource price
+     */
     public HashMap<String, Integer> getResourcePrice() {
         return resourcePrice;
     }
 
+    /**
+     * Returns if you can use resource
+     *
+     * @return resource usability
+     */
     public HashMap<String, Boolean> getCanUseResource() {
         return canUseResource;
     }
 
+    /**
+     * Returns if you can make resource
+     *
+     * @return ability to make resource
+     */
     public HashMap<String, Boolean> getCanMakeResource() {
         return canMakeResource;
     }

@@ -30,64 +30,119 @@ public final class Game {
     /** Game Solar System */
     private List<SolarSystem> solarSystems;
 
-    private static SolarSystem currentSystem;
+    private SolarSystem currentSystem;
 
-    private static Planet currentPlanet;
+    private Planet currentPlanet;
 
     private Game(){
         difficulty = Difficulty.EASY;
-        player = null;
         solarSystems = createSolarSystem();
 
         currentPlanet = solarSystems.get(0).getPlanet(0);
         currentSystem = solarSystems.get(0);
     }
 
+    /**
+     * Returns instance of Game
+     *
+     * @return game state
+     */
     public static Game getInstance(){
         return GAME_STATE;
     }
 
     /** Max X and Y Coordinates in Game */
-    public static final int MAX_X_COORDINATES = 150;
-    public static final int MAX_Y_COORDINATES = 100;
+    private static final int MAX_X_COORDINATES = 150;
+    private static final int MAX_Y_COORDINATES = 100;
 
+    /**
+     * Returns player
+     *
+     * @return player
+     */
     public Player getPlayer(){
         return player;
     }
 
-    public Difficulty getDifficulty(){
+    /**
+     * Returns difficulty
+     *
+     * @return difficulty
+     */
+    private Difficulty getDifficulty() {
         return difficulty;
     }
 
+    /**
+     * Returns all solar systems
+     *
+     * @return list of solar systems
+     */
     public List<SolarSystem> getSolarSystems() {
         return  solarSystems;
     }
 
+    /**
+     * Returns current solar system
+     *
+     * @return current solar system
+     */
     public SolarSystem getCurrentSystem() {
         return currentSystem;
     }
 
+    /**
+     * Returns current planet
+     *
+     * @return current planet
+     */
     public Planet getCurrentPlanet() {
         return currentPlanet;
     }
 
+    /**
+     * Sets current player
+     *
+     * @param player new player
+     */
     public void setPlayer(Player player) {
         this.player = player;
     }
 
+    /**
+     * Sets game difficulty
+     *
+     * @param diff game difficulty
+     */
     public void setDifficulty(Difficulty diff) {
         difficulty = diff;
     }
 
+    /**
+     * Sets current planet
+     *
+     * @param planet new planet
+     */
     public void setCurrentPlanet(Planet planet) {
         currentPlanet = planet;
     }
 
+    /**
+     * Sets current planet with different solar system
+     *
+     * @param planet new planet
+     * @param system new system
+     */
     public void setCurrentPlanet(Planet planet, SolarSystem system){
         currentSystem = system;
         currentPlanet = planet;
     }
 
+    /**
+     * Short travel to another planet
+     *
+     * @param planet planet to travel to
+     */
     public void shortTravel(Planet planet) {
         if(currentSystem.hasPlanet(planet)){
             currentPlanet = planet;
@@ -96,6 +151,12 @@ public final class Game {
         }
     }
 
+    /**
+     * Long travel to planet
+     *
+     * @param system new solar system
+     * @param planet planet to travel to
+     */
     public void longTravel(SolarSystem system, Planet planet) {
         try {
             player.removeFuel(1);
@@ -111,6 +172,11 @@ public final class Game {
         }
     }
 
+    /**
+     * Randomly generates solar systems
+     *
+     * @return list of solar systems
+     */
     private List<SolarSystem> createSolarSystem() {
         solarSystems = new ArrayList<>();
         List<String> planetNames = Arrays.asList(SolarSystem.planetNames);
@@ -146,16 +212,22 @@ public final class Game {
             TechLevel techLevel = TechLevel.getRandom();
             // Choose Resource
             ResourceModifier resourceMod = ResourceModifier.getRandomWorldMod();
-            curr.addPlanet(new Planet(name, techLevel, resourceMod, curr));
+            curr.addPlanet(new Planet(name, techLevel, resourceMod));
             planets--;
         }
         return solarSystems;
     }
 
+    /**
+     * Updates user data for firebase
+     */
     public void writeUserData() {
         mUserData.setValue(getInstance());
     }
 
+    /**
+     * Reads user data from firebase
+     */
     public void readUserData() {
         ValueEventListener downloader = new ValueEventListener() {
             @Override

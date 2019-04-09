@@ -8,6 +8,7 @@ import java.util.Random;
 import static junit.framework.Assert.assertEquals;
 
 
+@SuppressWarnings("ALL")
 public class GetPriceTest {
 
     FakeRandom fakeRand = new FakeRandom();

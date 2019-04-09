@@ -4,6 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.order66.team66.spacetraderapp.R;
 
+/**
+ * Represents a Selling Screen
+ */
 public class SellActivity extends AppCompatActivity {
 
     @Override

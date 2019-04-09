@@ -24,6 +24,9 @@ public enum Spaceship {
         this.fuelCap = fuelCap;
     }
 
+    /**
+     * Firebase constructor
+     */
     Spaceship() {
 
     }

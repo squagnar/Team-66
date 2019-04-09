@@ -171,6 +171,9 @@ public class SolarSystem {
         planets = new ArrayList<>();
     }
 
+    /**
+     * Firebase constructor
+     */
     public SolarSystem(){
 
     }
@@ -193,15 +196,33 @@ public class SolarSystem {
         return name;
     }
 
+
+    /**
+     * Gets planet by index from solar system
+     *
+     * @param num index of planet
+     * @return planet
+     */
     @Exclude
     public Planet getPlanet(int num){
         return planets.get(num);
     }
 
+    /**
+     * Gets solar system's planets
+     *
+     * @return list of planets
+     */
     public List<Planet> getPlanets() {
         return planets;
     }
 
+    /**
+     * Gets whether the system has target planet
+     *
+     * @param target planet to check for
+     * @return whether planet is here
+     */
     public boolean hasPlanet(Planet target) {
         for (Planet planet: planets) {
             if(planet.equals(target)) {
@@ -215,19 +236,36 @@ public class SolarSystem {
     @Override
     public String toString() {
         StringBuilder toRet = new StringBuilder();
-        toRet.append("Solar System Name: " + name + "\n" +
-                "Coordinates: " + "(" + x + ", " + y + ")\n" +
-                "Planets: \n");
+        toRet.append("Solar System Name: ");
+        toRet.append(name);
+        toRet.append("\n");
+        toRet.append("Coordinates: (");
+        toRet.append(x);
+        toRet.append(", ");
+        toRet.append(y);
+        toRet.append(")\n");
+        toRet.append("Planets: \n");
         for (Planet p: planets) {
-            toRet.append(p + "\n");
+            toRet.append(p);
+            toRet.append("\n");
         }
         return toRet.toString();
     }
 
+    /**
+     * Return x coordinate
+     *
+     * @return x coordinate
+     */
     public int getX(){
         return x;
     }
 
+    /**
+     * Return y coordinate
+     *
+     * @return y coordinate
+     */
     public int getY(){
         return  y;
     }

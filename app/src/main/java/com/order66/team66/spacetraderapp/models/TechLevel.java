@@ -34,6 +34,9 @@ public enum TechLevel {
         this.levelNumber = levelNumber;
     }
 
+    /**
+     * Firebase constructor
+     */
     TechLevel() {
 
     }

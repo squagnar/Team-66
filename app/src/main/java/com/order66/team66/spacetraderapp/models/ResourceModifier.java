@@ -55,6 +55,9 @@ public enum ResourceModifier {
         this.type = type;
     }
 
+    /**
+     * Firebase constructor
+     */
     ResourceModifier() {
 
     }
