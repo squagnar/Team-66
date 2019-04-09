@@ -1,13 +1,17 @@
 package com.order66.team66.spacetraderapp.models;
 
+import android.support.annotation.NonNull;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
-
-import android.support.annotation.NonNull;
-import com.google.firebase.database.*;
 
 /**
  * Stores Game Data
@@ -16,10 +20,10 @@ public final class Game {
 
     private static final Game GAME_STATE = new Game();
 
-    private String userID = "test";
+    private final String userID = "test";
 
-    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference mUserData = mDatabase.child("users").child(userID);
+    private final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    private final DatabaseReference mUserData = mDatabase.child("users").child(userID);
 
     /** Game Difficulty */
     private Difficulty difficulty;
@@ -236,11 +240,13 @@ public final class Game {
                 Game loadedState = dataSnapshot.getValue(Game.class);
 
                 //Update the game with the saved data
-                difficulty = loadedState.getDifficulty();
-                setPlayer(loadedState.getPlayer());
-                solarSystems = loadedState.getSolarSystems();
-                currentPlanet = loadedState.getCurrentPlanet();
-                currentSystem = loadedState.getCurrentSystem();
+                if (loadedState != null) {
+                    difficulty = loadedState.getDifficulty();
+                    setPlayer(loadedState.getPlayer());
+                    solarSystems = loadedState.getSolarSystems();
+                    currentPlanet = loadedState.getCurrentPlanet();
+                    currentSystem = loadedState.getCurrentSystem();
+                }
 
             }
 

@@ -31,10 +31,11 @@ public class CargoHold {
      * @return the amount of the given resource in the CargoHold
      */
     public int getStock(Resource resource) {
-        if (cargoStock.containsKey(resource.getName())) {
-            return cargoStock.get(resource.getName());
+        Integer stock = null;
+        if (resource != null && cargoStock.containsKey(resource.getName())) {
+            stock = cargoStock.get(resource.getName());
         }
-        return 0;
+        return stock != null ? stock : 0;
     }
 
     /**
@@ -45,7 +46,8 @@ public class CargoHold {
      */
     public void increaseStock(Resource resource, int amount) {
         if (resource != null && cargoStock.containsKey(resource.getName())) {
-            int newStock = cargoStock.get(resource.getName()) + amount;
+            Integer currStock = cargoStock.get(resource.getName());
+            int newStock = (currStock != null ? currStock : 0) + amount;
             cargoStock.put(resource.getName(), newStock);
             currentCapacity += amount;
         }
@@ -59,7 +61,8 @@ public class CargoHold {
      */
     public void decreaseStock(Resource resource, int amount) {
         if (resource != null && cargoStock.containsKey(resource.getName())) {
-            int newStock = Math.max(cargoStock.get(resource.getName()) - amount, 0);
+            Integer currStock = cargoStock.get(resource.getName());
+            int newStock = Math.max(currStock != null ? currStock : 0 - amount, 0);
             cargoStock.put(resource.getName(), newStock);
             currentCapacity -= amount;
         }

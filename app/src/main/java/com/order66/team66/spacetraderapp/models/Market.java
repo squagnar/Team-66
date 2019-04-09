@@ -76,8 +76,13 @@ public class Market {
      * @param resource the resource to check
      * @return true if it can be bought from the player, otherwise false
      */
-    public boolean canUse(Resource resource) {
-        return canUseResource.get(resource.getName());
+    public boolean canUse(Resource resource)
+    {
+        if (resource != null && canUseResource.containsKey(resource.getName())) {
+            Boolean use = canUseResource.get(resource.getName());
+            return use != null ? use : false;
+        }
+        return false;
     }
 
     /**
@@ -87,7 +92,11 @@ public class Market {
      * @return true if it can be sold to the player, otherwise false
      */
     public boolean canMake(Resource resource) {
-        return canMakeResource.get(resource.getName());
+        if (resource != null && canMakeResource.containsKey(resource.getName())) {
+            Boolean  make = canMakeResource.get(resource.getName());
+            return make != null ? make : false;
+        }
+        return false;
     }
 
     /**
@@ -98,7 +107,11 @@ public class Market {
      */
     @Exclude
     public int getPrice(Resource resource) {
-        return resourcePrice.get(resource.getName());
+        if (resource != null && resourcePrice.containsKey(resource.getName())) {
+            Integer price = resourcePrice.get(resource.getName());
+            return price != null ? price : 0;
+        }
+        return 0;
     }
 
     /**
@@ -109,7 +122,11 @@ public class Market {
      */
     @Exclude
     public int getStock(Resource resource) {
-        return  resourceStock.get(resource.getName());
+        if (resource != null && resourceStock.containsKey(resource.getName())) {
+            Integer stock = resourceStock.get(resource.getName());
+            return stock != null ? stock : 0;
+        }
+        return 0;
     }
 
     /**
@@ -158,8 +175,11 @@ public class Market {
      * @param amount the amount to increase stock by
      */
     public void increaseStock(Resource resource, int amount) {
-        int newStock = resourceStock.get(resource.getName()) + amount;
-        resourceStock.put(resource.getName(), newStock);
+        if (resource != null && resourceStock.containsKey(resource.getName())) {
+            Integer stock = resourceStock.get(resource.getName());
+            int newStock = (stock != null ? stock : 0) + amount;
+            resourceStock.put(resource.getName(), newStock);
+        }
     }
 
     /**
@@ -169,8 +189,11 @@ public class Market {
      * @param amount the amount to decrease stock by
      */
     public void decreaseStock(Resource resource, int amount) {
-        int newStock = Math.max(resourceStock.get(resource.getName()) - amount, 0);
-        resourceStock.put(resource.getName(), newStock);
+        if (resource != null && resourceStock.containsKey(resource.getName())) {
+            Integer stock = resourceStock.get(resource.getName());
+            int newStock = Math.max((stock != null ? stock : 0) - amount, 0);
+            resourceStock.put(resource.getName(), newStock);
+        }
     }
 
     //@Exclude

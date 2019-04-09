@@ -97,9 +97,7 @@ public class Planet {
         }
         if (other instanceof Planet) {
             Planet p = (Planet) other;
-            if (name.equals(p.getName())) {
-                return true;
-            }
+            return  name.equals(p.getName());
         }
         return false;
     }

@@ -54,7 +54,7 @@ public class TravelActivity extends AppCompatActivity {
                 player.getCargoHold().getCurrentCapacity())));
 
 
-        ArrayList<String> planetNames = new ArrayList<>();
+        List<String> planetNames = new ArrayList<>();
         for (Planet p : solarSystem.getPlanets()) {
             planetNames.add(p.getName());
         }

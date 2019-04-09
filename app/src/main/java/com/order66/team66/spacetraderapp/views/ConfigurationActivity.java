@@ -15,7 +15,6 @@ import com.order66.team66.spacetraderapp.R;
 import com.order66.team66.spacetraderapp.models.Difficulty;
 import com.order66.team66.spacetraderapp.models.Skill;
 import com.order66.team66.spacetraderapp.viewmodels.ConfigurationViewModel;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
