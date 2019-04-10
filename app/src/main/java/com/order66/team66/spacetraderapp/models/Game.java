@@ -22,8 +22,8 @@ public final class Game {
 
     private final String userID = "test";
 
-    private final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-    private final DatabaseReference mUserData = mDatabase.child("users").child(userID);
+    //private final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    //private final DatabaseReference mUserData = mDatabase.child("users").child(userID);
 
     /** Game Difficulty */
     private Difficulty difficulty;
