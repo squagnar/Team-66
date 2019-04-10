@@ -62,19 +62,6 @@ public class Player {
     }
 
     /**
-     * Creates a new player with skill points set to 0
-     *
-     * Sets initial credits to 1000
-     * Sets initial spaceship to Gnat
-     *
-     * @param name Player Name
-     */
-    //TODO: decide if we need a default constructor
-    //public Player(String name) {
-    //    this(name, 4, 4, 4, 4);
-    //}
-
-    /**
      * Gets Player's Name
      *
      * @return player name
@@ -178,11 +165,27 @@ public class Player {
     public String toString() {
         String toRet = "Name: " + name + "\n" +
                 "Credits: " + credits + "\n" +
-                "Spaceship: " + spaceship.getName() + "\n" +
-                "Pilot Skill: " + pilot.getLevel() + "\n" +
-                "Fighter Skill: " + fighter.getLevel() + "\n" +
-                "Trader Skill: "+ trader.getLevel() + "\n" +
-                "Engineer Skill: " + engineer.getLevel() + "\n";
+                "Spaceship: " + spaceship.getName() + "\n";
+                //"Pilot Skill: " + pilot.getLevel() + "\n" +
+                //"Fighter Skill: " + fighter.getLevel() + "\n" +
+                //"Trader Skill: "+ trader.getLevel() + "\n" +
+                //"Engineer Skill: " + engineer.getLevel() + "\n";
         return toRet;
+    }
+
+    public Skill getPilot(){
+        return pilot;
+    }
+
+    public Skill getFighter(){
+        return fighter;
+    }
+
+    public Skill getTrader(){
+        return trader;
+    }
+
+    public Skill getEngineer(){
+        return engineer;
     }
 }

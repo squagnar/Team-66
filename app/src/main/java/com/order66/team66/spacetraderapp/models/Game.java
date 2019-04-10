@@ -3,6 +3,7 @@ package com.order66.team66.spacetraderapp.models;
 import java.util.*;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 import com.google.firebase.database.*;
 
 /**
@@ -11,8 +12,10 @@ import com.google.firebase.database.*;
 public class Game {
 
     private static final Game GAME_STATE = new Game();
+    private Game loadedData;
 
     private String userID = "test";
+    private Boolean downloadInProgress;
 
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference mUserData = mDatabase.child("users").child(userID);
@@ -33,10 +36,6 @@ public class Game {
     private Game(){
         difficulty = Difficulty.EASY;
         player = null;
-        solarSystems = createSolarSystem();
-
-        currentPlanet = solarSystems.get(0).getPlanet(0);
-        currentSystem = solarSystems.get(0);
     }
 
     public static Game getInstance(){
@@ -77,6 +76,13 @@ public class Game {
 
     public void setCurrentPlanet(Planet planet) {
         currentPlanet = planet;
+    }
+
+    public void createUnivserse() {
+        solarSystems = createSolarSystem();
+
+        currentPlanet = solarSystems.get(0).getPlanet(0);
+        currentSystem = solarSystems.get(0);
     }
 
     public void setCurrentPlanet(Planet planet, SolarSystem system){
@@ -157,23 +163,29 @@ public class Game {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //Get the saved data from the Database
-                Game loadedState = dataSnapshot.getValue(Game.class);
-
-                //Update the game with the saved data
-                difficulty = loadedState.getDifficulty();
-                setPlayer(loadedState.getPlayer());
-                solarSystems = loadedState.getSolarSystems();
-                currentPlanet = loadedState.getCurrentPlanet();
-                currentSystem = loadedState.getCurrentSystem();
-
+                loadedData = dataSnapshot.getValue(Game.class);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Log.d("DOWNLOAD", databaseError.getMessage());
+                downloadInProgress = false;
             }
         };
+
         mUserData.addListenerForSingleValueEvent(downloader);
+
+    }
+
+    public void updateUserData() {
+        //Update the game with the saved data
+        difficulty = loadedData.getDifficulty();
+        setPlayer(loadedData.getPlayer());
+        solarSystems = loadedData.getSolarSystems();
+        currentPlanet = loadedData.getCurrentPlanet();
+        currentSystem = loadedData.getCurrentSystem();
+
+        Log.d("DOWNLOAD", player.toString());
     }
 }
 

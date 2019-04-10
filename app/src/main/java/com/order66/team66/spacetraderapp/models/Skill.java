@@ -27,6 +27,9 @@ public enum Skill {
         level = 0;
     }
 
+    Skill() {
+    }
+
     public String getName() { return name; }
 
     public int getLevel() { return level; }

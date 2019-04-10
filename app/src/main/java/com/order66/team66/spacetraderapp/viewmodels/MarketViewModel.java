@@ -1,16 +1,25 @@
 package com.order66.team66.spacetraderapp.viewmodels;
 import android.arch.lifecycle.ViewModel;
+import android.util.Log;
 import com.order66.team66.spacetraderapp.models.*;
 
 import java.util.List;
 
 public class MarketViewModel extends ViewModel {
 
-    private Game GAME_STATE = Game.getInstance();
-    private Planet planet = GAME_STATE.getCurrentPlanet();
-    private SolarSystem solarSystem = GAME_STATE.getCurrentSystem();
-    private Market market = planet.getMarket();
-    private Player player = GAME_STATE.getPlayer();
+    private Game GAME_STATE;
+    private Planet planet;
+    private SolarSystem solarSystem;
+    private Market market;
+    private Player player;
+
+    public MarketViewModel() {
+        GAME_STATE = Game.getInstance();
+        planet = GAME_STATE.getCurrentPlanet();
+        solarSystem = GAME_STATE.getCurrentSystem();
+        market = GAME_STATE.getCurrentPlanet().getMarket();
+        player = GAME_STATE.getPlayer();
+    }
 
     public Planet getPlanet() {
         return planet;

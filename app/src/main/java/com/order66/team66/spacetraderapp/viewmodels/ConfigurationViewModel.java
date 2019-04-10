@@ -25,6 +25,7 @@ public class ConfigurationViewModel extends ViewModel {
         Player player = new Player(name, pilot, fighter, trader, engineer);
         GAME_STATE.setPlayer(player);
         GAME_STATE.writeUserData();
+        GAME_STATE.createUnivserse();
     }
 
     public Player getPlayer() { return GAME_STATE.getPlayer();}

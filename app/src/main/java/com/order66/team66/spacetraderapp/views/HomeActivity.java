@@ -3,6 +3,7 @@ package com.order66.team66.spacetraderapp.views;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import com.order66.team66.spacetraderapp.R;
@@ -38,6 +39,7 @@ public class HomeActivity extends Activity {
     }
 
     public void goToMarket(View view) {
+        Log.d("playerdata", Game.getInstance().getPlayer().getName());
         Intent intent = new Intent(HomeActivity.this, MarketActivity.class);
         startActivity(intent);
     }
