@@ -1,7 +1,7 @@
 package com.order66.team66.spacetraderapp.models;
 
-import org.jetbrains.annotations.NotNull;
 import com.google.firebase.database.Exclude;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;

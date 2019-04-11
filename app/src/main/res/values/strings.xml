@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">Space Trader App</string>
     <string name="title_activity_configuration">ConfigurationActivity</string>
-    <string name="title_activity_player">PlayerActivity</string>
 </resources>

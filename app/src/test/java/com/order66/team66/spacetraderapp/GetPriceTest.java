@@ -1,11 +1,13 @@
-package com.order66.team66.spacetraderapp.tests;
+package com.order66.team66.spacetraderapp;
+
 import com.order66.team66.spacetraderapp.models.Resource;
 import com.order66.team66.spacetraderapp.models.ResourceModifier;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.util.Random;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 
 @SuppressWarnings("ALL")

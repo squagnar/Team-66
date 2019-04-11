@@ -1,8 +1,8 @@
 package com.order66.team66.spacetraderapp.views;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -85,12 +85,13 @@ public class BuyActivity extends AppCompatActivity {
      */
     public void confirmTrade(View view) {
         int creditChange = (sellQuantity - buyQuantity) * market.getPrice(resource);
-        if ((player.getCredits() + creditChange) < 0) {
+        int credits = player.getCredits();
+        if ((credits + creditChange) < 0) {
             Toast.makeText(this, "You don't have enough credits for that!", Toast.LENGTH_LONG).show();
         } else if (((buyQuantity - sellQuantity) + cargo.getCurrentCapacity()) > cargo.getMaxCapacity()) {
             Toast.makeText(this, "You don't have enough cargo space for that!", Toast.LENGTH_LONG).show();
         } else {
-            player.setCredits(player.getCredits() + creditChange);
+            player.setCredits(credits + creditChange);
             market.decreaseStock(resource, buyQuantity - sellQuantity);
             cargo.increaseStock(resource, buyQuantity - sellQuantity);
             finish();

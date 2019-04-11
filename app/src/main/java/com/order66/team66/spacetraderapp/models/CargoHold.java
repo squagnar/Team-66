@@ -32,10 +32,10 @@ public class CargoHold {
      */
     public int getStock(Resource resource) {
         Integer stock = null;
-        if (resource != null && cargoStock.containsKey(resource.getName())) {
+        if ((resource != null) && (cargoStock.containsKey(resource.getName()))) {
             stock = cargoStock.get(resource.getName());
         }
-        return stock != null ? stock : 0;
+        return (stock != null) ? stock : 0;
     }
 
     /**
@@ -45,10 +45,11 @@ public class CargoHold {
      * @param amount the amount to increase the stock by
      */
     public void increaseStock(Resource resource, int amount) {
-        if (resource != null && cargoStock.containsKey(resource.getName())) {
-            Integer currStock = cargoStock.get(resource.getName());
-            int newStock = (currStock != null ? currStock : 0) + amount;
-            cargoStock.put(resource.getName(), newStock);
+        String resName = resource.getName();
+        if (cargoStock.containsKey(resName)) {
+            Integer currStock = cargoStock.get(resName);
+            int newStock = ((currStock != null) ? currStock : 0) + amount;
+            cargoStock.put(resName, newStock);
             currentCapacity += amount;
         }
     }
@@ -60,10 +61,11 @@ public class CargoHold {
      * @param amount the amount to decrease the stock by
      */
     public void decreaseStock(Resource resource, int amount) {
-        if (resource != null && cargoStock.containsKey(resource.getName())) {
-            Integer currStock = cargoStock.get(resource.getName());
-            int newStock = Math.max(currStock != null ? currStock : 0 - amount, 0);
-            cargoStock.put(resource.getName(), newStock);
+        String resName = resource.getName();
+        if (cargoStock.containsKey(resName)) {
+            Integer currStock = cargoStock.get(resName);
+            int newStock = Math.max(((currStock != null) ? currStock : 0) - amount, 0);
+            cargoStock.put(resName, newStock);
             currentCapacity -= amount;
         }
     }
