@@ -66,7 +66,7 @@ public class HomeActivity extends Activity {
      *
      * @param view save button
      */
-    public void saveGame(View view) {
-        GAME_STATE.writeUserData();
-    }
+//    public void saveGame(View view) {
+//        GAME_STATE.writeUserData();
+//    }
 }

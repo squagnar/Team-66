@@ -1,17 +1,6 @@
 package com.order66.team66.spacetraderapp.models;
 
-import android.support.annotation.NonNull;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 /**
  * Stores Game Data
@@ -225,37 +214,37 @@ public final class Game {
     /**
      * Updates user data for firebase
      */
-    public void writeUserData() {
-        mUserData.setValue(getInstance());
-    }
-
-    /**
-     * Reads user data from firebase
-     */
-    public void readUserData() {
-        ValueEventListener downloader = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //Get the saved data from the Database
-                Game loadedState = dataSnapshot.getValue(Game.class);
-
-                //Update the game with the saved data
-                if (loadedState != null) {
-                    difficulty = loadedState.getDifficulty();
-                    setPlayer(loadedState.getPlayer());
-                    solarSystems = loadedState.getSolarSystems();
-                    currentPlanet = loadedState.getCurrentPlanet();
-                    currentSystem = loadedState.getCurrentSystem();
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        };
-        mUserData.addListenerForSingleValueEvent(downloader);
-    }
+//    public void writeUserData() {
+//        mUserData.setValue(getInstance());
+//    }
+//
+//    /**
+//     * Reads user data from firebase
+//     */
+//    public void readUserData() {
+//        ValueEventListener downloader = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                //Get the saved data from the Database
+//                Game loadedState = dataSnapshot.getValue(Game.class);
+//
+//                //Update the game with the saved data
+//                if (loadedState != null) {
+//                    difficulty = loadedState.getDifficulty();
+//                    setPlayer(loadedState.getPlayer());
+//                    solarSystems = loadedState.getSolarSystems();
+//                    currentPlanet = loadedState.getCurrentPlanet();
+//                    currentSystem = loadedState.getCurrentSystem();
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        };
+//        mUserData.addListenerForSingleValueEvent(downloader);
+    //}
 }
 

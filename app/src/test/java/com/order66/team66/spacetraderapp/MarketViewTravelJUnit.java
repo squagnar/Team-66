@@ -13,6 +13,7 @@ public class MarketViewTravelJUnit {
     SolarSystem s1, s2, s3;
     MarketViewModel viewModel;
     private final Game GAME_STATE = Game.getInstance();
+    private final int maxRuns = 1000;
 
     @Before
     public void setup() {
@@ -65,6 +66,7 @@ public class MarketViewTravelJUnit {
     @Test
     public void testDifferentPlanetDifferentSystem() {
         GAME_STATE.setCurrentPlanet(p1, s1);
+
         viewModel = new MarketViewModel();
         assertEquals(true, GAME_STATE.getCurrentPlanet() == p1);
         assertEquals(true, GAME_STATE.getCurrentSystem() == s1);
@@ -82,5 +84,29 @@ public class MarketViewTravelJUnit {
         viewModel.travel(p3, s3);
         assertEquals(true, GAME_STATE.getCurrentPlanet() == p1);
         assertEquals(true, GAME_STATE.getCurrentSystem() == s1);
+    }
+
+    @Test
+    public void testMarketEvent() {
+        GAME_STATE.setCurrentPlanet(p1, s1);
+        viewModel = new MarketViewModel();
+        boolean worked = false;
+        for (int i = 0; i < maxRuns; i++) {
+            if (GAME_STATE.getPlayer().getCurrentFuel() < 1) {
+                GAME_STATE.getPlayer().addFuel(1);
+            }
+            if (i % 2 == 0) {
+                viewModel.travel(p2, s1);
+                if (p2.getMarket().getEventModifier() != null) {
+                    worked = true;
+                }
+            } else {
+                viewModel.travel(p1, s1);
+                if (p1.getMarket().getEventModifier() != null) {
+                    worked = true;
+                }
+            }
+        }
+        assertEquals(true, worked);
     }
 }

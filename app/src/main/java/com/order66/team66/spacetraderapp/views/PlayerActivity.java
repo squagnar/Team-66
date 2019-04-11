@@ -40,10 +40,10 @@ public class PlayerActivity extends AppCompatActivity {
      *
      * @param view load player button
      */
-    public void loadPlayer(View view) {
-        GAME_STATE.readUserData();
-
-        Intent intent = new Intent(PlayerActivity.this, HomeActivity.class);
-        startActivity(intent);
-    }
+//    public void loadPlayer(View view) {
+//        GAME_STATE.readUserData();
+//
+//        Intent intent = new Intent(PlayerActivity.this, HomeActivity.class);
+//        startActivity(intent);
+//    }
 }
