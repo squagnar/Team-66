@@ -90,8 +90,7 @@
     <View
             android:id="@+id/solar_system_img"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/planets"/>
+            android:layout_height="wrap_content"/>
 
     <Spinner
             android:id="@+id/planet_spinner"
