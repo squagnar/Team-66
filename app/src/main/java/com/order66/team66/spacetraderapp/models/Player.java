@@ -165,11 +165,11 @@ public class Player {
     public String toString() {
         String toRet = "Name: " + name + "\n" +
                 "Credits: " + credits + "\n" +
-                "Spaceship: " + spaceship.getName() + "\n";
-                //"Pilot Skill: " + pilot.getLevel() + "\n" +
-                //"Fighter Skill: " + fighter.getLevel() + "\n" +
-                //"Trader Skill: "+ trader.getLevel() + "\n" +
-                //"Engineer Skill: " + engineer.getLevel() + "\n";
+                "Spaceship: " + spaceship.getName() + "\n" +
+                "Pilot Skill: 16\n" + //+ pilot.getLevel() + "\n" +
+                "Fighter Skill: 0\n" + //+ fighter.getLevel() + "\n" +
+                "Trader Skill: 0\n" + //+ trader.getLevel() + "\n" +
+                "Engineer Skill: 0\n"; //+ engineer.getLevel() + "\n";
         return toRet;
     }
 
