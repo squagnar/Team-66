@@ -104,6 +104,10 @@ public final class Game {
         return currentPlanet;
     }
 
+    public String getCurrentPlanetName() {
+        return currentPlanet.getName();
+    }
+
     /**
      * Sets current player
      *

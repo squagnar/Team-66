@@ -26,7 +26,7 @@ public class HomeActivity extends Activity {
         Planet planet = viewModel.getPlanet();
 
         TextView planetText = findViewById(R.id.planet_home_text);
-        planetText.setText(planet.getName());
+        planetText.setText(viewModel.getPlanetName());
     }
 
     /**
