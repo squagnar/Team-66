@@ -10,10 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.order66.team66.spacetraderapp.R;
-import com.order66.team66.spacetraderapp.models.CargoHold;
-import com.order66.team66.spacetraderapp.models.Market;
-import com.order66.team66.spacetraderapp.models.Player;
-import com.order66.team66.spacetraderapp.models.Resource;
+import com.order66.team66.spacetraderapp.models.*;
 import com.order66.team66.spacetraderapp.viewmodels.MarketViewModel;
 
 /**
@@ -215,10 +212,13 @@ public class MarketActivity extends AppCompatActivity {
         robotsCargoStock.setTag(robots);
 
         TextView currentWorldEvent = findViewById(R.id.planet_market_text);
-        currentWorldEvent.setText(viewModel.getMarket().getWorldModifier().toString());
+        Market market = viewModel.getMarket();
+        ResourceModifier worldModifier = market.getWorldModifier();
+        currentWorldEvent.setText(worldModifier.toString());
 
+        ResourceModifier eventModifier = market.getEventModifier();
         TextView eventMod = findViewById(R.id.event_market_text);
-        eventMod.setText(viewModel.getMarket().getEventModifier().toString());
+        eventMod.setText(eventModifier.toString());
     }
 
     /**
@@ -236,7 +236,8 @@ public class MarketActivity extends AppCompatActivity {
 
             startActivity(intent);
         } else {
-            Toast.makeText(this,"This planet cannot trade that resource!", Toast.LENGTH_LONG).show();
+            Toast toast = Toast.makeText(this,"This planet cannot trade that resource!", Toast.LENGTH_LONG);
+            toast.show();
         }
     }
 }
