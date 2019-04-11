@@ -53,38 +53,83 @@ public class MarketViewModel extends ViewModel {
         return solarSystem;
     }
 
+    /**
+     * Return planet name
+     *
+     * @return planet name
+     */
     public String getPlanetName() {
         return planetName;
     }
 
+    /**
+     * Returns cargo hold
+     *
+     * @return cargo hold
+     */
     public CargoHold getCargoHold() {
         return cargo;
     }
 
+    /**
+     * Returns max cargo capacity
+     *
+     * @return max cargo capacity
+     */
     public int getMaxCapacity() {
         return cargo.getMaxCapacity();
     }
 
+    /**
+     * returns current cargo capacity
+     *
+     * @return current cargo capacity
+     */
     public int getCurrentCapacity() {
         return cargo.getCurrentCapacity();
     }
 
+    /**
+     * returns player's spaceship
+     *
+     * @return player's spaceship
+     */
     public Spaceship getSpaceship() {
         return spaceship;
     }
 
+    /**
+     * returns player's spaceship name
+     *
+     * @return spaceship name
+     */
     public String getSpaceshipName() {
         return spaceship.getName();
     }
 
+    /**
+     * Returns planet's world modifier
+     *
+     * @return world modifier
+     */
     public ResourceModifier getWorldModifier(){
         return market.getWorldModifier();
     }
 
+    /**
+     * Returns planet's event modifier
+     *
+     * @return event modifier
+     */
     public ResourceModifier getEventModifier(){
         return market.getEventModifier();
     }
 
+    /**
+     * Returns player' current fuel
+     *
+     * @return current fuel
+     */
     public int getCurrentFuel(){
         return player.getCurrentFuel();
     }
