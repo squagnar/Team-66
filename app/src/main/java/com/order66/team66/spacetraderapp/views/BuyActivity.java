@@ -46,7 +46,8 @@ public class BuyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_buy);
 
         Intent intent = getIntent();
-        resource = (Resource) Objects.requireNonNull(intent.getExtras()).get("Resource");
+        Bundle bundle = Objects.requireNonNull(intent.getExtras());
+        resource = (Resource) bundle.get("Resource");
         MarketViewModel viewModel = new MarketViewModel();
 
         market = viewModel.getMarket();
@@ -87,9 +88,11 @@ public class BuyActivity extends AppCompatActivity {
         int creditChange = (sellQuantity - buyQuantity) * market.getPrice(resource);
         int credits = player.getCredits();
         if ((credits + creditChange) < 0) {
-            Toast.makeText(this, "You don't have enough credits for that!", Toast.LENGTH_LONG).show();
+            Toast toast = Toast.makeText(this, "You don't have enough credits for that!", Toast.LENGTH_LONG);
+            toast.show();
         } else if (((buyQuantity - sellQuantity) + cargo.getCurrentCapacity()) > cargo.getMaxCapacity()) {
-            Toast.makeText(this, "You don't have enough cargo space for that!", Toast.LENGTH_LONG).show();
+            Toast toast = Toast.makeText(this, "You don't have enough cargo space for that!", Toast.LENGTH_LONG);
+            toast.show();
         } else {
             player.setCredits(credits + creditChange);
             market.decreaseStock(resource, buyQuantity - sellQuantity);

@@ -3,14 +3,10 @@ package com.order66.team66.spacetraderapp.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import com.order66.team66.spacetraderapp.R;
 import com.order66.team66.spacetraderapp.models.Difficulty;
 import com.order66.team66.spacetraderapp.models.Skill;
@@ -18,6 +14,7 @@ import com.order66.team66.spacetraderapp.viewmodels.ConfigurationViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -138,7 +135,8 @@ public class ConfigurationActivity extends AppCompatActivity {
         pointsUnspentText.setText(String.format("%s", pointsUnspent));
         TextView skillDisplay = null;
         for(TextView display : skillDisplays) {
-            if(display.getTag().equals(skill)){
+            Skill tag = (Skill) display.getTag();
+            if(tag.equals(skill)){
                 skillDisplay = display;
                 break;
             }
@@ -157,12 +155,16 @@ public class ConfigurationActivity extends AppCompatActivity {
     public void onAddPressed(View view) {
         //difficulty.setDifficulty((String) difficultySpinner.getSelectedItem());
         Pattern regex = Pattern.compile("[a-zA-Z]+");
-        if (!regex.matcher(nameFieldText.getText()).find()) {
-            Toast.makeText(this, "Please enter a valid name!", Toast.LENGTH_LONG).show();
+        Matcher matcher = regex.matcher(nameFieldText.getText());
+        if (!matcher.find()) {
+            Toast toast = Toast.makeText(this, "Please enter a valid name!", Toast.LENGTH_LONG);
+            toast.show();
         } else if (pointsUnspent > 0) {
-            Toast.makeText(this, "Please allocate all skill points!", Toast.LENGTH_LONG).show();
+            Toast toast = Toast.makeText(this, "Please allocate all skill points!", Toast.LENGTH_LONG);
+            toast.show();
         } else {
-            viewModel.createPlayer(nameFieldText.getText().toString(), pilot, fighter, trader, engineer);
+            Editable name = nameFieldText.getText();
+            viewModel.createPlayer(name.toString(), pilot, fighter, trader, engineer);
             Log.d("New player added", "Player data: \n" + viewModel.getPlayer());
             largeLog("New solar systems added", "Solar System data: \n" + viewModel.getSolarSystems());
             Intent intent = new Intent(ConfigurationActivity.this, HomeActivity.class);

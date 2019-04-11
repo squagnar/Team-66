@@ -4,16 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import com.order66.team66.spacetraderapp.R;
-import com.order66.team66.spacetraderapp.models.CargoHold;
-import com.order66.team66.spacetraderapp.models.Planet;
-import com.order66.team66.spacetraderapp.models.Player;
-import com.order66.team66.spacetraderapp.models.SolarSystem;
+import com.order66.team66.spacetraderapp.models.*;
 import com.order66.team66.spacetraderapp.viewmodels.MarketViewModel;
 
 import java.util.ArrayList;
@@ -48,10 +41,12 @@ public class TravelActivity extends AppCompatActivity {
         Button travelButton = findViewById(R.id.travel_button);
 
         currentPlanet.setText(planet.getName());
-        shipType.setText(player.getSpaceship().getName());
+        Spaceship spaceship = player.getSpaceship();
+        shipType.setText(spaceship.getName());
         fuelRemaining.setText(String.format("%s", player.getCurrentFuel()));
-        cargoRemaining.setText(String.format("%s", (player.getCargoHold().getMaxCapacity() -
-                player.getCargoHold().getCurrentCapacity())));
+        CargoHold cargoHold = player.getCargoHold();
+        cargoRemaining.setText(String.format("%s", (cargoHold.getMaxCapacity() -
+                cargoHold.getCurrentCapacity())));
 
 
         List<String> planetNames = new ArrayList<>();
@@ -78,7 +73,8 @@ public class TravelActivity extends AppCompatActivity {
             Intent intent = new Intent(TravelActivity.this, HomeActivity.class);
             startActivity(intent);
         } catch (RuntimeException e) {
-            Toast.makeText(this,"You don't have enough fuel for that!", Toast.LENGTH_LONG).show();
+            Toast toast = Toast.makeText(this,"You don't have enough fuel for that!", Toast.LENGTH_LONG);
+            toast.show();
         }
     }
 }

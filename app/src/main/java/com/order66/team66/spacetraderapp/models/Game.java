@@ -42,8 +42,8 @@ public final class Game {
         difficulty = Difficulty.EASY;
         solarSystems = createSolarSystem();
 
-        currentPlanet = solarSystems.get(0).getPlanet(0);
         currentSystem = solarSystems.get(0);
+        currentPlanet = currentSystem.getPlanet(0);
     }
 
     /**
