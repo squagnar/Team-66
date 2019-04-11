@@ -42,7 +42,7 @@ public class MarketActivity extends AppCompatActivity {
 
         market = viewModel.getMarket();
         Player player = viewModel.getPlayer();
-        cargo = player.getCargoHold();
+        cargo = viewModel.getCargoHold();
 
         water = Resource.WATER;
         fur = Resource.FURS;
@@ -212,11 +212,10 @@ public class MarketActivity extends AppCompatActivity {
         robotsCargoStock.setTag(robots);
 
         TextView currentWorldEvent = findViewById(R.id.planet_market_text);
-        Market market = viewModel.getMarket();
-        ResourceModifier worldModifier = market.getWorldModifier();
+        ResourceModifier worldModifier = viewModel.getWorldModifier();
         currentWorldEvent.setText(worldModifier.toString());
 
-        ResourceModifier eventModifier = market.getEventModifier();
+        ResourceModifier eventModifier = viewModel.getEventModifier();
         TextView eventMod = findViewById(R.id.event_market_text);
         eventMod.setText(eventModifier.toString());
     }

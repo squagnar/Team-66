@@ -1,12 +1,7 @@
 package com.order66.team66.spacetraderapp.viewmodels;
 
 import android.arch.lifecycle.ViewModel;
-import com.order66.team66.spacetraderapp.models.Game;
-import com.order66.team66.spacetraderapp.models.Market;
-import com.order66.team66.spacetraderapp.models.Planet;
-import com.order66.team66.spacetraderapp.models.Player;
-import com.order66.team66.spacetraderapp.models.ResourceModifier;
-import com.order66.team66.spacetraderapp.models.SolarSystem;
+import com.order66.team66.spacetraderapp.models.*;
 
 /**
  * View Model for Player Activities
@@ -19,6 +14,8 @@ public class MarketViewModel extends ViewModel {
     private Market market = planet.getMarket();
     private final Player player = GAME_STATE.getPlayer();
     private String planetName = GAME_STATE.getCurrentPlanetName();
+    private final Spaceship spaceship = player.getSpaceship();
+    private final CargoHold cargo = player.getCargoHold();
 
     /**
      * Returns current planet
@@ -59,6 +56,40 @@ public class MarketViewModel extends ViewModel {
     public String getPlanetName() {
         return planetName;
     }
+
+    public CargoHold getCargoHold() {
+        return cargo;
+    }
+
+    public int getMaxCapacity() {
+        return cargo.getMaxCapacity();
+    }
+
+    public int getCurrentCapacity() {
+        return cargo.getCurrentCapacity();
+    }
+
+    public Spaceship getSpaceship() {
+        return spaceship;
+    }
+
+    public String getSpaceshipName() {
+        return spaceship.getName();
+    }
+
+    public ResourceModifier getWorldModifier(){
+        return market.getWorldModifier();
+    }
+
+    public ResourceModifier getEventModifier(){
+        return market.getEventModifier();
+    }
+
+    public int getCurrentFuel(){
+        return player.getCurrentFuel();
+    }
+
+
 
     /**
      * Travel to new planet

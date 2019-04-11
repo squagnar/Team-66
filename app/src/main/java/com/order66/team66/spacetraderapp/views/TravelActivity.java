@@ -31,7 +31,7 @@ public class TravelActivity extends AppCompatActivity {
         Planet planet = viewModel.getPlanet();
         solarSystem = viewModel.getSolarSystem();
         Player player = viewModel.getPlayer();
-        CargoHold cargo = player.getCargoHold();
+        CargoHold cargo = viewModel.getCargoHold();
 
         TextView currentPlanet = findViewById(R.id.current_planet_text);
         TextView shipType = findViewById(R.id.ship_type_text);
@@ -40,13 +40,12 @@ public class TravelActivity extends AppCompatActivity {
         planetSpinner = findViewById(R.id.planet_spinner);
         Button travelButton = findViewById(R.id.travel_button);
 
-        currentPlanet.setText(planet.getName());
-        Spaceship spaceship = player.getSpaceship();
-        shipType.setText(spaceship.getName());
-        fuelRemaining.setText(String.format("%s", player.getCurrentFuel()));
-        CargoHold cargoHold = player.getCargoHold();
-        cargoRemaining.setText(String.format("%s", (cargoHold.getMaxCapacity() -
-                cargoHold.getCurrentCapacity())));
+        currentPlanet.setText(viewModel.getPlanetName());
+        Spaceship spaceship = viewModel.getSpaceship();
+        shipType.setText(viewModel.getSpaceshipName());
+        fuelRemaining.setText(String.format("%s", viewModel.getCurrentFuel()));
+        cargoRemaining.setText(String.format("%s", (viewModel.getMaxCapacity() -
+                viewModel.getCurrentCapacity())));
 
 
         List<String> planetNames = new ArrayList<>();
@@ -59,7 +58,7 @@ public class TravelActivity extends AppCompatActivity {
         planetAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         planetSpinner.setAdapter(planetAdapter);
 
-        planetSpinner.setSelection(planetNames.indexOf(planet.getName()));
+        planetSpinner.setSelection(planetNames.indexOf(viewModel.getPlanetName()));
     }
 
     /**
