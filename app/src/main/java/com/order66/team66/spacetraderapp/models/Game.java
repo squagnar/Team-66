@@ -127,7 +127,7 @@ public class Game {
             // If planets == 0, make a new Solar System
             if (planets == 0) {
                 // New number of planets for Solar System
-                planets = (int) (Math.random() * 12) + 1;
+                planets = (int) (Math.random() * 11) + 2;
                 // Find coordinates for new Solar System
                 int x = -1;
                 int y = -1;

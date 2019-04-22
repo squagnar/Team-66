@@ -1,6 +1,7 @@
 package com.order66.team66.spacetraderapp.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -221,6 +222,10 @@ public enum Resource {
         }
 
         return stock;
+    }
+
+    public static Resource getRandomResource(){
+        return Resource.values()[(int)(Math.random() * Resource.values().length)];
     }
 
 }

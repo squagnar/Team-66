@@ -30,7 +30,7 @@ public class Player {
     /** Player's Spaceship */
     private Spaceship spaceship;
 
-    private CargoHold cargoHold = new CargoHold(10);
+    private CargoHold cargoHold = new CargoHold(100);
 
     private int currentFuel;
 

@@ -98,7 +98,13 @@ public class TravelActivity extends AppCompatActivity {
             Intent intent = new Intent(TravelActivity.this, HomeActivity.class);
             startActivity(intent);
         } catch (RuntimeException e) {
-            Toast.makeText(this,"You don't have enough fuel for that!", Toast.LENGTH_LONG).show();
+            if(e.getMessage().equalsIgnoreCase("Not Enough Fuel!")) {
+                Toast.makeText(this, "You don't have enough fuel for that!", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(TravelActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
         }
     }
 }

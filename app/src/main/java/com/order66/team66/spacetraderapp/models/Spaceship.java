@@ -6,7 +6,7 @@ package com.order66.team66.spacetraderapp.models;
 public enum Spaceship {
 
     /** Spaceship Types */
-    GNAT("Gnat", 2),
+    GNAT("Gnat", 10),
     YAMATO("Battleship Yamato", 20),
     NULL("N/A", 0);
 
