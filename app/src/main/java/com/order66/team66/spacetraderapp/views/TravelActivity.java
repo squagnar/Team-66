@@ -11,6 +11,8 @@ import com.order66.team66.spacetraderapp.viewmodels.MarketViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import android.graphics.PixelFormat;
+import android.net.Uri;
 
 public class TravelActivity extends AppCompatActivity {
 
@@ -60,6 +62,32 @@ public class TravelActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, planetNames);
         planetAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         planetSpinner.setAdapter(planetAdapter);
+
+        Button buttonPlayVideo2 = (Button)findViewById(R.id.button1);
+
+        getWindow().setFormat(PixelFormat.UNKNOWN);
+
+        //displays a video file
+        VideoView mVideoView2 = (VideoView)findViewById(R.id.videoView1);
+
+        String uriPath2 = "android.resource://"+getPackageName()+"/"+R.raw.spcshp;
+        Uri uri2 = Uri.parse(uriPath2);
+        mVideoView2.setVideoURI(uri2);
+        mVideoView2.requestFocus();
+        mVideoView2.start();
+
+        buttonPlayVideo2.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VideoView mVideoView2 = (VideoView) findViewById(R.id.videoView1);
+                // VideoView mVideoView = new VideoView(this);
+                String uriPath = "android.resource://com.example.toyo.playvideo/" + R.raw.spcshp;
+                Uri uri2 = Uri.parse(uriPath);
+                mVideoView2.setVideoURI(uri2);
+                mVideoView2.requestFocus();
+                mVideoView2.start();
+            }
+        });
 
         planetSpinner.setSelection(Arrays.asList(planetNames).indexOf(planet.getName()));
     }

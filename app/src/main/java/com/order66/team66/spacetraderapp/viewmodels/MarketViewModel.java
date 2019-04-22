@@ -45,7 +45,7 @@ public class MarketViewModel extends ViewModel {
             player.removeFuel(1);
 
             //Check if we trigger a market event for this world
-            if(Math.random() > -1) {
+            if(Math.random() > .3) {
                 market.updateMarket(ResourceModifier.getRandomEventMod());
             }
         }
