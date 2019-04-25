@@ -5,6 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/spacebg2"
         tools:context=".views.HomeActivity">
 
     <TextView
@@ -12,20 +13,22 @@
             android:id="@+id/current_planet_home_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="80dp"
             android:layout_marginTop="150dp"
             android:textSize="19sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"/>
 
     <TextView
             android:text="planet"
             android:id="@+id/planet_home_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="210dp"
+            android:layout_marginLeft="235dp"
             android:layout_marginTop="150dp"
             android:textSize="19sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"/>
 
     <TextView
             android:text="What would you like to do?"
@@ -35,7 +38,8 @@
             android:layout_marginLeft="88dp"
             android:layout_marginTop="200dp"
             android:textSize="19sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"/>
     <Button
             android:text="Exit"
             android:layout_width="wrap_content"
@@ -67,5 +71,20 @@
             android:layout_height="wrap_content"
             android:text="Save game"
             android:layout_marginTop="12dp"
-            android:layout_marginLeft="12dp" android:onClick="saveGame"/>
+            android:layout_marginLeft="12dp"
+            android:onClick="saveGame"/>
+
+    <ImageView
+            android:src="@drawable/spaceship"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="440dp"
+            android:layout_marginLeft="150dp"
+            android:id="@+id/spaceship"/>
+
+    <!--<ImageView-->
+            <!--android:src="@drawable/spacebg"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/spacebg"/>-->
 </RelativeLayout>

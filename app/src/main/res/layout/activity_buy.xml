@@ -8,11 +8,20 @@
         tools:context=".views.BuyActivity"
         android:fillViewport="true">
     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
-    <View
-            android:id="@+id/background_market"
-            android:layout_width="800dp"
-            android:layout_height="800dp"
-            android:background="@drawable/rectangle"/>
+        <View
+                android:id="@+id/background_market"
+                android:layout_width="800dp"
+                android:layout_height="800dp"
+                android:background="@drawable/spacebg2"/>
+
+        <ImageView
+                android:layout_width="350dp"
+                android:layout_height="650dp"
+                app:srcCompat="@android:color/holo_orange_light"
+                android:tint="@color/colorPrimary"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="40dp"
+                android:id="@+id/imageView"/>
 
     <TextView
             android:id="@+id/resource_header"

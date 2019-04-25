@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
-        <View
-                android:id="@+id/background_market"
-                android:layout_width="800dp"
-                android:layout_height="800dp"
-                android:background="@drawable/rectangle"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:fillViewport="true">
+    <View
+            android:id="@+id/background_market"
+            android:layout_width="800dp"
+            android:layout_height="800dp"
+            android:background="@drawable/spacebg2"/>
+
+    <ImageView
+            android:layout_width="350dp"
+            android:layout_height="650dp"
+            app:srcCompat="@android:color/holo_orange_light"
+            android:tint="@color/colorPrimary"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="40dp"
+            android:id="@+id/imageView"/>
         <Button
                 android:id="@+id/create_player"
                 android:layout_width="wrap_content"
@@ -15,7 +24,7 @@
                 android:text="Create Player"
                 android:textStyle="bold"
                 android:fontFamily="serif"
-                android:layout_marginLeft="125dp"
+                android:layout_marginLeft="128dp"
                 android:layout_marginTop="200dp"
                 android:onClick="goToCreatePlayer"/>
 

@@ -9,6 +9,7 @@
         tools:showIn="@layout/activity_configuration"
         tools:context=".views.ConfigurationActivity">
 
+
     <!-- Create a player header-->
     <TextView
             android:id="@+id/create_player"
